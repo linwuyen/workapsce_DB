@@ -1,0 +1,9 @@
+"./ControlPWM.obj"
+"./syscfg/board.obj"
+"./syscfg/c2000ware_libraries.obj"
+"./main.obj"
+"./device/device.obj"
+"./device/f28004x_codestartbranch.obj"
+"../28004x_generic_ram_lnk.cmd"
+"C:/ti/c2000/C2000Ware_5_01_00_00/driverlib/f28004x/driverlib/ccs/Debug/driverlib.lib"
+-llibc.a

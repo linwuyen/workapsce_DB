@@ -1,0 +1,5 @@
+Address,Name,Size,Type,Value,Bytes,Gain,Offset,Maximum,Minimum
+Show,Black,White,1000,ID,uint16_t,Hex,0x0000,2,,,,
+Show,Black,White,1001,,uint16_t,Hex,0x0000,2,,,,
+Show,Black,White,1002,,uint16_t,Hex,0x0000,2,,,,
+Show,Black,White,1003,,uint16_t,Hex,0x0000,2,,,,

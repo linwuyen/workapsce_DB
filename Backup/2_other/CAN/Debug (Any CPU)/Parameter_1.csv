@@ -1,0 +1,5 @@
+en,id,func,data,len,type,gain,offset,max,min
+False,0x111,,,,,,,,
+True,0x123,,0x3354760504030201,u64,Hex,,,,
+False,0x103,,,,,,,,
+True,0x104,,0x14,u8,Hex,,,,

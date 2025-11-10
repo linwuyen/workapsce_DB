@@ -1,0 +1,53 @@
+﻿cl : 命令列 warning D9035: 選項 'clr:pure' 已被取代，在未來的發行版本中將會移除
+  tmUART.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\yvals.h(250): warning STL4001: /clr:pure is deprecated and will be REMOVED.
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(244,2): error C2976: 'std::array': 樣板 引數太少
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\utility(475): message : 請參閱 'std::array' 的宣告
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(244,35): error C3699: '^': 不能在類型 'std::array' 上使用這個間接取值
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(244,35): message : 編譯器將 '^' 取代為 '*' 繼續進行剖析
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(244,41): error C2976: 'std::array': 樣板 引數太少
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\utility(475): message : 請參閱 'std::array' 的宣告
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(244,73): error C2027: 使用未定義類型 'std::array'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\utility(475): message : 請參閱 'std::array' 的宣告
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(247,43): error C2664: 'int System::IO::Ports::SerialPort::Read(cli::array<unsigned char,1> ^,int,int)': 無法將引數 1 從 'std::array *' 轉換為 'cli::array<unsigned char,1> ^'
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(247): message : 請參閱 'System::IO::Ports::SerialPort::Read' 的宣告
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(250,52): error C2027: 使用未定義類型 'std::array'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\utility(475): message : 請參閱 'std::array' 的宣告
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(259,44): error C2678: 二元運算子 '==': 找不到使用左方運算元類型 'std::array' 的運算子 (或是沒有可接受的轉換)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\guiddef.h(192,15): message : 可能是 'bool operator ==(const GUID &,const GUID &)'
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(259,44): message : 當嘗試符合引數清單 '(std::array, )' 時
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(263,49): error C2678: 二元運算子 '==': 找不到使用左方運算元類型 'std::array' 的運算子 (或是沒有可接受的轉換)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\guiddef.h(192,15): message : 可能是 'bool operator ==(const GUID &,const GUID &)'
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(263,49): message : 當嘗試符合引數清單 '(std::array, )' 時
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(382,2): error C2976: 'std::array': 樣板 引數太少
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\utility(475): message : 請參閱 'std::array' 的宣告
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(382,36): error C3699: '^': 不能在類型 'std::array' 上使用這個間接取值
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(382,36): message : 編譯器將 '^' 取代為 '*' 繼續進行剖析
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(382,42): error C2976: 'std::array': 樣板 引數太少
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\utility(475): message : 請參閱 'std::array' 的宣告
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(382,69): error C2027: 使用未定義類型 'std::array'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\utility(475): message : 請參閱 'std::array' 的宣告
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(385,35): error C2582: 'operator =' 函式無法在 'std::array' 中使用
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(389,40): error C2664: 'void System::IO::Ports::SerialPort::Write(cli::array<wchar_t,1> ^,int,int)': 無法將引數 1 從 'std::array *' 轉換為 'cli::array<wchar_t,1> ^'
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\include\tmUART.cpp(389): message : 請參閱 'System::IO::Ports::SerialPort::Write' 的宣告
+  I_PEL3_V0100.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\yvals.h(250): warning STL4001: /clr:pure is deprecated and will be REMOVED.
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\Form1.h(1018,6): error C2976: 'std::array': 樣板 引數太少
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\utility(475): message : 請參閱 'std::array' 的宣告
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\Form1.h(1018,1): error C3699: '^': 不能在類型 'std::array' 上使用這個間接取值
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\Form1.h(1018,1): message : 編譯器將 '^' 取代為 '*' 繼續進行剖析
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\Form1.h(1018,1): error C2440: '正在初始化': 無法由 'cli::array<System::String ^,1> ^' 轉換為 'std::array *'
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\Form1.h(1019,1): error C2027: 使用未定義類型 'std::array'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\utility(475): message : 請參閱 'std::array' 的宣告
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\Form1.h(1020,1): error C2664: 'int System::Windows::Forms::ComboBox::ObjectCollection::Add(System::Object ^)': 無法將引數 1 從 'std::array' 轉換為 'System::Object ^'
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\Form1.h(1020,1): message : 使用未定義的類型 'std::array'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\utility(475,7): message : 請參閱 'std::array' 的宣告
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\Form1.h(1020): message : 請參閱 'System::Windows::Forms::ComboBox::ObjectCollection::Add' 的宣告
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\I_PEL3_V0100.cpp(9,10): error C2976: 'std::array': 樣板 引數太少
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\utility(475): message : 請參閱 'std::array' 的宣告
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\I_PEL3_V0100.cpp(9,39): error C3699: '^': 不能在類型 'std::array' 上使用這個間接取值
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\I_PEL3_V0100.cpp(9,39): message : 編譯器將 '^' 取代為 '*' 繼續進行剖析
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\I_PEL3_V0100.cpp(18,1): error C2664: 'int main(std::array *)': 無法將引數 1 從 'int' 轉換為 'std::array *'
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\I_PEL3_V0100.cpp(18,1): message : 從整數類資料類型轉換為指標類型必須有 reinterpret_cast、C-Style 轉換或函式樣式轉換
+C:\Users\zerofivem\Desktop\I_PEL3_V0101\I_PEL3_V0100\I_PEL3_V0100.cpp(9,5): message : 請參閱 'main' 的宣告
+  正在產生程式碼...

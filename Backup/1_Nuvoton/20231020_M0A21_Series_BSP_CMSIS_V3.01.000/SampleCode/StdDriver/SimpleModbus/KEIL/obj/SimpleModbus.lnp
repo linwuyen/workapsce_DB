@@ -1,0 +1,27 @@
+--cpu Cortex-M0
+".\obj\system_m0a21.o"
+".\obj\startup_m0a21.o"
+".\obj\main.o"
+".\obj\g_uart.o"
+".\obj\g_timer.o"
+".\obj\i2c_eeprom.o"
+".\obj\emu_eeprom.o"
+".\obj\tstblock.o"
+".\obj\dl_flashctrl.o"
+".\obj\retarget.o"
+".\obj\clk.o"
+".\obj\sys.o"
+".\obj\uart.o"
+".\obj\timer.o"
+".\obj\gpio.o"
+".\obj\fmc.o"
+".\obj\usci_i2c.o"
+".\obj\modbusslave.o"
+".\obj\crc16.o"
+".\obj\linkvariables.o"
+".\obj\modbusfunction.o"
+".\obj\tbmenu.o"
+--library_type=microlib --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict
+--map --first='startup_M0A21.o(RESET)' --datacompressor=off --info=inline --entry Reset_Handler --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\lst\SimpleModbus.map" -o .\obj\SimpleModbus.axf

@@ -1,0 +1,156 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2837xD" --package "F2837xD_176PTP" --part "F2837xD_176PTP" --context "CPU1" --product "C2000WARE@5.01.00.00"
+ * @versions {"tool":"1.20.0+3587"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const adc              = scripting.addModule("/driverlib/adc.js", {}, false);
+const adc1             = adc.addInstance();
+const cmpss            = scripting.addModule("/driverlib/cmpss.js", {}, false);
+const cmpss1           = cmpss.addInstance();
+const cputimer         = scripting.addModule("/driverlib/cputimer.js", {}, false);
+const cputimer1        = cputimer.addInstance();
+const dac              = scripting.addModule("/driverlib/dac.js", {}, false);
+const dac1             = dac.addInstance();
+const epwm             = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1            = epwm.addInstance();
+const gpio             = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1            = gpio.addInstance();
+const gpio2            = gpio.addInstance();
+const gpio3            = gpio.addInstance();
+const inputxbar_input  = scripting.addModule("/driverlib/inputxbar_input.js", {}, false);
+const inputxbar_input1 = inputxbar_input.addInstance();
+const outputxbar       = scripting.addModule("/driverlib/outputxbar.js", {}, false);
+const outputxbar1      = outputxbar.addInstance();
+const sci              = scripting.addModule("/driverlib/sci.js", {}, false);
+const sci1             = sci.addInstance();
+const sysctl           = scripting.addModule("/driverlib/sysctl.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+adc1.$name                   = "CPU1_ADCA";
+adc1.adcClockPrescaler       = "ADC_CLK_DIV_4_0";
+adc1.soc0IndependentNameMode = true;
+adc1.soc1Name                = "SOC1_BUCK_VIN";
+adc1.soc1Channel             = "ADC_CH_ADCIN2_ADCIN3";
+adc1.soc1IndependentNameMode = true;
+adc1.soc1SampleWindow        = 64;
+adc1.soc2Name                = "SOC2_BUCK_VO";
+adc1.soc2IndependentNameMode = true;
+adc1.soc2Channel             = "ADC_CH_ADCIN4_ADCIN5";
+adc1.enabledInts             = ["ADC_INT_NUMBER1"];
+adc1.enableInterrupt1        = true;
+adc1.registerInterrupts      = ["1"];
+adc1.soc0SampleWindow        = 64;
+adc1.soc1Trigger             = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc2Trigger             = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc2SampleWindow        = 64;
+adc1.interruptPulseMode      = "ADC_PULSE_END_OF_CONV";
+adc1.enabledSOCs             = ["ADC_SOC_NUMBER0"];
+adc1.soc0Trigger             = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc0Channel             = "ADC_CH_ADCIN2";
+adc1.soc0Name                = "SOC0_BUCK_VO";
+adc1.adcInt1.enableInterrupt = true;
+
+cmpss1.enableModule         = true;
+cmpss1.clearFilterLatchHigh = true;
+cmpss1.latchResetHigh       = true;
+cmpss1.configLatchHigh      = true;
+cmpss1.$name                = "SIM_OVP";
+cmpss1.dacValHigh           = 2048;
+cmpss1.initFilterHigh       = true;
+
+cputimer1.$name          = "SWTIRMER";
+cputimer1.timerPrescaler = 3;
+cputimer1.timerPeriod    = 50000000;
+cputimer1.startTimer     = true;
+cputimer1.emulationMode  = "CPUTIMER_EMULATIONMODE_RUNFREE";
+
+dac1.$name            = "myDAC0";
+dac1.enableOutput     = true;
+dac1.referenceVoltage = "DAC_REF_ADC_VREFHI";
+
+epwm1.$name                                   = "BUCK_PWM1";
+epwm1.epwmTripZone_tzInterruptSource          = ["EPWM_TZ_INTERRUPT_CBC"];
+epwm1.epwmDigitalCompare_EPWM_DC_TYPE_DCAL    = "EPWM_DC_TRIP_TRIPIN4";
+epwm1.epwmDigitalCompare_EPWM_DC_TYPE_DCAH    = "EPWM_DC_TRIP_TRIPIN4";
+epwm1.epwmDigitalCompare_EPWM_TZ_DC_OUTPUT_A1 = "EPWM_TZ_EVENT_DCXL_HIGH_DCXH_LOW";
+epwm1.epwm.$assign                            = "EPWM1";
+
+gpio1.$name           = "CPU1_LED";
+gpio1.direction       = "GPIO_DIR_MODE_OUT";
+gpio1.gpioPin.$assign = "GPIO10";
+
+gpio2.$name           = "YAN_XU_D4_LED";
+gpio2.direction       = "GPIO_DIR_MODE_OUT";
+gpio2.gpioPin.$assign = "GPIO67";
+
+gpio3.$name                         = "OVP_GPIO2";
+gpio3.useInterrupt                  = true;
+gpio3.gpioPin.$assignAllowConflicts = "GPIO2";
+gpio3.xint.registerInterrupts       = true;
+gpio3.xint.enableInt                = true;
+gpio3.xint.intType                  = "GPIO_INT_TYPE_BOTH_EDGES";
+gpio3.xint.xInt.enableInterrupt     = true;
+scripting.suppress("Resource conflict,@@@.+?@@@ is also in use by @@@.+?@@@", gpio3, "gpioPin");
+
+inputxbar_input1.$name         = "myINPUTXBARINPUT1";
+gpio3.xint.inputxbar           = inputxbar_input1;
+inputxbar_input1.inputxbarGpio = "GPIO2";
+
+outputxbar1.muxesUsed                                      = ["XBAR_MUX00"];
+outputxbar1.$name                                          = "IO_OVP_OUT";
+outputxbar1.outputxbar.$assign                             = "OUTPUTXBAR1";
+outputxbar1.outputxbar.outputxbarPin.$assignAllowConflicts = "GPIO2";
+scripting.suppress("Resource conflict,@@@.+?@@@ is also in use by @@@.+?@@@", outputxbar1.outputxbar, "outputxbarPin");
+
+sci1.$name                 = "DEBUG_SCI";
+sci1.parity                = "SCI_CONFIG_PAR_EVEN";
+sci1.useInterrupts         = false;
+sci1.sci.$assign           = "SCIA";
+sci1.sci.scirxdPin.$assign = "GPIO43";
+sci1.sci.scitxdPin.$assign = "GPIO42";
+
+sysctl.cpuSel_EPWM7                    = "SYSCTL_CPUSEL_CPU2";
+sysctl.cpuSel_EPWM8                    = "SYSCTL_CPUSEL_CPU2";
+sysctl.cpuSel_EPWM9                    = "SYSCTL_CPUSEL_CPU2";
+sysctl.cpuSel_EPWM10                   = "SYSCTL_CPUSEL_CPU2";
+sysctl.cpuSel_EPWM11                   = "SYSCTL_CPUSEL_CPU2";
+sysctl.cpuSel_EPWM12                   = "SYSCTL_CPUSEL_CPU2";
+sysctl.enable_SYSCTL_PERIPH_CLK_SCIB   = false;
+sysctl.enable_SYSCTL_PERIPH_CLK_SCIC   = false;
+sysctl.enable_SYSCTL_PERIPH_CLK_SCID   = false;
+sysctl.enable_SYSCTL_PERIPH_CLK_I2CB   = false;
+sysctl.enable_SYSCTL_PERIPH_CLK_SPIC   = false;
+sysctl.enable_SYSCTL_PERIPH_CLK_SPIB   = false;
+sysctl.enable_SYSCTL_PERIPH_CLK_MCBSPA = false;
+sysctl.enable_SYSCTL_PERIPH_CLK_MCBSPB = false;
+sysctl.cpuSel_ADCC                     = "SYSCTL_CPUSEL_CPU2";
+sysctl.cpuSel_ADCD                     = "SYSCTL_CPUSEL_CPU2";
+sysctl.cpuSel_CMPSS5                   = "SYSCTL_CPUSEL_CPU2";
+sysctl.cpuSel_CMPSS6                   = "SYSCTL_CPUSEL_CPU2";
+sysctl.cpuSel_CMPSS7                   = "SYSCTL_CPUSEL_CPU2";
+sysctl.cpuSel_CMPSS8                   = "SYSCTL_CPUSEL_CPU2";
+sysctl.enable_SYSCTL_PERIPH_CLK_EMIF1  = false;
+sysctl.enable_SYSCTL_PERIPH_CLK_EMIF2  = false;
+sysctl.enable_SYSCTL_PERIPH_CLK_EQEP1  = false;
+sysctl.enable_SYSCTL_PERIPH_CLK_EQEP2  = false;
+sysctl.enable_SYSCTL_PERIPH_CLK_EQEP3  = false;
+sysctl.enable_SYSCTL_PERIPH_CLK_SD1    = false;
+sysctl.enable_SYSCTL_PERIPH_CLK_SD2    = false;
+sysctl.cpuSel_ECAP4                    = "SYSCTL_CPUSEL_CPU2";
+sysctl.cpuSel_ECAP5                    = "SYSCTL_CPUSEL_CPU2";
+sysctl.cpuSel_ECAP6                    = "SYSCTL_CPUSEL_CPU2";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+epwm1.epwm.epwm_aPin.$suggestSolution = "GPIO0";
+epwm1.epwm.epwm_bPin.$suggestSolution = "GPIO1";

@@ -1,0 +1,4 @@
+Address,Name,Size,Type,Value,Bytes,Gain,Offset,Maximum,Minimum
+Show,Black,White,1000,UARTEmuEE Status,uint16_t,Bin,0b00000000_00000001,2,,,,
+Show,Black,White,1001,u32writesuccess,uint16_t,Dec,33192,2,,,,
+Show,Black,White,1002,u8WriteAction,uint16_t,Bin,0b00000000_00000000,2,,,,

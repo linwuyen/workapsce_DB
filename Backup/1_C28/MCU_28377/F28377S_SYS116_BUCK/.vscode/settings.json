@@ -1,0 +1,19 @@
+{
+    "files.associations": {
+        "board.h": "c",
+        "*.cla": "c",
+        "cla_task.h": "c",
+        "common.h": "c",
+        "hwconfig.h": "c",
+        "ctypedef.h": "c",
+        "sysctl.h": "c",
+        "spi.h": "c",
+        "sdfm.h": "c",
+        "device.h": "c",
+        "cla_cmath.h": "c",
+        "hw_hrpwm.h": "c",
+        "gpio.h": "c",
+        "cdebug.h": "c",
+        "hw_gpio.h": "c"
+    }
+}

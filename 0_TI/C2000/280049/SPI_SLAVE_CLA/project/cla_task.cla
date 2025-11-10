@@ -1,0 +1,228 @@
+/*
+ * clatask.cla
+ *
+ *  Created on: 2022¦~3¤ë29¤é
+ *      Author: cody_chen
+ */
+
+#include "ctypedef.h"
+#include "cla_task.h"
+#include "HwConfig.h"
+#include "gpio.h"
+#include "epwm.h"
+
+
+#define CNT_COUNTING_MAX  (CNT_BUCK_PWM-1)
+#define CNT_HDB           (CNT_BUCK_PWM_DEADBAND>>1)
+#define CNT_LDB           (CNT_BUCK_PWM - CNT_HDB)
+
+#define SET_CMPA(cmp, base)   HWREGH(base + EPWM_O_CMPA + 0x1U) = cmp;
+#define SET_CMPB(cmp, base)   HWREGH(base + EPWM_O_CMPB + 0x1U) = cmp;
+
+#define SET_DB_PWMA(cmp)  if(__mlt(CNT_HDB , cmp)) v->u16PwmA = cmp - CNT_HDB; \
+                          else                     v->u16PwmA = 0;
+
+#define SET_DB_PWMB(cmp)  if(__mlt(CNT_LDB , cmp)) v->u16PwmB = CNT_BUCK_PWM; \
+                          else                     v->u16PwmB = cmp + CNT_HDB;
+
+#define RST_PWMAB_DUTY(base)             SET_CMPA(0, base); \
+                                         SET_CMPB(CNT_BUCK_PWM, base);
+
+#define SET_PWMAB_DUTY(cmp, base)        SET_DB_PWMA(cmp); \
+                                         SET_DB_PWMB(cmp); \
+                                         SET_CMPA(v->u16PwmA, base); \
+                                         SET_CMPB(v->u16PwmB, base);
+
+#define SET_PWMA_DUTY(cmp, base)         SET_CMPA(cmp, base); \
+                                         SET_CMPB(CNT_BUCK_PWM, base);
+
+#define SET_PWMB_DUTY(cmp, base)         SET_CMPA(0, base); \
+                                         SET_CMPB(cmp, base);
+
+
+static void CLA_UpdatePWM(HAL_PWM v)
+{
+
+#if FORCE_OUTPUT_PWM
+    if(1) {
+#else
+    if(FG_GETCLA(_CSTAT_OUTPUT_READY)) {
+#endif //FORCE_OUTPUT_PWM
+
+#if MANUAL_ADJ_PWM
+       // Skip the updating of u16PwmDuty
+#else
+
+#if ENABLE_CURRENT_LOOP
+        sCLA.sPWM.u16PwmDuty = (uint16_t)((float32_t) CNT_COUNTING_MAX * sCLA.sLoopI.f32Out);
+#else
+        sCLA.sPWM.u16PwmDuty = (uint16_t)((float32_t) CNT_COUNTING_MAX * sCLA.sLoopV.f32Out);
+#endif //ENABLE_CURRENT_LOOP
+#endif //MANUAL_ADJ_PWM
+
+        switch(sCLA.sPWM.u16CtrlReg) {
+            case _PWM_SOURCE_MODE: SET_PWMA_DUTY(sCLA.sPWM.u16PwmDuty, sCLA.sPWM.u32PwmBase); break;
+            case _PWM_SINK_MODE: SET_PWMB_DUTY(sCLA.sPWM.u16PwmDuty, sCLA.sPWM.u32PwmBase); break;
+            case _PWM_SOURCE_SINK_MODE: SET_PWMAB_DUTY(sCLA.sPWM.u16PwmDuty, sCLA.sPWM.u32PwmBase); break;
+            case _PWM_OFF_ALL:
+            default: RST_PWMAB_DUTY(sCLA.sPWM.u32PwmBase); break;
+        }
+    }
+    else {
+        RST_PWMAB_DUTY(sCLA.sPWM.u32PwmBase);
+    }
+
+}
+
+static void CLA_Measurement(void)
+{
+    sCLA.sVO.f32Adc = VO_SENSE;
+    CLA_getCaliData((float32_t *)&sCLA.sVO.f32Adc, (ST_CAL *)&sCLA.sVO.sCali);
+
+    sCLA.sVIN.f32Adc = VIN_SENSE;
+    CLA_getCaliData((float32_t *)&sCLA.sVIN.f32Adc, (ST_CAL *)&sCLA.sVIN.sCali);
+
+    sCLA.sIO.f32Adc = IO_SENSE;
+    CLA_getCaliData((float32_t *)&sCLA.sIO.f32Adc, (ST_CAL *)&sCLA.sIO.sCali);
+
+    sCLA.sIL.f32Adc = IL_SENSE;
+    CLA_getCaliData((float32_t *)&sCLA.sIL.f32Adc, (ST_CAL *)&sCLA.sIL.sCali);
+
+    sCLA.sIEL.f32Adc = IEL_SENSE;
+    CLA_getCaliData((float32_t *)&sCLA.sIEL.f32Adc, (ST_CAL *)&sCLA.sIEL.sCali);
+}
+
+
+//-----------------------------------------------------------------------------
+//
+// Task 1 - Measure ADC
+//
+// Description: PWM control logic can be implemented here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt)) void Cla1Task1 ( void )
+{
+    //
+    // Uncomment this to debug the CLA while connected to the debugger
+    //
+    //__mdebugstop();
+
+    if(FG_GETCLA(_CSTAT_INIT_SUCCESS)) {
+        SET_DEBUG_CLA_TASK1();
+
+        CLA_Measurement();
+
+        if(FG_GETCLA(_CSTAT_OUTPUT_READY)) {
+            sCLA.sLoopV.f32Err = sCLA.f32Vref - sCLA.sVO.sCali.f32Out;
+            sCLA.sLoopV.u16StopUi = (sCLA.sLoopI.f32Sum == sCLA.sLoopI.f32Out? 0: 1);
+            CLA_mPiLoop(&sCLA.sLoopV);
+
+#if ENABLE_FEED_FORWORD
+            sCLA.f32Iref = CLA_csatf((sCLA.sLoopV.f32Out * V2I_SCALE + sCLA.sIO.sCali.f32Out), sCLA.f32IrefLimit, -sCLA.f32IrefLimit);
+#else
+            sCLA.f32Iref = CLA_csatf(sCLA.sLoopV.f32Out * V2I_SCALE, sCLA.f32IrefLimit, -sCLA.f32IrefLimit);
+#endif //ENABLE_FEED_FORWORD
+            sCLA.sLoopI.f32Err = sCLA.f32Iref - sCLA.sIL.sCali.f32Out;
+            CLA_mPiLoop(&sCLA.sLoopI);
+        }
+        else {
+            sCLA.sLoopV.f32Out = sCLA.sLoopV.f32Itemp = 0.0f;
+            sCLA.sLoopI.f32Out = sCLA.sLoopI.f32Itemp = sCLA.f32InitDuty;
+        }
+
+        CLA_UpdatePWM((HAL_PWM)&sCLA.sPWM);
+        FG_SETCLA(_CSTAT_TASK1_OK);
+
+    }
+
+    RST_DEBUG_CLA_TASK1();
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 2 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task2 ( void )
+{
+
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 3 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task3 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 4 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task4 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 5 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task5 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 6 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task6 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 7 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task7 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 8 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task8 ( void )
+{
+
+}
+
+//
+// End of File
+//

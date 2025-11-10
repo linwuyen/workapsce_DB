@@ -1,0 +1,74 @@
+/*
+ *  File Name: linkVariables.c
+ *
+ *  Created on: 3/25/2024
+ *  Author: POWER-532A86
+ */
+
+#include "ModbusCommon.h"
+#include "ModbusSlave.h"
+
+
+void initRegN(void *v){ 
+
+	SCI_MODBUS *p = (SCI_MODBUS *) v;
+	p->pReg->u16COMmonHEAder = 1234; 
+	p->pReg->u16COMmonLENgth = 4; 
+	p->pReg->u16MAChineINFOrmationOFFSet = 9000; 
+	p->pReg->u16USERPARameterOFFSet = 1000; 
+	p->pReg->u16ADVAncePARameterOFFSet = 1020; 
+	p->pReg->u16COMmonCHEcksum = 12258; 
+	p->pReg->u16DACCHAnnel = 1; 
+	p->pReg->u16ENABleel = 0; 
+	p->pReg->u16ELOAdVONENABle = 1; 
+	p->pReg->u32FIRmwareBUIldDATe = 2023083110; 
+	p->pReg->f32VOLtageLOOpkp = 2; 
+	p->pReg->f32VOLtageLOOpki = 0.02; 
+	p->pReg->f32VOLtageLOOpMAXimum = 1; 
+	p->pReg->f32VOLtageLOOpMINimum = -1; 
+	p->pReg->f32CURrentLOOpkp = 1; 
+	p->pReg->f32CURrentLOOpki = 0.1; 
+	p->pReg->f32CURrentLOOpMAXimum = 1; 
+	p->pReg->f32CURrentLOOpMINimum = -1; 
+	p->pReg->u16COUntryCODe = 886; 
+	p->pReg->u16VENderid = 2423; 
+	p->pReg->u32BUIldDATe = 2023083110; 
+}
+
+void readRegN(void *v){ 
+
+	SCI_MODBUS *p = (SCI_MODBUS *) v;
+	p->pReg->u16CLACONtrolSTAtus = tstfsm; 
+	p->pReg->u16CLAERROrSTAtus = pkg.u16Action; 
+	p->pReg->u16ENABlePWM = pkg.u32AddrData_0; 
+	p->pReg->u16CONtrolMODe = pkg.u32AddrData_1; 
+	p->pReg->u16VOLtageREFerence = pkg.u32AddrData_2; 
+	p->pReg->u16POSitiveCURrentLIMit = pkg.u32AddrData_3; 
+}
+
+void writeReg(void *v){ 
+
+	SCI_MODBUS *p = (SCI_MODBUS *) v;
+	switch(p->info.rwfrom) {
+	case _muCLACONtrolSTAtus :   tstfsm = p->pReg->u16CLACONtrolSTAtus; break;
+	case _muCLAERROrSTAtus :   pkg.u16Action = p->pReg->u16CLAERROrSTAtus; break;
+	case _muENABlePWM :   pkg.u32AddrData_0 = p->pReg->u16ENABlePWM; break;
+	case _muCONtrolMODe :   pkg.u32AddrData_1 = p->pReg->u16CONtrolMODe; break;
+	case _muVOLtageREFerence :   pkg.u32AddrData_2 = p->pReg->u16VOLtageREFerence; break;
+	case _muPOSitiveCURrentLIMit :   pkg.u32AddrData_3 = p->pReg->u16POSitiveCURrentLIMit; break;
+	default:
+	    break;
+	}
+}
+
+void writeRegN(void *v){ 
+
+	SCI_MODBUS *p = (SCI_MODBUS *) v;
+	tstfsm = p->pReg->u16CLACONtrolSTAtus; 
+	pkg.u16Action = p->pReg->u16CLAERROrSTAtus; 
+	pkg.u32AddrData_0 = p->pReg->u16ENABlePWM; 
+	pkg.u32AddrData_1 = p->pReg->u16CONtrolMODe; 
+	pkg.u32AddrData_2 = p->pReg->u16VOLtageREFerence; 
+	pkg.u32AddrData_3 = p->pReg->u16POSitiveCURrentLIMit; 
+}
+

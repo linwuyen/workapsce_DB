@@ -1,0 +1,165 @@
+Profile,MDI2,,,,,,,,,,,,
+Code,85,,,,,,,,,,,,
+Model,B01,,,,,,,,,,,,
+FW,VDU2,,,,,,,,,,,,
+Version,405,,,,,,,,,,,,
+Language,English,,,,,,,,,,,,
+Document,PGNUM-035_BV-UserManual.pdf,,,,,,,,,,,,
+ID,Value,Def,Max,Min,Ram,Addrees,Lv,Type,Parameter,HMI Description,Apply,Version,Document Page
+,value,def,max,min,Ram,,,,1,Motor,,,
+01-01:,1,1,1,0,1,0100h,0,Motor,Hall Sequence,"0 = B, 1 = A",C,100,0
+01-02:,8,8,10,2,8,0101h,0,Motor,Motor Poles,"2, 4, 8, 10...",C,100,0
+01-03:,4188,4188,65535,100,4188,0102h,0,Motor,Motor No Load Full Spd,Unit: r/min,C,100,0
+01-04:,0,0,1,0,0,0103h,1,Motor,Motor Type,0 = BLDC，1 = Brushed。Note: 08-01 must set to 1 (duty) when set to using Brushed motor.,D,100,0
+01-05:,500,500,1000,0,500,0104h,0,A/P Input,Throttle Map,Output when throttle at neural point. (Unit: 0.1%),C,100,0
+01-06:,1,1,1,0,1,0105h,0,Motor,CW View,"0 = from shaft, 1 = from Bottom",C,100,0
+01-07:,0,0,65535,0,0,0106h,1,Protect,AutoReset Allowed Time,Alarm status can auto reset within this duraing. It can only be manully after this time. (Unit: 0.1s),C,100,0
+01-08:,0,0,0,0,0,0107h,1,Advance,Motor PWM Freq,0 = 20K，1 = 8K，2 = 10K，3 = 12K，4 = 14K，5 = 16K，6 = 18K，7 = 20K,D,100,0
+01-09:,0,0,0,0,0,0108h,1,Advance,Dead Time,"Unit：0.01us (When set to 0, 24V model=200, 48V model=300)",D,100,0
+01-10:,1,1,1,0,1,0109h,0,Protect,Hall Seq Alarm,"0 = Deactive, 1 = Active (only valid when 08-01=0)",C,100,0
+01-11:,1000,1000,65535,0,1000,010Ah,1,Protect,Over Current Boost,Unit：1ms (Current set by 05-16),C,100,0
+01-12:,500,500,65535,0,500,010Bh,1,Protect,Over Current Recover,Unit：1ms (Current set by 05-16),C,100,0
+01-13:,0,0,0,0,0,010Ch,1,Protect,Starting Current Time,Unit：1ms,C,100,0
+01-14:,1000,1000,65535,0,1000,010Dh,1,Protect,OVP Alarm Delay,Stop output when OVP. Alarm occurs when OVP last is more than this value.. Unit = 1ms,C,100,0
+01-15:,1000,1000,65535,0,1000,010Eh,1,Protect,UVP Alarm Delay,Stop output when UVP. Alarm occurs when UVP last is more than this value.. Unit = 1ms,C,100,0
+01-16:,100,100,65535,0,100,010Fh,1,Protect,Hall Alarm Delay,Stop output when Hall Fault. Alarm occurs when Hall fault last is more than this value.. Unit = 1ms,C,100,0
+,value,def,max,min,Ram,,,,2,General,,,
+02-01:,0,0,1,0,0,0200h,0,IO,SC/CC 模式,"0 = SC Mode, 1 = CC Mode",C,100,0
+02-02:,0,0,1,0,0,0201h,1,Advance,Phase ADV ON/oFF,"0 = OFF, 1 = ON",C,100,0
+02-03:,128,128,255,0,0,0202h,1,Advance,Phase ADV ratio,128: Normal，>128 :adv for (x - 128)/128，<128 :lag for (128 - x)/128,C,100,36
+02-04:,3,3,3,3,3,0203h,1,Advance,Drive Type,0 = Slow Decay，1 = Fast Decay，2 = Abs Drive，3 = Single Abs Drive，4 = Sine Wave (res),C,100,0
+02-05:,0,0,300,0,0,0204h,0,Operation,Starting Output,Unit: 0.1% Duty,C,100,0
+02-06:,0,0,6,0,0,0205h,0,Common,Command Source,M0：VR1 = Spd； M1：Digit； M2：VR1 = Spd，VR2 = ACC/DEC； M3：VR1 = Spd，VR2 = Tq； M4：VR1 = Spd，VR2 = VR1's scale; M5 : Res; M6 : Multi-Drive Lite,C,100,0
+02-07:,500,500,1000,0,500,0206h,0,A/P Input,Max analog input V,Unit: 0.01 VDC,C,100,0
+02-08:,30,30,1000,0,30,0207h,0,A/P Input,Min analog input V,Unit: 0.01 VDC,C,100,0
+02-09:,0,0,4,0,0,0208h,0,A/P Input,VR1 Mode,"0 = Single-Ended，1 = Single-Ended Reverse，2 = Wig-Wag，3 = Wig-Wag Reverse, 4 = Unipolar",C,100,0
+02-10:,1,1,1,0,1,0209h,0,A/P Input,VR2 Mode,0 = Single-Ended，1 = Single-Ended Reverse,C,100,0
+02-11:,1000,1000,1000,0,1000,020Ah,0,A/P Input,Analog input scale max.,"The scale of VR1 can be set by VR2 when 02-06=4, Unit：0.1 %",C,100,0
+02-12:,100,100,1000,0,100,020Bh,0,A/P Input,Analog input scale min.,"The scale of VR1 can be set by VR2 when 02-06=4, Unit：0.1 %",C,100,0
+02-13:,0,0,1,0,0,020Ch,0,A/P Input,Analog input stop setting,Operation for analog input is 0. 0 = motor stops，1 = Motor run at min speed.,C,100,0
+02-14:,2,2,2,0,2,020Dh,0,Common,KEY-SWITCH Mode,0: Enable when KEYSWITCH is ON ; 1: Enable after KEYSWITCH is ON for 5sec. MBRAKE-OUT control by FREE input. ; 2: Enable automatically when power on,C,100,0
+02-15:,6200,6200,65535,0,6200,020Eh,1,Advance,Max BUSV detect,Unit：0.01V,C,100,0
+02-16:,0,0,100,0,0,020Fh,0,Protect,Power On Run Inhibit Alarm,An alarm generates if the throttle is not at netrual point during power on for a time.0 = disabled ; 10 = 1sec,C,100,0
+,value,def,max,min,Ram,,,,3,Speed,,,
+03-01:,3000,3000,10000,200,3000,0300h,0,A/P Input,No.0 VR Max speed CW,Unit： RPM,C,100,0
+03-02:,100,100,10000,100,100,0301h,0,A/P Input,No.0 VR Min speed CW,Unit： RPM,C,100,0
+03-03:,3000,3000,10000,200,3000,0302h,0,A/P Input,No.0 VR Max speed CCW,Unit： RPM,C,100,0
+03-04:,100,100,10000,100,100,0303h,0,A/P Input,No.0 VR Min speed CCW,Unit： RPM,C,100,0
+03-05:,1500,1500,10000,200,1500,0304h,0,A/P Input,No.1 VR Max speed CW,Unit： RPM,C,100,0
+03-06:,100,100,10000,100,100,0305h,0,A/P Input,No.1 VR Min speed CW,Unit： RPM,C,100,0
+03-07:,1500,1500,10000,200,1500,0306h,0,A/P Input,No.1 VR Max speed CCW,Unit： RPM,C,100,0
+03-08:,100,100,10000,100,100,0307h,0,A/P Input,No.1 VR Min speed CCW,Unit： RPM,C,100,0
+03-09:,990,990,1000,0,990,0308h,0,A/P Input,No.0 VR Duty CW,Unit： 0.1%,C,100,0
+03-10:,0,0,1000,0,0,0309h,0,A/P Input,No.0 VR Duty CW,Unit： 0.1%,C,100,0
+03-11:,990,990,1000,0,990,030Ah,0,A/P Input,No.0 VR Duty CCW,Unit： 0.1%,C,100,0
+03-12:,0,0,1000,0,0,030Bh,0,A/P Input,No.0 VR Duty CCW,Unit： 0.1%,C,100,0
+03-13:,500,500,1000,0,500,030Ch,0,A/P Input,No.1 VR Duty CW,Unit： 0.1%,C,100,0
+03-14:,0,0,1000,0,0,030Dh,0,A/P Input,No.1 VR Duty CW,Unit： 0.1%,C,100,0
+03-15:,500,500,1000,0,500,030Eh,0,A/P Input,No.1 VR Duty CCW,Unit： 0.1%,C,100,0
+03-16:,0,0,1000,0,0,030Fh,0,A/P Input,No.1 VR Duty CCW,Unit： 0.1%,C,100,0
+,value,def,max,min,Ram,,,,4,ACC_DEC,,,
+04-01:,1000,1000,1000,100,1000,0400h,0,A/P Input,No.0 VR Tq limit CW,Unit：0.1% ,C,100,0
+04-02:,100,100,1000,100,100,0401h,0,A/P Input,No.0 VR Tq limit CW,Unit：0.1% ,C,100,0
+04-03:,1000,1000,1000,100,1000,0402h,0,A/P Input,No.0 VR Tq limit CCW,Unit：0.1% ,C,100,0
+04-04:,100,100,1000,100,100,0403h,0,A/P Input,No.0 VR Tq limit CCW,Unit：0.1% ,C,100,0
+04-05:,1000,1000,1000,100,1000,0404h,0,A/P Input,No.1 VR Tq limit CW,Unit：0.1% ,C,100,0
+04-06:,100,100,1000,100,100,0405h,0,A/P Input,No.1 VR Tq limit CW,Unit：0.1% ,C,100,0
+04-07:,1000,1000,1000,100,1000,0406h,0,A/P Input,No.1 VR Tq limit CCW,Unit：0.1% ,C,100,0
+04-08:,100,100,1000,100,100,0407h,0,A/P Input,No.1 VR Tq limit CCW,Unit：0.1% ,C,100,0
+04-09:,100,100,100,1,100,0408h,0,A/P Input,No.0 VR ACC DEC CW,Unit： 0.1sec,C,100,0
+04-10:,1,1,100,1,1,0409h,0,A/P Input,No.0 VR ACC DEC CW,Unit： 0.1sec,C,100,0
+04-11:,100,100,100,1,100,040Ah,0,A/P Input,No.0 VR ACC DEC CCW,Unit： 0.1sec,C,100,0
+04-12:,1,1,100,1,1,040Bh,0,A/P Input,No.0 VR ACC DEC CCW,Unit： 0.1sec,C,100,0
+04-13:,100,100,100,1,100,040Ch,0,A/P Input,No.1 VR ACC DEC CW,Unit： 0.1sec,C,100,0
+04-14:,1,1,100,1,1,040Dh,0,A/P Input,No.1 VR ACC DEC CW,Unit： 0.1sec,C,100,0
+04-15:,100,100,100,1,100,040Eh,0,A/P Input,No.1 VR ACC DEC CCW,Unit： 0.1sec,C,100,0
+04-16:,1,1,100,1,1,040Fh,0,A/P Input,No.1 VR ACC DEC CCW,Unit： 0.1sec,C,100,0
+,value,def,max,min,Ram,,,,5,Protect,,,
+05-01:,1,1,2,0,1,0500h,0,Motor,Motor OT Sensor Type,"0 = Normal Open, 1 = Normal Closed, 2 = Disabled",C,100,0
+05-02:,2228,2228,4096,0,2228,0501h,1,Protect,Drive OT,"ADC, Do not change",C,100,0
+05-03:,0,0,1,0,0,0502h,0,Protect,RGN OT,"0 = Normal Open, 1 = Normal Closed",C,100,0
+05-04:,10000,10000,10000,200,10000,0503h,0,Protect,"Over Speed Alarm
+Setting","Alarms when motor speed is over
+this setting. 0 = disabled ; 1~100 = 0.1 ~ 10 sec",C,100,0
+05-05:,0,0,100,0,0,0504h,1,Protect,Auto Reset Period,"0 = START/STOP must be OFF to autoreset, 1 = Auto reset after 0.1 sec (Auto resetable alarm can be set by 05-06)",C,100,0
+05-06:,32,32,65535,0,32,0505h,1,Protect,Auto Resetable Alarm,Set the alarm function that can be auto reset. This is a bit field. For xxample: if set to 48( 0b 0000 0000 0011 0000 )，bit4 and 5 are 1 means alarm 4/5 can be auto reset.,C,100,0
+05-07:,3000,3000,65535,0,3000,0506h,0,Operation,Stall Tq Limit Alarm,"0 = Cont. outputs, 1000 = Alarm in 1.0s after stall",C,100,0
+05-08:,600,600,1000,0,600,0507h,0,Operation,Tq Limit Overboost Time,Allowed time for output current to over limit value. Unit: 0.1 sec,C,100,0
+05-09:,10,10,1000,0,10,0508h,0,Operation,Tq Limit Recover Time,Output current have to be smaller than limit value over this time to be able to boost again. Unit: 0.1 sec,C,100,0
+05-10:,3450,3450,3450,2800,3450,0509h,1,Protect,Over Voltage,Unit: 0.01V,C,100,0
+05-11:,3300,3300,3300,2600,3300,050Ah,1,Protect,Over Voltage Recover,Unit: 0.01V,C,100,0
+05-12:,700,700,1900,700,700,050Bh,1,Protect,Under Voltage,Unit: 0.01V,C,100,0
+05-13:,800,800,2000,800,800,050Ch,1,Protect,Under Voltage Recover,Unit: 0.01V,C,100,0
+05-14:,0,0,10000,0,0,050Dh,0,Protect,Timeout,"0 = Disabled, 1000 = Alarm after 1000ms when no signal.",C,100,0
+05-15:,0,0,10,0,0,050Eh,0,Protect,COMM Alarm,Alarm when the number of COMM error is greater than this setting.,C,100,0
+05-16:,930,930,930,0,930,050Fh,1,Protect,Rated Output,"ADC, Do not change",C,100,0
+,value,def,max,min,Ram,,,,6,I/O,,,
+06-01:,2,2,27,0,2,0600h,0,IO,X1 Function,"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV, 27 = RTU/ASCII",C,100,0
+06-02:,1,1,27,0,1,0601h,0,IO,X2 Function,"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV, 27 = RTU/ASCII",C,100,0
+06-03:,16,16,27,0,16,0602h,0,IO,X3 Function,"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV, 27 = RTU/ASCII",C,100,0
+06-04:,8,8,27,0,8,0603h,0,IO,X4 Function,"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV, 27 = RTU/ASCII",C,100,0
+06-05:,10,10,27,0,10,0604h,0,IO,X5 Function,"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV, 27 = RTU/ASCII",C,100,0
+06-06:,14,14,14,14,14,0605h,0,IO,X6 Function (5V SOURCE),"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV, 27 = RTU/ASCII",C,100,0
+06-07:,0,0,27,0,0,0606h,0,IO,Always ON Input 1,"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV, 27 = RTU/ASCII",C,100,0
+06-08:,0,0,27,0,0,0607h,0,IO,Always ON Input 2,"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV, 27 = RTU/ASCII",C,100,0
+06-09:,3,3,12,0,3,0608h,0,IO,Y1 Function,"0=NC, 1=SPD-OUT, 2=ALM-OUT, 3=BUSY-OUT, 4=VA-OUT, 5=PARK-BRAKE, 6=DEC-IND, 7=REV-IND 8=PWR-IND, 9=STATUS-IND, 10=BATT-GAUGE1, 11=BATT-GAUGE2, 12=ALM-OUT2",C,100,0
+06-10:,2,2,12,0,2,0609h,0,IO,Y2 Function,"0=NC, 1=SPD-OUT, 2=ALM-OUT, 3=BUSY-OUT, 4=VA-OUT, 5=PARK-BRAKE, 6=DEC-IND, 7=REV-IND 8=PWR-IND, 9=STATUS-IND, 10=BATT-GAUGE1, 11=BATT-GAUGE2, 12=ALM-OUT2",C,100,0
+06-11:,1,1,12,0,1,060Ah,0,IO,Y3 Function,"0=NC, 1=SPD-OUT, 2=ALM-OUT, 3=BUSY-OUT, 4=VA-OUT, 5=PARK-BRAKE, 6=DEC-IND, 7=REV-IND 8=PWR-IND, 9=STATUS-IND, 10=BATT-GAUGE1, 11=BATT-GAUGE2, 12=ALM-OUT2",C,100,0
+06-12:,0,0,0,0,0,060Bh,-,-,-,Reserved,-,100,0
+06-13:,0,0,0,0,0,060Ch,-,-,-,Reserved,-,100,0
+06-14:,0,0,0,0,0,060Dh,-,-,-,Reserved,-,100,0
+06-15:,0,0,0,0,0,060Eh,-,-,-,Reserved,-,100,0
+06-16:,31,31,65535,0,0,060Fh,0,IO,I/O ON Logic,"Set direct IO ON logic. This is a bit field. Each bit represents the ON logic of an IO. 1:ON is closed circuit. 0:ON is open circuit. For Example: 7 = 0b 0000 0000 0000 0111 means the ON logic is closed circuit for X1~X3, open circuit for X4, X5 and all the outputs.",C,100,0
+,value,def,max,min,Ram,,,,7,Other,,,
+07-01:,200,200,10000,100,200,0700h,0,Operation Data,Digital speed No.0,Unit：RPM,A,100,0
+07-02:,200,200,10000,100,200,0701h,0,Operation Data,Digital speed No.1,Unit：RPM,A,100,0
+07-03:,300,300,1000,100,300,0702h,0,Operation Data,Digital duty No.0,Unit：0.1% Duty,A,100,0
+07-04:,300,300,1000,100,300,0703h,0,Operation Data,Digital duty No.1,Unit：0.1% Duty,A,100,0
+07-05:,1000,1000,1000,100,1000,0704h,0,Operation Data,No.0 torque limit CW,Unit：0.1%,A,100,0
+07-06:,1000,1000,1000,100,1000,0705h,0,Operation Data,No.0 torque limit CCW,Unit：0.1%,A,100,0
+07-07:,1000,1000,1000,100,1000,0706h,0,Operation Data,No.1 torque limit CW,Unit：0.1%,A,100,0
+07-08:,1000,1000,1000,100,1000,0707h,0,Operation Data,No.1 torque limit CCW,Unit：0.1%,A,100,0
+07-09:,5,5,100,1,5,0708h,0,Operation Data,No.0 ACC CW,Unit：0.1sec,A,100,0
+07-10:,5,5,100,1,5,0709h,0,Operation Data,No.0 DEC CC,Unit：0.1sec,A,100,0
+07-11:,5,5,100,1,5,070Ah,0,Operation Data,No.0 ACC CCW,Unit：0.1sec,A,100,0
+07-12:,5,5,100,1,5,070Bh,0,Operation Data,No.0 DEC CCW,Unit：0.1sec,A,100,0
+07-13:,30,30,100,1,30,070Ch,0,Operation Data,No.1 ACC CW,Unit：0.1sec,A,100,0
+07-14:,15,15,100,1,15,070Dh,0,Operation Data,No.1 DEC CC,Unit：0.1sec,A,100,0
+07-15:,30,30,100,1,30,070Eh,0,Operation Data,No.1 ACC CCW,Unit：0.1sec,A,100,0
+07-16:,15,15,100,1,15,070Fh,0,Operation Data,No.1 DEC CCW,Unit：0.1sec,A,100,0
+,value,def,max,min,Ram,,,,8,P8,,,
+08-01:,0,1,1,0,0,0800h,0,Common,Control Mode,"0 = Speed, 1 = Duty",C,100,0
+08-02:,10,10,65535,0,10,0801h,0,Advance,Speed Control P Gain,1 ~ 65535,C,100,0
+08-03:,100,100,65535,0,100,0802h,1,Advance,Tq Limit P Gain,1 ~ 65535,C,100,0
+08-04:,100,100,65535,0,100,0803h,0,Advance,Speed Control D Gain,1 ~ 65535,C,100,0
+08-05:,10,10,100,0,10,0804h,0,Advance,PID Max Step Change,Unit：0.02% Duty,C,100,0
+08-06:,1,1,1,0,1,0805h,0,Advance,DEC Operation,0 = Inverse Output Disabled，1 = Inverse Output Enabled,C,100,0
+08-07:,1,1,1,0,1,0806h,0,Advance,Reverse Operation,"0 = Cannot change direction during operation, 1 = Can change direction on the run.",C,100,0
+08-08:,1,1,1,0,1,0807h,1,Advance,Brake Function,"0 = Disabled, 1 = Enabled",C,100,0
+08-09:,1,1,1,0,1,0808h,0,Operation,Position Keeping,"0 = Free, 1 = Dynamic Brake(Motor Short),",C,100,0
+08-10:,200,200,400,0,200,0809h,0,IO,VA-OUT Speed Range,VA-OUT is ON when the difference of motor speed and target speed is smaller than this range. (Unit: r/min),C,100,0
+08-11:,30,30,100,0,30,080Ah,0,Operation,BRAKE Delay,"The delay time for BRAKE-OUT to
+lock the brake after motor stop ( Unit：0.1秒 )",C,100,0
+08-12:,25,25,100,0,25,080Bh,0,Operation,KEY-SWITCH Off Delay,"The motor delecerate to stop in this
+time after KEY-SWITCH is off. (Unit：0.1秒)",C,100,0
+08-13:,1,1,1000,0,1,080Ch,1,Advance,Emergancy ACC,Unit：0.1 sec,C,100,0
+08-14:,2,2,1000,0,2,080Dh,1,Advance,Emergancy DEC,Unit：0.1 sec,C,100,0
+08-15:,2400,2400,65535,0,2400,080Eh,0,Common,BATT-GAUGE1 Voltage,Unit：0.01V,C,100,0
+08-16:,2000,2000,65535,0,2000,080Fh,0,Common,BATT-GAUGE2 Voltage,Unit：0.01V,C,100,0
+,value,def,max,min,Ram,,,,9,P9,,,
+09-01:,0,0,16,0,0,0900h,0,NET-IO,NET-I/O X0 Function,"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV",C,100,0
+09-02:,0,0,16,0,0,0901h,0,NET-IO,NET-I/O X1 Function,"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV",C,100,0
+09-03:,0,0,16,0,0,0902h,0,NET-IO,NET-I/O X2 Function,"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV",C,100,0
+09-04:,0,0,16,0,0,0903h,0,NET-IO,NET-I/O X3 Function,"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV",C,100,0
+09-05:,0,0,16,0,0,0904h,0,NET-IO,NET-I/O X4 Function,"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV",C,100,0
+09-06:,0,0,16,0,0,0905h,0,NET-IO,NET-I/O X5 Function,"0 = NC, 1 = S/S(SC)/FWD(CC), 2 = CCW/CW(SC)/REV(CC), 5 = FREE, 6 = STOP-MODE, 7 = EBRAKE/ALM-RST, 8 = ALM-RST, 10 = M0,  13 = EBRAKE, 14 = KEY-SWITCH, 15 = E-FWD, 16 = D-REV",C,100,0
+09-07:,0,0,0,0,0,0906h,-,-,-,Reserved,-,100,0
+09-08:,0,0,0,0,0,0907h,-,-,-,Reserved,-,100,0
+09-09:,0,0,0,0,0,0908h,-,-,-,Reserved,,100,0
+09-10:,0,0,0,0,0,0909h,-,-,-,Reserved,-,100,0
+09-11:,0,0,1,0,0,090Ah,0,Common,WatchData,"Select DynamicData and WatchData. 0 = Page0, 1 = Page1",C,100,0
+09-12:,0,0,31,0,0,090Bh,0,Advance,RS232 RTU ID,"If drive is under condition 1,2 during power on. RS232 ID = this value. (Con1: protocol=RTU ; Con2: this value is not 0 or 65535)",D,100,0
+09-13:,0,0,0,0,0,090Ch,-,-,-,Reserved,-,100,0
+09-14:,0,0,0,0,0,090Dh,-,-,-,Reserved,-,100,0
+09-15:,0,0,0,0,0,090Eh,-,-,-,Reserved,-,100,0
+09-16:,0,0,0,0,0,090Fh,-,-,-,Reserved,-,100,0

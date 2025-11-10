@@ -1,0 +1,824 @@
+//###########################################################################
+//
+// FILE:    CLA_Task.cla
+//
+// TITLE:
+//
+//###########################################################################
+// $Create Date: 20210826
+//###########################################################################
+
+#include "C28_CLA_Common.h"
+
+#include "CLA_Module.h"
+
+//#define DEVELOP_SV01
+//for CCS 量測執行cycle
+
+
+//#define DEVELOP_SV77
+// (.cla)
+// CLA的DDS獨立計算
+// 目前實測需要同步, 不然ATE測試高頻RMS會NG
+// 這裡是因為MS Slave端有問題還要解決所以先切換過去
+
+
+////////////////////////////////////////////////////////////////////
+//
+// Function Definitions
+//
+__interrupt void Cla1Task1 ( void )
+{
+    double double_buf1;
+    float  float_buf1;
+    float  chb_with_offset;
+
+    //__mdebugstop();
+    //GpioDataRegs.GPCCLEAR.bit.GPIO94 = 1;
+
+    //
+    #ifdef DEVELOP_SV01
+    CLA_to_CPU_Variables.Cla1Task1_Cycle_Meas_Start = EPwm4Regs.TBCTR;
+    #endif
+
+    CLA_Module_Variables.Counter++;
+
+
+    //
+    // WAVE DAC箝制處理
+    //
+    CLA_to_CPU_Variables.WAVE_set_shadow = (Uint16)CPU_to_CLA_Variables.WAVE_set;
+
+    if ( (float)CPU_to_CLA_Variables.WAVE_set >= 65535.0 )
+    {
+        CLA_to_CPU_Variables.WAVE_set_shadow = 65535;
+    }
+    else if ( CPU_to_CLA_Variables.WAVE_set <= 0 )
+    {
+        CLA_to_CPU_Variables.WAVE_set_shadow = 0;
+    }
+
+
+    //
+    // VREF補償
+    //
+    CLA_to_CPU_Variables.VREF_set_shadow2 = (float)CPU_to_CLA_Variables.VREF_set
+                                                 + CPU_to_CLA_Variables.VREF_Compensate_Offset_0
+                                                 + CPU_to_CLA_Variables.VREF_Compensate_Offset_1
+                                                 + CPU_to_CLA_Variables.VREF_Compensate_Offset_2
+                                                 + CPU_to_CLA_Variables.VREF_Compensate_Offset_3;
+
+    //
+    // VREF DAC箝制處理
+    //
+    if ( CLA_to_CPU_Variables.VREF_set_shadow2 > CPU_to_CLA_Variables.VREF_set_limit_High )
+    {
+        CLA_to_CPU_Variables.VREF_set_shadow = (Uint16)CPU_to_CLA_Variables.VREF_set_limit_High;
+
+        CLA_to_CPU_Variables.DAC_Clamp_Status.bit.VREF_Limit_High_Clamp = 1;
+    }
+    else if ( CLA_to_CPU_Variables.VREF_set_shadow2 < CPU_to_CLA_Variables.VREF_set_limit_Low )
+    {
+        CLA_to_CPU_Variables.VREF_set_shadow = (Uint16)CPU_to_CLA_Variables.VREF_set_limit_Low;
+
+        CLA_to_CPU_Variables.DAC_Clamp_Status.bit.VREF_Limit_High_Clamp = 0;
+    }
+    else
+    {
+        CLA_to_CPU_Variables.VREF_set_shadow = (Uint16)CLA_to_CPU_Variables.VREF_set_shadow2;
+
+        CLA_to_CPU_Variables.DAC_Clamp_Status.bit.VREF_Limit_High_Clamp = 0;
+    }
+
+
+    /*---------------------------------------------------------------------*/
+    //
+    // VREF SPI
+    //
+
+    //
+    // SPIA送出
+    //
+    SpiaRegs.SPITXBUF = CLA_to_CPU_Variables.WAVE_set_shadow;
+    SpiaRegs.SPITXBUF = CLA_to_CPU_Variables.VREF_set_shadow;
+    SpiaRegs.SPITXBUF = CPU_to_CLA_Variables.OUTPUT_FLAGS_all;
+
+    //
+    // SPIA接收
+    //
+    CLA_to_CPU_Variables.ADS8353_DUMMY = SpiaRegs.SPIRXBUF;
+    CLA_to_CPU_Variables.ADS8353_CHA = SpiaRegs.SPIRXBUF;
+    CLA_to_CPU_Variables.ADS8353_CHB = SpiaRegs.SPIRXBUF;
+
+
+    //SpiaRegs.SPIFFRX.bit.RXFIFORESET = 0;
+    SpiaRegs.SPIFFRX.all = 0;
+    SpiaRegs.SPIFFRX.bit.RXFIFORESET = 1;
+
+
+    //
+    // 計算dds
+    //
+
+    #ifdef DEVELOP_SV77
+    CLA_to_CPU_Variables.dds.all = CLA_to_CPU_Variables.dds.all + CPU_to_CLA_Variables.FreqStep;
+    #else
+    CLA_to_CPU_Variables.dds.all = CPU_to_CLA_Variables.dds.all;
+    #endif
+
+
+    //
+    // 程式改成分二次執行
+    //
+
+    if ( CLA_to_CPU_Variables.Exec_Switch == 0 )
+    {
+        //
+        // 二段斜率計算V_FB
+        //
+        float_buf1 = (float)CLA_to_CPU_Variables.ADS8353_CHA + CPU_to_CLA_Variables.ADC_to_V_FB_Offset;
+
+        if ( float_buf1 >= 0 )
+        {
+            CLA_to_CPU_Variables.V_FB_shadow = float_buf1 * CPU_to_CLA_Variables.ADC_to_V_FB_Scale_P;
+        }
+        else
+        {
+            CLA_to_CPU_Variables.V_FB_shadow = float_buf1 * CPU_to_CLA_Variables.ADC_to_V_FB_Scale_N;
+        }
+
+        float_buf1 = CLA_to_CPU_Variables.V_FB_shadow - CLA_to_CPU_Variables.V_FB; //for I_Cs
+        CLA_to_CPU_Variables.V_FB = CLA_to_CPU_Variables.V_FB_shadow;
+
+
+        //
+        // 二段斜率計算I_Shunt
+        //
+        chb_with_offset = (float)CLA_to_CPU_Variables.ADS8353_CHB + CPU_to_CLA_Variables.ADC_to_I_FB_Offset;
+        if ( chb_with_offset >= 0 )
+        {
+            CLA_to_CPU_Variables.I_shunt = chb_with_offset * CPU_to_CLA_Variables.ADC_to_I_FB_Scale_P;
+        }
+        else
+        {
+            CLA_to_CPU_Variables.I_shunt = chb_with_offset * CPU_to_CLA_Variables.ADC_to_I_FB_Scale_N;
+        }
+
+        //
+        // 估算I_FB
+        //
+        CLA_to_CPU_Variables.I_Rs = CLA_to_CPU_Variables.V_FB * CPU_to_CLA_Variables.inv_Rs;
+        CLA_to_CPU_Variables.I_Cs = float_buf1 * CPU_to_CLA_Variables.Cs_mpy_360000;
+        CLA_to_CPU_Variables.I_FB_shadow = CLA_to_CPU_Variables.I_shunt - CLA_to_CPU_Variables.I_Rs - CLA_to_CPU_Variables.I_Cs;
+        CLA_to_CPU_Variables.I_FB = CLA_to_CPU_Variables.I_FB_shadow;
+
+
+        //
+        // 累加 for 5次平均
+        //
+        if ( CLA_to_CPU_Variables.Avg_Counter >= 5 )
+        {
+            //
+            // 計算 平均
+            //
+            CLA_to_CPU_Variables.V_FB_shadow2 = CLA_to_CPU_Variables.V_FB_sum * 0.2;
+            CLA_to_CPU_Variables.V_FB_sum = 0;
+            CLA_to_CPU_Variables.I_FB_shadow2 = CLA_to_CPU_Variables.I_FB_sum * 0.2;
+            CLA_to_CPU_Variables.I_FB_sum = 0;
+
+            CLA_to_CPU_Variables.Avg_Counter = 0;
+        }
+        else
+        {
+            CLA_to_CPU_Variables.I_FB_sum = CLA_to_CPU_Variables.I_FB_sum + CLA_to_CPU_Variables.I_FB;
+            CLA_to_CPU_Variables.V_FB_sum = CLA_to_CPU_Variables.V_FB_sum + CLA_to_CPU_Variables.V_FB;
+
+            CLA_to_CPU_Variables.Avg_Counter ++;
+        }
+
+
+
+
+        //I peak max
+        if ( CLA_to_CPU_Variables.I_FB_shadow2 > CLA_to_CPU_Variables.p_I_peak_shadow )
+        {
+            CLA_to_CPU_Variables.p_I_peak_shadow = CLA_to_CPU_Variables.I_FB_shadow2;
+
+        }
+
+        //I peak min
+        if ( CLA_to_CPU_Variables.I_FB_shadow2 < CLA_to_CPU_Variables.n_I_peak_shadow )
+        {
+            CLA_to_CPU_Variables.n_I_peak_shadow = CLA_to_CPU_Variables.I_FB_shadow2;
+
+        }
+
+
+        /*-----------------------------------------------------------------------------------------*/
+        //
+        // CLA I peak hold狀態機
+        //
+        switch(CLA_Module_Variables.cla_ipk_hold_state)
+        {
+
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_IPK_HOLD_READY_STATE:
+            {
+                if ( ( CPU_to_CLA_Variables.OUTPUT_FLAGS_all & 0x01 ) == 1 )
+                {
+                    // 載入Delay時間
+                    CLA_to_CPU_Variables.IPK_Hold_Delay_Counter = CPU_to_CLA_Variables.IPK_Hold_Delay_Count;
+
+                    //轉態
+                    CLA_Module_Variables.cla_ipk_hold_state = CLA_IPK_HOLD_DELAY_STATE;
+                }
+                break;
+            }
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_IPK_HOLD_DELAY_STATE:
+            {
+                CLA_to_CPU_Variables.IPK_Hold_Delay_Counter --;
+
+                if ( CLA_to_CPU_Variables.IPK_Hold_Delay_Counter == 0 )
+                {
+                    //轉態
+                    CLA_Module_Variables.cla_ipk_hold_state = CLA_IPK_HOLD_UPDATING_STATE;
+                }
+
+                break;
+            }
+
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_IPK_HOLD_UPDATING_STATE:
+            {
+                if ( fabs( CLA_to_CPU_Variables.I_FB ) > fabs( CLA_to_CPU_Variables.IPK_Hold ) )
+                {
+                    CLA_to_CPU_Variables.IPK_Hold = CLA_to_CPU_Variables.I_FB;
+                }
+
+                if ( ( CPU_to_CLA_Variables.OUTPUT_FLAGS_all & 0x01 ) == 0 )
+                {
+                    //轉態
+                    CLA_Module_Variables.cla_ipk_hold_state = CLA_IPK_HOLD_READY_STATE;
+                }
+
+
+                break;
+            }
+        }
+
+        if ( CPU_to_CLA_Variables.IPK_Hold_Clear == 1 )
+        {
+            CLA_to_CPU_Variables.IPK_Hold = 0;
+        }
+
+
+        //V peak max
+        if ( CLA_to_CPU_Variables.V_FB_shadow2 > CLA_to_CPU_Variables.p_V_peak_shadow )
+        {
+            CLA_to_CPU_Variables.p_V_peak_shadow = CLA_to_CPU_Variables.V_FB_shadow2;
+
+        }
+
+        //V peak min
+        if ( CLA_to_CPU_Variables.V_FB_shadow2 < CLA_to_CPU_Variables.n_V_peak_shadow )
+        {
+            CLA_to_CPU_Variables.n_V_peak_shadow = CLA_to_CPU_Variables.V_FB_shadow2;
+
+        }
+
+        /*-----------------------------------------------------------------------------------------*/
+        //
+        // CLA V peak hold狀態機
+        //
+        switch(CLA_Module_Variables.cla_vpk_hold_state)
+        {
+
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_VPK_HOLD_READY_STATE:
+            {
+                if ( ( CPU_to_CLA_Variables.OUTPUT_FLAGS_all & 0x01 ) == 1 )
+                {
+                    // 載入Delay時間
+                    CLA_to_CPU_Variables.VPK_Hold_Delay_Counter = CPU_to_CLA_Variables.VPK_Hold_Delay_Count;
+
+                    //轉態
+                    CLA_Module_Variables.cla_vpk_hold_state = CLA_VPK_HOLD_DELAY_STATE;
+                }
+                break;
+            }
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_VPK_HOLD_DELAY_STATE:
+            {
+                CLA_to_CPU_Variables.VPK_Hold_Delay_Counter --;
+
+                if ( CLA_to_CPU_Variables.VPK_Hold_Delay_Counter == 0 )
+                {
+                    //轉態
+                    CLA_Module_Variables.cla_vpk_hold_state = CLA_VPK_HOLD_UPDATING_STATE;
+                }
+
+                break;
+            }
+
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_VPK_HOLD_UPDATING_STATE:
+            {
+                if ( fabs( CLA_to_CPU_Variables.V_FB ) > fabs( CLA_to_CPU_Variables.VPK_Hold ) )
+                {
+                    CLA_to_CPU_Variables.VPK_Hold = CLA_to_CPU_Variables.V_FB;
+                }
+
+                if ( ( CPU_to_CLA_Variables.OUTPUT_FLAGS_all & 0x01 ) == 0 )
+                {
+                    //轉態
+                    CLA_Module_Variables.cla_vpk_hold_state = CLA_VPK_HOLD_READY_STATE;
+                }
+
+
+                break;
+            }
+        }
+
+        if ( CPU_to_CLA_Variables.VPK_Hold_Clear == 1 )
+        {
+            CLA_to_CPU_Variables.VPK_Hold = 0;
+        }
+
+
+        //
+        // 短路保護
+        //
+        if ( ( CLA_to_CPU_Variables.Short_OCP == 0 ) && ( CPU_to_CLA_Variables.Bypass_OCP_Flag == 0 ) )
+        {
+            // for test
+            //if ( ( CLA_to_CPU_Variables.I_FB > 2.0 ) || ( CLA_to_CPU_Variables.I_FB < -2.0 ) )
+            if ( ( fabs( CLA_to_CPU_Variables.V_FB ) < 10.0 )
+                 && ( ( CLA_to_CPU_Variables.ADS8353_CHB > SHORT_I_LEVEL_H ) || ( CLA_to_CPU_Variables.ADS8353_CHB < SHORT_I_LEVEL_L ) ) )
+            {
+                CLA_to_CPU_Variables.Short_OCP = 1;
+
+                //
+                // 紀錄Short發生當下的數據
+                //
+                CLA_to_CPU_Variables.Short_OCP_IFB = CLA_to_CPU_Variables.I_FB;
+                //CLA_to_CPU_Variables.Short_OCP_IFB = CLA_to_CPU_Variables.I_shunt;
+                CLA_to_CPU_Variables.IPK_Hold = CLA_to_CPU_Variables.I_FB;
+                CLA_to_CPU_Variables.Short_OCP_V_FB = CLA_to_CPU_Variables.V_FB;
+
+                CLA_to_CPU_Variables.Short_OCP_WAVE_set = CLA_to_CPU_Variables.WAVE_set_shadow;
+                CLA_to_CPU_Variables.Short_OCP_VREF_set = CLA_to_CPU_Variables.VREF_set_shadow;
+            }
+        }
+        else if ( CPU_to_CLA_Variables.Short_OCP_Clear == 1 )
+        {
+            CLA_to_CPU_Variables.Short_OCP = 0;
+        }
+
+        //
+        // 轉態
+        //
+        CLA_to_CPU_Variables.Exec_Switch = 1;
+
+
+    }
+    else if ( CLA_to_CPU_Variables.Exec_Switch == 1 )
+    {
+
+        //
+        // 4xCF 5ms保護
+        //
+        if ( ( CLA_to_CPU_Variables._4CF_OCP == 0 ) && ( CPU_to_CLA_Variables.Bypass_OCP_Flag == 0 ) )
+        {
+            if ( fabs( CLA_to_CPU_Variables.I_FB ) > CPU_to_CLA_Variables._4CF_OCP_level )
+            {
+                CLA_to_CPU_Variables._4CF_OCP_Count--;
+            }
+            else
+            {
+                //Reload 5ms
+                CLA_to_CPU_Variables._4CF_OCP_Count = _4CF_OCP_DELAY_COUNT;
+            }
+
+            if ( CLA_to_CPU_Variables._4CF_OCP_Count == 0 )
+            {
+                CLA_to_CPU_Variables._4CF_OCP = 1;
+                CLA_to_CPU_Variables._4CF_OCP_IFB = CLA_to_CPU_Variables.I_FB;
+                CLA_to_CPU_Variables.IPK_Hold = CLA_to_CPU_Variables.I_FB;
+                CLA_to_CPU_Variables._4CF_OCP_Count = _4CF_OCP_DELAY_COUNT;
+            }
+        }
+        else if ( CPU_to_CLA_Variables._4CF_OCP_Clear == 1 )
+        {
+            CLA_to_CPU_Variables._4CF_OCP = 0;
+        }
+
+
+        /*-----------------------------------------------------------------------------------------*/
+        //
+        // SPI通訊狀態機
+        //
+        switch(CLA_Module_Variables.cla_spi_state)
+        {
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_SPI_INIT_STATE:
+            {
+                CLA_Module_Variables.cla_spi_state = CLA_SPI_READY_STATE; //轉態
+
+                break;
+            }
+
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_SPI_READY_STATE:
+            {
+                if ( McbspbRegs.SPCR1.bit.RRDY == 1 ) //有資料
+                {
+                    CLA_to_CPU_Variables.RXBUFFER[0] = McbspbRegs.DRR2.all;
+                    CLA_to_CPU_Variables.RXBUFFER[1] = McbspbRegs.DRR1.all;
+
+                    if ( CLA_to_CPU_Variables.RXBUFFER[0] != 0xFFFF )
+                    {
+                        CLA_Module_Variables.cla_spi_state = CLA_SPI_PARSING_STATE; //轉態
+                    }
+                    else
+                    {
+                        McbspbRegs.DXR2.all = 0xFFFF;
+                        McbspbRegs.DXR1.all = 0x0000;
+                    }
+                }
+                break;
+            }
+
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_SPI_PARSING_STATE:
+            {
+                if ( McbspbRegs.SPCR1.bit.RRDY == 1 ) //有資料
+                {
+                    //parsing階段又收到資料表示通訊太快
+
+                    //資料收下來
+                    CLA_to_CPU_Variables.RXBUFFER[0] = McbspbRegs.DRR2.all;
+                    CLA_to_CPU_Variables.RXBUFFER[1] = McbspbRegs.DRR1.all;
+
+                    CLA_Module_Variables.spi_errcount++;
+
+                    //reply code
+                    McbspbRegs.DXR2.all = 0xAA55;
+                    McbspbRegs.DXR1.all = 0x55AA;
+
+                    CLA_Module_Variables.cla_spi_state = CLA_SPI_READY_STATE; //轉態
+
+                }
+                break;
+            }
+
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_SPI_REPLY_STATE:
+            {
+                if ( McbspbRegs.SPCR1.bit.RRDY == 1 ) //有資料
+                {
+                    CLA_to_CPU_Variables.RXBUFFER[0] = McbspbRegs.DRR2.all;
+                    CLA_to_CPU_Variables.RXBUFFER[1] = McbspbRegs.DRR1.all;
+
+                    if ( CLA_to_CPU_Variables.RXBUFFER[0] != 0xFFFF )
+                    {
+                        CLA_Module_Variables.cla_spi_state = CLA_SPI_PARSING_STATE; //轉態
+
+                    }
+                    else
+                    {
+                        McbspbRegs.DXR2.all = 0xFFFF;
+                        McbspbRegs.DXR1.all = 0x0000;
+
+                        CLA_Module_Variables.cla_spi_state = CLA_SPI_READY_STATE; //轉態
+
+                    }
+                }
+
+                break;
+            }
+
+        }
+
+
+        /*-----------------------------------------------------------------------------------------*/
+        //
+        // CLA MEAS 狀態機
+        //
+        switch(CLA_Module_Variables.cla_meas_state)
+        {
+
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_MEAS_01_STATE:
+            {
+
+                if ( (Uint16)CLA_to_CPU_Variables.dds_shadow.addr > (Uint16)CLA_to_CPU_Variables.dds.addr )
+                {
+                    //
+                    // 判斷dds滿週期
+                    //
+
+                    //
+                    // 轉態
+                    //
+                    CLA_Module_Variables.cla_meas_state = CLA_MEAS_02_STATE;
+                }
+                else if ( CLA_to_CPU_Variables.dds_shadow.addr != CLA_to_CPU_Variables.dds.addr )
+                {
+                    //
+                    // dds改變, 計算更新累加值
+                    //
+
+                    //累加
+                    CLA_to_CPU_Variables.V_sum_shadow = CLA_to_CPU_Variables.V_sum_shadow + (double)CLA_to_CPU_Variables.V_FB; //10 cycles
+                    CLA_to_CPU_Variables.I_sum_shadow = CLA_to_CPU_Variables.I_sum_shadow + (double)CLA_to_CPU_Variables.I_FB; //13 cycles
+
+                    //平方累加 V
+                    double_buf1 = (double)CLA_to_CPU_Variables.V_FB * (double)CLA_to_CPU_Variables.V_FB;
+                    CLA_to_CPU_Variables.V_square_sum_shadow = CLA_to_CPU_Variables.V_square_sum_shadow + double_buf1;
+
+                    //平方累加 I
+                    double_buf1 = (double)CLA_to_CPU_Variables.I_FB * (double)CLA_to_CPU_Variables.I_FB;
+                    CLA_to_CPU_Variables.I_square_sum_shadow = CLA_to_CPU_Variables.I_square_sum_shadow + double_buf1;
+
+
+                    //瞬間功率累加
+                    double_buf1 = (double)CLA_to_CPU_Variables.V_FB * (double)CLA_to_CPU_Variables.I_FB;
+                    CLA_to_CPU_Variables.P_sum_shadow = CLA_to_CPU_Variables.P_sum_shadow + double_buf1;
+
+
+                    CLA_to_CPU_Variables.Sampling_index++;
+                }
+
+                break;
+            }
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_MEAS_02_STATE:
+            {
+                CLA_to_CPU_Variables.V_square_sum = CLA_to_CPU_Variables.V_square_sum_shadow;
+                CLA_to_CPU_Variables.V_sum = CLA_to_CPU_Variables.V_sum_shadow;
+                CLA_to_CPU_Variables.p_V_peak = CLA_to_CPU_Variables.p_V_peak_shadow;
+                CLA_to_CPU_Variables.n_V_peak = CLA_to_CPU_Variables.n_V_peak_shadow;
+
+                CLA_to_CPU_Variables.I_square_sum = CLA_to_CPU_Variables.I_square_sum_shadow;
+                CLA_to_CPU_Variables.I_sum = CLA_to_CPU_Variables.I_sum_shadow;
+                CLA_to_CPU_Variables.p_I_peak = CLA_to_CPU_Variables.p_I_peak_shadow;
+                CLA_to_CPU_Variables.n_I_peak = CLA_to_CPU_Variables.n_I_peak_shadow;
+
+                CLA_to_CPU_Variables.P_sum = CLA_to_CPU_Variables.P_sum_shadow;
+
+                //
+                // 轉態
+                //
+                CLA_Module_Variables.cla_meas_state = CLA_MEAS_03_STATE;
+
+                break;
+            }
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_MEAS_03_STATE:
+            {
+                CLA_to_CPU_Variables.V_square_sum_shadow = 0;
+                CLA_to_CPU_Variables.V_sum_shadow = 0;
+                CLA_to_CPU_Variables.p_V_peak_shadow = -2000;
+                CLA_to_CPU_Variables.n_V_peak_shadow = 2000;
+
+                CLA_to_CPU_Variables.I_square_sum_shadow = 0;
+                CLA_to_CPU_Variables.I_sum_shadow = 0;
+                CLA_to_CPU_Variables.p_I_peak_shadow = -2000.0;
+                CLA_to_CPU_Variables.n_I_peak_shadow = 2000.0;
+
+                CLA_to_CPU_Variables.P_sum_shadow = 0;
+
+                CLA_to_CPU_Variables.Total_Sample_Points = CLA_to_CPU_Variables.Sampling_index;
+                CLA_to_CPU_Variables.Sampling_index = 0;
+
+                //
+                // 轉態
+                //
+                CLA_Module_Variables.cla_meas_state = CLA_MEAS_04_STATE;
+
+                break;
+            }
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_MEAS_04_STATE:
+            {
+                if ( ( (Uint16)CLA_to_CPU_Variables.dds_shadow.addr > (Uint16)CLA_to_CPU_Variables.dds.addr )
+                     && ( CPU_to_CLA_Variables.Cla_Control_Flag.bit.Cali_Process == 0 ) )
+                {
+                    //
+                    // 判斷dds滿週期
+                    //
+
+                    //
+                    // 轉態
+                    //
+                    CLA_Module_Variables.cla_meas_state = CLA_MEAS_01_STATE;
+                }
+                else if ( ( (Uint16)CLA_to_CPU_Variables.dds_shadow.addr > (Uint16)CLA_to_CPU_Variables.dds.addr )
+                          && ( CPU_to_CLA_Variables.Cla_Control_Flag.bit.Cali_Process == 1 ) )
+                {
+                    //
+                    // 判斷dds滿週期
+                    //
+
+                    //
+                    // 轉態
+                    //
+                    CLA_Module_Variables.cla_meas_state = CLA_MEAS_05_STATE;
+                }
+
+                break;
+            }
+
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_MEAS_05_STATE: // for 校正
+            {
+
+                if ( (Uint16)CLA_to_CPU_Variables.dds_shadow.addr > (Uint16)CLA_to_CPU_Variables.dds.addr )
+                {
+                    //
+                    // 判斷dds滿週期
+                    //
+
+                    //
+                    // 轉態
+                    //
+                    CLA_Module_Variables.cla_meas_state = CLA_MEAS_06_STATE;
+                }
+                else if ( CLA_to_CPU_Variables.dds_shadow.addr != CLA_to_CPU_Variables.dds.addr )
+                {
+                    //
+                    // dds改變, 計算更新累加值
+                    //
+
+                    //
+                    // 只有校正使用
+                    //
+                    CLA_to_CPU_Variables.ADS8353_CHA_sum_shadow = CLA_to_CPU_Variables.ADS8353_CHA_sum_shadow + (double)CLA_to_CPU_Variables.ADS8353_CHA;
+                    CLA_to_CPU_Variables.ADS8353_CHB_sum_shadow = CLA_to_CPU_Variables.ADS8353_CHB_sum_shadow + (double)CLA_to_CPU_Variables.ADS8353_CHB;
+
+                    double_buf1 = (double)chb_with_offset * (double)chb_with_offset;
+                    CLA_to_CPU_Variables.ADS8353_CHB_minus_offset_squ_sum_shadow = CLA_to_CPU_Variables.ADS8353_CHB_minus_offset_squ_sum_shadow + double_buf1;
+
+
+                    //累加
+                    CLA_to_CPU_Variables.V_sum_shadow = CLA_to_CPU_Variables.V_sum_shadow + (double)CLA_to_CPU_Variables.V_FB; //10 cycles
+                    CLA_to_CPU_Variables.I_sum_shadow = CLA_to_CPU_Variables.I_sum_shadow + (double)CLA_to_CPU_Variables.I_FB; //13 cycles
+
+                    //平方累加 V
+                    double_buf1 = (double)CLA_to_CPU_Variables.V_FB * (double)CLA_to_CPU_Variables.V_FB;
+                    CLA_to_CPU_Variables.V_square_sum_shadow = CLA_to_CPU_Variables.V_square_sum_shadow + double_buf1;
+
+                    //平方累加 I
+                    double_buf1 = (double)CLA_to_CPU_Variables.I_FB * (double)CLA_to_CPU_Variables.I_FB;
+                    CLA_to_CPU_Variables.I_square_sum_shadow = CLA_to_CPU_Variables.I_square_sum_shadow + double_buf1;
+
+
+                    //瞬間功率累加
+                    double_buf1 = (double)CLA_to_CPU_Variables.V_FB * (double)CLA_to_CPU_Variables.I_FB;
+                    CLA_to_CPU_Variables.P_sum_shadow = CLA_to_CPU_Variables.P_sum_shadow + double_buf1;
+
+
+                    CLA_to_CPU_Variables.Sampling_index++;
+                }
+
+                break;
+            }
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_MEAS_06_STATE:  // for 校正
+            {
+                CLA_to_CPU_Variables.V_square_sum = CLA_to_CPU_Variables.V_square_sum_shadow;
+                CLA_to_CPU_Variables.V_sum = CLA_to_CPU_Variables.V_sum_shadow;
+                CLA_to_CPU_Variables.p_V_peak = CLA_to_CPU_Variables.p_V_peak_shadow;
+                CLA_to_CPU_Variables.n_V_peak = CLA_to_CPU_Variables.n_V_peak_shadow;
+
+
+                CLA_to_CPU_Variables.I_square_sum = CLA_to_CPU_Variables.I_square_sum_shadow;
+                CLA_to_CPU_Variables.I_sum = CLA_to_CPU_Variables.I_sum_shadow;
+                CLA_to_CPU_Variables.p_I_peak = CLA_to_CPU_Variables.p_I_peak_shadow;
+                CLA_to_CPU_Variables.n_I_peak = CLA_to_CPU_Variables.n_I_peak_shadow;
+
+                CLA_to_CPU_Variables.P_sum = CLA_to_CPU_Variables.P_sum_shadow;
+
+                //
+                // 只有校正使用
+                //
+
+                CLA_to_CPU_Variables.ADS8353_CHA_sum = CLA_to_CPU_Variables.ADS8353_CHA_sum_shadow;
+                CLA_to_CPU_Variables.ADS8353_CHB_sum = CLA_to_CPU_Variables.ADS8353_CHB_sum_shadow;
+                CLA_to_CPU_Variables.ADS8353_CHB_minus_offset_squ_sum = CLA_to_CPU_Variables.ADS8353_CHB_minus_offset_squ_sum_shadow;
+
+                //
+                // 轉態
+                //
+                CLA_Module_Variables.cla_meas_state = CLA_MEAS_07_STATE;
+
+                break;
+            }
+            /*-----------------------------------------------------------------------------------------*/
+            case CLA_MEAS_07_STATE:  // for 校正
+            {
+                CLA_to_CPU_Variables.V_square_sum_shadow = 0;
+                CLA_to_CPU_Variables.V_sum_shadow = 0;
+                CLA_to_CPU_Variables.p_V_peak_shadow = -2000;
+                CLA_to_CPU_Variables.n_V_peak_shadow = 2000;
+
+                CLA_to_CPU_Variables.I_square_sum_shadow = 0;
+                CLA_to_CPU_Variables.I_sum_shadow = 0;
+                CLA_to_CPU_Variables.p_I_peak_shadow = -2000.0;
+                CLA_to_CPU_Variables.n_I_peak_shadow = 2000.0;
+
+                CLA_to_CPU_Variables.P_sum_shadow = 0;
+
+                //
+                // 只有校正使用
+                //
+
+                CLA_to_CPU_Variables.ADS8353_CHA_sum_shadow = 0;
+                CLA_to_CPU_Variables.ADS8353_CHB_sum_shadow = 0;
+
+                CLA_to_CPU_Variables.ADS8353_CHB_minus_offset_squ_sum_shadow = 0;
+
+                CLA_to_CPU_Variables.Total_Sample_Points = CLA_to_CPU_Variables.Sampling_index;
+                CLA_to_CPU_Variables.Sampling_index = 0;
+
+                //
+                // 轉態
+                //
+                CLA_Module_Variables.cla_meas_state = CLA_MEAS_04_STATE;
+
+                break;
+            }
+        }
+
+        CLA_to_CPU_Variables.dds_shadow.all = CLA_to_CPU_Variables.dds.all;
+
+
+        //
+        // 轉態
+        //
+        CLA_to_CPU_Variables.Exec_Switch = 0;
+
+    }
+
+    //
+    #ifdef DEVELOP_SV01
+    CLA_to_CPU_Variables.Cla1Task1_Cycle_Meas_Result = EPwm4Regs.TBCTR - CLA_to_CPU_Variables.Cla1Task1_Cycle_Meas_Start; //8 cycles
+    // 量測的cycle = ( Cycle_Meas_Result - 3 ) x 2
+    // 對應的執行時間 = ( Cycle_Meas_Result - 3 ) x 2 x 5ns
+
+    if ( CLA_to_CPU_Variables.Cla1Task1_Cycle_Meas_Result > CLA_to_CPU_Variables.Cla1Task1_Cycle_Meas_Max )
+    {
+        CLA_to_CPU_Variables.Cla1Task1_Cycle_Meas_Max = CLA_to_CPU_Variables.Cla1Task1_Cycle_Meas_Result;
+    }
+    #endif
+
+
+}
+
+////////////////////////////////////////////////////////////////////
+__interrupt void Cla1Task2 ( void )
+{
+
+}
+
+////////////////////////////////////////////////////////////////////
+__interrupt void Cla1Task3 ( void )
+{
+
+}
+
+////////////////////////////////////////////////////////////////////
+__interrupt void Cla1Task4 ( void )
+{
+
+}
+
+////////////////////////////////////////////////////////////////////
+__interrupt void Cla1Task5 ( void )
+{
+
+}
+
+////////////////////////////////////////////////////////////////////
+__interrupt void Cla1Task6 ( void )
+{
+
+}
+
+////////////////////////////////////////////////////////////////////
+__interrupt void Cla1Task7 ( void )
+{
+
+}
+
+////////////////////////////////////////////////////////////////////
+__interrupt void Cla1Task8 ( void )
+{
+
+}
+
+//
+// End of file
+//
+

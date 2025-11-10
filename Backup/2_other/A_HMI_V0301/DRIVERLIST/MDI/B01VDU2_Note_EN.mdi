@@ -1,0 +1,1194 @@
+﻿TMDriver	B01VDU2
+AL0
+Major	1
+01-01: Hall sensor Sequence	
+0 = Sequence B, 1 = Sequence A
+01-02: Motor Poles
+2, 4, 8, 10 Poles
+01-03: Free load full speed
+unit: RPM
+01-04:
+reserved
+01-05: Throttle Map
+The motor output when the throttle is at map position, uint：0.1%
+01-06: CW Dir setup
+0 = Top view, 1 = Bottom view
+01-07:
+reserved
+01-08:
+reserved
+01-09:
+reserved
+01-10:
+reserved
+01-11:
+reserved
+01-12:
+reserved
+01-13:
+reserved
+01-14:
+reserved
+01-15:
+reserved
+01-16:
+reserved
+Major	2
+02-01: SC/CC mode
+0 = SC Mode, 1 = CC Mode 
+02-02:
+reserved
+02-03:
+reserved
+02-04:
+reserved
+02-05: Start up output
+uint：0.1% Duty
+02-06: Analog Input Mode
+M0：VR1 = Spd； M1：Digit； M2：VR1 = Spd，VR2 = ACC/DEC； M3：VR1 = Spd，VR2 = Tq； M4：VR1 = Spd，VR2 = VR1's scale
+02-07: Analog in upper bound V
+uint：0.01V
+02-08: Analog in lower bound V
+uint：0.01V
+02-09: Analog In 1 throt type
+0 = Single-Ended，1 = Single-Ended Reverse，2 = Wig-Wag，3 = Wig-Wag Reverse, 4 = Unipolar
+02-10: Analog In 2 throt type
+0 = Single-Ended，1 = Single-Ended Reverse
+02-11: Analog in scale max
+uint：0.1 %
+02-12: Analog in scale min
+uint：0.1 %
+02-13: Analog in min state
+0 = Motor Stop，1 = Operate with minimum speed
+02-14: Key Switch mode
+0 = General，1 = Motor Vehicle，2 = Direct mode
+02-15:
+reserved
+02-16: Throttle state check
+0 = No check required，10 = The throttle must stay in the neutral position for 1.0 sec after the driver power on or it will cause a fault (Can ONLY be reset by turn the power off then on again)
+Major	3
+03-01: AN Step 0 CW max SPD
+uint： RPM
+03-02: AN Step 0 CW min SPD
+uint： RPM
+03-03: AN Step 0 CCW max SPD
+uint： RPM
+03-04: AN Step 0 CCW min SPD
+uint： RPM
+03-05: AN Step 1 CW max SPD
+uint： RPM
+03-06: AN Step 1 CW min SPD
+uint： RPM
+03-07: AN Step 1 CCW max SPD
+uint： RPM
+03-08: AN Step 1 CCW min SPD
+uint： RPM
+03-09: AN Step 0 CW max out
+uint： 0.1%
+03-10: AN Step 0 CW min out
+uint： 0.1%
+03-11: AN Step 0 CCW max out
+uint： 0.1%
+03-12: AN Step 0 CCW min out
+uint： 0.1%
+03-13: AN Step 1 CW max out
+uint： 0.1%
+03-14: AN Step 1 CW min out
+uint： 0.1%
+03-15: AN Step 1 CCW max out
+uint： 0.1%
+03-16: AN Step 1 CCW min out
+uint： 0.1%
+Major	4
+04-01: AN step 0 CW max Tq
+uint：0.1% 
+04-02: AN step 0 CW min Tq
+uint：0.1% 
+04-03: AN step 0 CCW max Tq
+uint：0.1% 
+04-04: AN step 0 CCW min Tq
+uint：0.1% 
+04-05: AN step 1 CW max Tq
+uint：0.1% 
+04-06: AN step 1 CW min Tq
+uint：0.1% 
+04-07: AN step 1 CCW max Tq
+uint：0.1% 
+04-08: AN step 1 CCW min Tq
+uint：0.1% 
+04-09: AN S0 CW ACC/DEC max
+uint： 0.1 sec
+04-10: AN S0 CW ACC/DEC min
+uint： 0.1 sec
+04-11: AN S0 CCW ACC/DEC max
+uint： 0.1 sec
+04-12: AN S0 CCW ACC/DEC min
+uint： 0.1 sec 
+04-13: AN S1 CW ACC/DEC max
+uint： 0.1 sec
+04-14: AN S1 CW ACC/DEC min
+uint： 0.1 sec
+04-15: AN S1 CCW ACC/DEC max
+uint： 0.1 sec
+04-16: AN S1 CCW ACC/DEC min
+uint： 0.1 sec
+Major	5
+05-01: Motor OT Sensor
+0 = Normal Open, 1 = Normal Close
+05-02:
+reserved
+05-03: RGN Unit OT Sensor
+0 = Normal Open, 1 = Normal Close
+05-04: Excessive Speed
+uint：RPM
+05-05:
+reserved
+05-06:
+reserved
+05-07: Tq limit protection
+0 = No protection，1000 = Protection activate if the motor is stuck for 1000ms
+05-08: Tq limit over boost
+uint： 0.1 sec
+05-09: Tq limit recovery
+uint： 0.1 sec
+05-10: Over BUS V activate
+uint：0.01V
+05-11: Over BUS V recvery
+uint：0.01V
+05-12: Under BUS V activate
+uint：0.01V
+05-13: Under BUS V recovery
+uint：0.01V
+05-14: COM time out
+0 = Do nothing，1000 = Protection activate if the time out is longer than 1000ms
+05-15: COM Error
+If the number of times of COM error is equal or larger than this setup, the protection will actiave.
+05-16:
+reserved
+Major	6 
+06-01: Input X1 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-02: Input X2 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-03: Input X3 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-04: Input X4 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-05: Input X5 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-06: Input X6 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-07:
+reserved
+06-08:
+reserved
+06-09: Output Y1 function
+0 = NC，1 = Pulse Out，2 = Alarm Out，3 = Busy Out，4 = VA Out，5 = Park Brake，6 = DEC Light，7 = Reverse Light，8 = Power Status，9 = Status，10 = Battery Gauge1，11 = Battery Gauge2
+06-10: Output Y2 function
+0 = NC，1 = Pulse Out，2 = Alarm Out，3 = Busy Out，4 = VA Out，5 = Park Brake，6 = DEC Light，7 = Reverse Light，8 = Power Status，9 = Status，10 = Battery Gauge1，11 = Battery Gauge2
+06-11: Output Y3 function
+0 = NC，1 = Pulse Out，2 = Alarm Out，3 = Busy Out，4 = VA Out，5 = Park Brake，6 = DEC Light，7 = Reverse Light，8 = Power Status，9 = Status，10 = Battery Gauge1，11 = Battery Gauge2
+06-12: 
+reserved
+06-13: 
+reserved
+06-14:
+reserved
+06-15:
+reserved
+06-16: I/O activate polarity
+255 = 0000 0000 1111 1111，means all the input normal state is high (Normal open) and all the output normal state is low (Normal close).
+Major	7 
+07-01: S0 Speed
+uint：RPM
+07-02: S1 Speed
+uint：RPM
+07-03: S0 Output
+uint：0.1% Duty
+07-04: 1 Outputy
+uint：0.1% Duty
+07-05: S0 Tq CW
+uint：0.1% 
+07-06: S0 Tq CCW
+uint：0.1% 
+07-07: S1 Tq CW
+uint：0.1%
+07-08: S1 Tq CCW
+uint：0.1% 
+07-09: S0 ACC CW
+uint：0.1 sec
+07-10: S0 DEC CW
+uint：0.1 sec
+07-11: S0 ACC CCW
+uint：0.1 sec
+07-12: S0 DEC CCW
+uint：0.1 sec 
+07-13: S1 ACC CW
+uint：0.1 sec
+07-14: S1 DEC CW
+uint：0.1 sec
+07-15: S1 ACC CCW
+uint：0.1 sec
+07-16: S1 DEC CCW
+uint：0.1 sec
+Major	8 
+08-01: Speed Control mode
+0 = Speed，1 = Duty
+08-02: Speed Control PID gain P
+value：1 ~ 65535
+08-03:
+reserved
+08-04: Speed Control PID gain D
+value：1 ~ 65535
+08-05:
+reserved
+08-06: DEC feature
+0 = Motor output Dir. can ONLY be the same as the operation Dir., 1 = Motor outpu Dir. CAN be the same as the operation Dir..
+08-07: Inverse Operation
+0 = Do nothing，1 = Stop
+08-08:
+reserved
+08-09: Motor Stop State
+0 = Free，1 = Dynamic brake
+08-10: VA out activate speed
+When the difference of operation speed and the target speed is lower than this value the VA Out is activated. If not the VA out is inactivated. (unit: RPM)
+08-11: Park (E)Brake delay
+The delay time of park (E)Brake to activate after the motor stops.( uint：0.1 sec )
+08-12: Key Switch delay
+uint：0.1 sec
+08-13: Emergancy ACC
+uint：0.1 sec
+08-14: Emergancy DEC
+uint：0.1 sec
+08-15: Battery V Display 1
+uint：0.01V
+08-16: Battery V Display 2
+uint：0.01V
+Major	9 
+09-01: EXT I/O X1 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-02: EXT I/O X2 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-03: EXT I/O X3 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-04: EXT I/O X4 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-05: EXT I/O X5 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-06: EXT I/O X6 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-07: 
+reserved
+09-08: 
+reserved
+09-09: 
+reserved
+09-10: 
+reserved
+09-11: 
+reserved
+09-12: 
+reserved
+09-13: 
+reserved
+09-14:
+reserved
+09-15:
+reserved
+09-16:
+reserved
+Major	10
+10-01: Alarm History 1
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-02: Alarm History 2
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-03: Alarm History 3
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-04: Alarm History 4
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-05: Alarm History 5
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-06: Alarm History 6
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-07: Alarm History 7
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-08: Alarm History 8
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-09: Alarm History 9
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-10: Alarm History 10
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-11:
+reserved
+10-12:
+reserved
+10-13:
+reserved
+10-14:
+reserved
+10-15:
+reserved
+10-16:
+reserved
+Major	11
+11-01: 
+reserved
+11-02: 
+reserved
+11-03: 
+reserved
+11-04: 
+reserved
+11-05: 
+reserved
+11-06: 
+reserved
+11-07: 
+reserved
+11-08: 
+reserved
+11-09: 
+reserved
+11-10: 
+reserved
+11-11: 
+reserved
+11-12: 
+reserved
+11-13: 
+reserved
+11-14:
+reserved
+11-15:
+reserved
+11-16:
+reserved
+Major	12
+12-01: 
+reserved
+12-02: 
+reserved
+12-03: 
+reserved
+12-04: 
+reserved
+12-05: 
+reserved
+12-06: 
+reserved
+12-07: 
+reserved
+12-08: 
+reserved
+12-09: 
+reserved
+12-10: 
+reserved
+12-11: 
+reserved
+12-12: 
+reserved
+12-13: 
+reserved
+12-14:
+reserved
+12-15:
+reserved
+12-16:
+reserved
+AL1
+Major	1
+01-01: Hall sensor Sequence	
+0 = Sequence B, 1 = Sequence A
+01-02: Motor Poles
+2, 4, 8, 10 Poles
+01-03: Free load full speed
+unit: RPM
+01-04:
+reserved
+01-05: Throttle Map
+The motor output when the throttle is at map position, uint：0.1%
+01-06: CW Dir setup
+0 = Top view, 1 = Bottom view
+01-07:
+reserved
+01-08:
+reserved
+01-09:
+reserved
+01-10: Hall Seq Protect
+0 = OFF，1 = ON
+01-11: OC over Boost
+uint：1ms ( OC value is set by the paramter 05-16 )
+01-12: OC over Recovery
+uint：1ms ( OC value is set by the paramter 05-16 )
+01-13:
+reserved
+01-14:
+reserved
+01-15:
+reserved
+01-16:
+reserved
+Major	2
+02-01: SC/CC mode
+0 = SC Mode, 1 = CC Mode 
+02-02:
+reserved
+02-03:
+reserved
+02-04:
+reserved
+02-05: Start up output
+uint：0.1% Duty
+02-06: Analog Input Mode
+M0：VR1 = Spd； M1：Digit； M2：VR1 = Spd，VR2 = ACC/DEC； M3：VR1 = Spd，VR2 = Tq； M4：VR1 = Spd，VR2 = VR1's scale
+02-07: Analog in upper bound V
+uint：0.01V
+02-08: Analog in lower bound V
+uint：0.01V
+02-09: Analog In 1 throt type
+0 = Single-Ended，1 = Single-Ended Reverse，2 = Wig-Wag，3 = Wig-Wag Reverse, 4 = Unipolar
+02-10: Analog In 2 throt type
+0 = Single-Ended，1 = Single-Ended Reverse
+02-11: Analog in scale max
+uint：0.1 %
+02-12: Analog in scale min
+uint：0.1 %
+02-13: Analog in min state
+0 = Motor Stop，1 = Operate with minimum speed
+02-14: Key Switch mode
+0 = General，1 = Motor Vehicle，2 = Direct mode
+02-15:
+reserved
+02-16: Throttle state check
+0 = No check required，10 = The throttle must stay in the neutral position for 1.0 sec after the driver power on or it will cause a fault (Can ONLY be reset by turn the power off then on again)
+Major	3
+03-01: AN Step 0 CW max SPD
+uint： RPM
+03-02: AN Step 0 CW min SPD
+uint： RPM
+03-03: AN Step 0 CCW max SPD
+uint： RPM
+03-04: AN Step 0 CCW min SPD
+uint： RPM
+03-05: AN Step 1 CW max SPD
+uint： RPM
+03-06: AN Step 1 CW min SPD
+uint： RPM
+03-07: AN Step 1 CCW max SPD
+uint： RPM
+03-08: AN Step 1 CCW min SPD
+uint： RPM
+03-09: AN Step 0 CW max out
+uint： 0.1%
+03-10: AN Step 0 CW min out
+uint： 0.1%
+03-11: AN Step 0 CCW max out
+uint： 0.1%
+03-12: AN Step 0 CCW min out
+uint： 0.1%
+03-13: AN Step 1 CW max out
+uint： 0.1%
+03-14: AN Step 1 CW min out
+uint： 0.1%
+03-15: AN Step 1 CCW max out
+uint： 0.1%
+03-16: AN Step 1 CCW min out
+uint： 0.1%
+Major	4
+04-01: AN step 0 CW max Tq
+uint：0.1% 
+04-02: AN step 0 CW min Tq
+uint：0.1% 
+04-03: AN step 0 CCW max Tq
+uint：0.1% 
+04-04: AN step 0 CCW min Tq
+uint：0.1% 
+04-05: AN step 1 CW max Tq
+uint：0.1% 
+04-06: AN step 1 CW min Tq
+uint：0.1% 
+04-07: AN step 1 CCW max Tq
+uint：0.1% 
+04-08: AN step 1 CCW min Tq
+uint：0.1% 
+04-09: AN S0 CW ACC/DEC max
+uint： 0.1 sec
+04-10: AN S0 CW ACC/DEC min
+uint： 0.1 sec
+04-11: AN S0 CCW ACC/DEC max
+uint： 0.1 sec
+04-12: AN S0 CCW ACC/DEC min
+uint： 0.1 sec 
+04-13: AN S1 CW ACC/DEC max
+uint： 0.1 sec
+04-14: AN S1 CW ACC/DEC min
+uint： 0.1 sec
+04-15: AN S1 CCW ACC/DEC max
+uint： 0.1 sec
+04-16: AN S1 CCW ACC/DEC min
+uint： 0.1 sec
+Major	5
+05-01: Motor OT Sensor
+0 = Normal Open, 1 = Normal Close
+05-02:
+reserved
+05-03: RGN Unit OT Sensor
+0 = Normal Open, 1 = Normal Close
+05-04: Excessive Speed
+uint：RPM
+05-05:
+reserved
+05-06:
+reserved
+05-07: Tq limit protection
+0 = No protection，1000 = Protection activate if the motor is stuck for 1000ms
+05-08: Tq limit over boost
+uint： 0.1 sec
+05-09: Tq limit recovery
+uint： 0.1 sec
+05-10: Over BUS V activate
+uint：0.01V
+05-11: Over BUS V recvery
+uint：0.01V
+05-12: Under BUS V activate
+uint：0.01V
+05-13: Under BUS V recovery
+uint：0.01V
+05-14: COM time out
+0 = Do nothing，1000 = Protection activate if the time out is longer than 1000ms
+05-15: COM Error
+If the number of times of COM error is equal or larger than this setup, the protection will actiave.
+05-16:
+reserved
+Major	6 
+06-01: Input X1 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-02: Input X2 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-03: Input X3 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-04: Input X4 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-05: Input X5 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-06: Input X6 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-07:
+reserved
+06-08:
+reserved
+06-09: Output Y1 function
+0 = NC，1 = Pulse Out，2 = Alarm Out，3 = Busy Out，4 = VA Out，5 = Park Brake，6 = DEC Light，7 = Reverse Light，8 = Power Status，9 = Status，10 = Battery Gauge1，11 = Battery Gauge2
+06-10: Output Y2 function
+0 = NC，1 = Pulse Out，2 = Alarm Out，3 = Busy Out，4 = VA Out，5 = Park Brake，6 = DEC Light，7 = Reverse Light，8 = Power Status，9 = Status，10 = Battery Gauge1，11 = Battery Gauge2
+06-11: Output Y3 function
+0 = NC，1 = Pulse Out，2 = Alarm Out，3 = Busy Out，4 = VA Out，5 = Park Brake，6 = DEC Light，7 = Reverse Light，8 = Power Status，9 = Status，10 = Battery Gauge1，11 = Battery Gauge2
+06-12: 
+reserved
+06-13: 
+reserved
+06-14:
+reserved
+06-15:
+reserved
+06-16: I/O activate polarity
+255 = 0000 0000 1111 1111，means all the input normal state is high (Normal open) and all the output normal state is low (Normal close).
+Major	7 
+07-01: S0 Speed
+uint：RPM
+07-02: S1 Speed
+uint：RPM
+07-03: S0 Output
+uint：0.1% Duty
+07-04: 1 Outputy
+uint：0.1% Duty
+07-05: S0 Tq CW
+uint：0.1% 
+07-06: S0 Tq CCW
+uint：0.1% 
+07-07: S1 Tq CW
+uint：0.1%
+07-08: S1 Tq CCW
+uint：0.1% 
+07-09: S0 ACC CW
+uint：0.1 sec
+07-10: S0 DEC CW
+uint：0.1 sec
+07-11: S0 ACC CCW
+uint：0.1 sec
+07-12: S0 DEC CCW
+uint：0.1 sec 
+07-13: S1 ACC CW
+uint：0.1 sec
+07-14: S1 DEC CW
+uint：0.1 sec
+07-15: S1 ACC CCW
+uint：0.1 sec
+07-16: S1 DEC CCW
+uint：0.1 sec
+Major	8 
+08-01: Speed Control mode
+0 = Speed，1 = Duty
+08-02: Speed Control PID gain P
+value：1 ~ 65535
+08-03:
+reserved
+08-04: Speed Control PID gain D
+value：1 ~ 65535
+08-05:
+reserved
+08-06: DEC feature
+0 = Motor output Dir. can ONLY be the same as the operation Dir., 1 = Motor outpu Dir. CAN be the same as the operation Dir..
+08-07: Inverse Operation
+0 = Do nothing，1 = Stop
+08-08:
+reserved
+08-09: Motor Stop State
+0 = Free，1 = Dynamic brake
+08-10: VA out activate speed
+When the difference of operation speed and the target speed is lower than this value the VA Out is activated. If not the VA out is inactivated. (unit: RPM)
+08-11: Park (E)Brake delay
+The delay time of park (E)Brake to activate after the motor stops.( uint：0.1 sec )
+08-12: Key Switch delay
+uint：0.1 sec
+08-13: Emergancy ACC
+uint：0.1 sec
+08-14: Emergancy DEC
+uint：0.1 sec
+08-15: Battery V Display 1
+uint：0.01V
+08-16: Battery V Display 2
+uint：0.01V
+Major	9 
+09-01: EXT I/O X1 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-02: EXT I/O X2 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-03: EXT I/O X3 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-04: EXT I/O X4 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-05: EXT I/O X5 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-06: EXT I/O X6 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-07: 
+reserved
+09-08: 
+reserved
+09-09: 
+reserved
+09-10: 
+reserved
+09-11: 
+reserved
+09-12: 
+reserved
+09-13: 
+reserved
+09-14:
+reserved
+09-15:
+reserved
+09-16:
+reserved
+Major	10
+10-01: Alarm History 1
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-02: Alarm History 2
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-03: Alarm History 3
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-04: Alarm History 4
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-05: Alarm History 5
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-06: Alarm History 6
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-07: Alarm History 7
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-08: Alarm History 8
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-09: Alarm History 9
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-10: Alarm History 10
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-11:
+reserved
+10-12:
+reserved
+10-13:
+reserved
+10-14:
+reserved
+10-15:
+reserved
+10-16:
+reserved
+Major	11
+11-01: 
+reserved
+11-02: 
+reserved
+11-03: 
+reserved
+11-04: 
+reserved
+11-05: 
+reserved
+11-06: 
+reserved
+11-07: 
+reserved
+11-08: 
+reserved
+11-09: 
+reserved
+11-10: 
+reserved
+11-11: 
+reserved
+11-12: 
+reserved
+11-13: 
+reserved
+11-14:
+reserved
+11-15:
+reserved
+11-16:
+reserved
+Major	12
+12-01: 
+reserved
+12-02: 
+reserved
+12-03: 
+reserved
+12-04: 
+reserved
+12-05: 
+reserved
+12-06: 
+reserved
+12-07: 
+reserved
+12-08: 
+reserved
+12-09: 
+reserved
+12-10: 
+reserved
+12-11: 
+reserved
+12-12: 
+reserved
+12-13: 
+reserved
+12-14:
+reserved
+12-15:
+reserved
+12-16:
+reserved
+AL2
+Major	1
+01-01: Hall sensor Sequence	
+0 = Sequence B, 1 = Sequence A
+01-02: Motor Poles
+2, 4, 8, 10 Poles
+01-03: Free load full speed
+unit: RPM
+01-04: Motor Type
+0 = BLDC，1 = Brushed Motor。Note: When set to brushed motor, parameter 08-01 must be set to 1 (open loop).
+01-05: Throttle Map
+The motor output when the throttle is at map position, uint：0.1%
+01-06: CW Dir setup
+0 = Top view, 1 = Bottom view
+01-07:
+reserved
+01-08:
+reserved
+01-09:
+reserved
+01-10: Hall Seq Protect
+0 = OFF，1 = ON
+01-11: OC over Boost
+uint：1ms ( OC value is set by the paramter 05-16 )
+01-12: OC over Recovery
+uint：1ms ( OC value is set by the paramter 05-16 )
+01-13:
+reserved
+01-14:
+reserved
+01-15:
+reserved
+01-16:
+reserved
+Major	2
+02-01: SC/CC mode
+0 = SC Mode, 1 = CC Mode 
+02-02: Phase Adv. Enable
+0 = OFF，1 = ON
+02-03: Phase Adv. Analge
+128 = No Adv.，>128 = Adv (x - 128)/128，<128 = lag(128 - x)/128
+02-04: Drive method
+0 = Slow Decay，1 = Fast Decay，2 = Abs Drive，3 = Single Abs Drive，4 = Sine Wave (reserved)
+02-05: Start up output
+uint：0.1% Duty
+02-06: Analog Input Mode
+M0：VR1 = Spd； M1：Digit； M2：VR1 = Spd，VR2 = ACC/DEC； M3：VR1 = Spd，VR2 = Tq； M4：VR1 = Spd，VR2 = VR1's scale
+02-07: Analog in upper bound V
+uint：0.01V
+02-08: Analog in lower bound V
+uint：0.01V
+02-09: Analog In 1 throt type
+0 = Single-Ended，1 = Single-Ended Reverse，2 = Wig-Wag，3 = Wig-Wag Reverse, 4 = Unipolar
+02-10: Analog In 2 throt type
+0 = Single-Ended，1 = Single-Ended Reverse
+02-11: Analog in scale max
+uint：0.1 %
+02-12: Analog in scale min
+uint：0.1 %
+02-13: Analog in min state
+0 = Motor Stop，1 = Operate with minimum speed
+02-14: Key Switch mode
+0 = General，1 = Motor Vehicle，2 = Direct mode
+02-15: BUS V sense max
+uint：0.01V
+02-16: Throttle state check
+0 = No check required，10 = The throttle must stay in the neutral position for 1.0 sec after the driver power on or it will cause a fault (Can ONLY be reset by turn the power off then on again)
+Major	3
+03-01: AN Step 0 CW max SPD
+uint： RPM
+03-02: AN Step 0 CW min SPD
+uint： RPM
+03-03: AN Step 0 CCW max SPD
+uint： RPM
+03-04: AN Step 0 CCW min SPD
+uint： RPM
+03-05: AN Step 1 CW max SPD
+uint： RPM
+03-06: AN Step 1 CW min SPD
+uint： RPM
+03-07: AN Step 1 CCW max SPD
+uint： RPM
+03-08: AN Step 1 CCW min SPD
+uint： RPM
+03-09: AN Step 0 CW max out
+uint： 0.1%
+03-10: AN Step 0 CW min out
+uint： 0.1%
+03-11: AN Step 0 CCW max out
+uint： 0.1%
+03-12: AN Step 0 CCW min out
+uint： 0.1%
+03-13: AN Step 1 CW max out
+uint： 0.1%
+03-14: AN Step 1 CW min out
+uint： 0.1%
+03-15: AN Step 1 CCW max out
+uint： 0.1%
+03-16: AN Step 1 CCW min out
+uint： 0.1%
+Major	4
+04-01: AN step 0 CW max Tq
+uint：0.1% 
+04-02: AN step 0 CW min Tq
+uint：0.1% 
+04-03: AN step 0 CCW max Tq
+uint：0.1% 
+04-04: AN step 0 CCW min Tq
+uint：0.1% 
+04-05: AN step 1 CW max Tq
+uint：0.1% 
+04-06: AN step 1 CW min Tq
+uint：0.1% 
+04-07: AN step 1 CCW max Tq
+uint：0.1% 
+04-08: AN step 1 CCW min Tq
+uint：0.1% 
+04-09: AN S0 CW ACC/DEC max
+uint： 0.1 sec
+04-10: AN S0 CW ACC/DEC min
+uint： 0.1 sec
+04-11: AN S0 CCW ACC/DEC max
+uint： 0.1 sec
+04-12: AN S0 CCW ACC/DEC min
+uint： 0.1 sec 
+04-13: AN S1 CW ACC/DEC max
+uint： 0.1 sec
+04-14: AN S1 CW ACC/DEC min
+uint： 0.1 sec
+04-15: AN S1 CCW ACC/DEC max
+uint： 0.1 sec
+04-16: AN S1 CCW ACC/DEC min
+uint： 0.1 sec
+Major	5
+05-01: Motor OT Sensor
+0 = Normal Open, 1 = Normal Close
+05-02: Mos OT setup
+uint is ADC (Do NOT change if not necessary)
+05-03: RGN Unit OT Sensor
+0 = Normal Open, 1 = Normal Close
+05-04: Excessive Speed
+uint：RPM
+05-05: Auto Reset
+0 = OFF，1 = Auto Reset after 0.1 sec of the fault occurred.
+05-06: Auto Reset Fault setup
+Set the alarm that can be auto reset. Ex: if set this value to 48 ( 0b 0000 0000 0011 0000 ). Only the alarm of which error code is 4 or 5 can be auto reset.
+05-07: Tq limit protection
+0 = No protection，1000 = Protection activate if the motor is stuck for 1000ms
+05-08: Tq limit over boost
+uint： 0.1 sec
+05-09: Tq limit recovery
+uint： 0.1 sec
+05-10: Over BUS V activate
+uint：0.01V
+05-11: Over BUS V recvery
+uint：0.01V
+05-12: Under BUS V activate
+uint：0.01V
+05-13: Under BUS V recovery
+uint：0.01V
+05-14: COM time out
+0 = Do nothing，1000 = Protection activate if the time out is longer than 1000ms
+05-15: COM Error
+If the number of times of COM error is equal or larger than this setup, the protection will actiave.
+05-16: Rated Output
+uint：ADC value
+Major	6 
+06-01: Input X1 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-02: Input X2 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-03: Input X3 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-04: Input X4 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-05: Input X5 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-06: Input X6 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-07: Always High Input
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-08: Always High Input
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+06-09: Output Y1 function
+0 = NC，1 = Pulse Out，2 = Alarm Out，3 = Busy Out，4 = VA Out，5 = Park Brake，6 = DEC Light，7 = Reverse Light，8 = Power Status，9 = Status，10 = Battery Gauge1，11 = Battery Gauge2
+06-10: Output Y2 function
+0 = NC，1 = Pulse Out，2 = Alarm Out，3 = Busy Out，4 = VA Out，5 = Park Brake，6 = DEC Light，7 = Reverse Light，8 = Power Status，9 = Status，10 = Battery Gauge1，11 = Battery Gauge2
+06-11: Output Y3 function
+0 = NC，1 = Pulse Out，2 = Alarm Out，3 = Busy Out，4 = VA Out，5 = Park Brake，6 = DEC Light，7 = Reverse Light，8 = Power Status，9 = Status，10 = Battery Gauge1，11 = Battery Gauge2
+06-12: 
+reserved
+06-13: 
+reserved
+06-14:
+reserved
+06-15:
+reserved
+06-16: I/O activate polarity
+255 = 0000 0000 1111 1111，means all the input normal state is high (Normal open) and all the output normal state is low (Normal close).
+Major	7 
+07-01: S0 Speed
+uint：RPM
+07-02: S1 Speed
+uint：RPM
+07-03: S0 Output
+uint：0.1% Duty
+07-04: 1 Outputy
+uint：0.1% Duty
+07-05: S0 Tq CW
+uint：0.1% 
+07-06: S0 Tq CCW
+uint：0.1% 
+07-07: S1 Tq CW
+uint：0.1%
+07-08: S1 Tq CCW
+uint：0.1% 
+07-09: S0 ACC CW
+uint：0.1 sec
+07-10: S0 DEC CW
+uint：0.1 sec
+07-11: S0 ACC CCW
+uint：0.1 sec
+07-12: S0 DEC CCW
+uint：0.1 sec 
+07-13: S1 ACC CW
+uint：0.1 sec
+07-14: S1 DEC CW
+uint：0.1 sec
+07-15: S1 ACC CCW
+uint：0.1 sec
+07-16: S1 DEC CCW
+uint：0.1 sec
+Major	8 
+08-01: Speed Control mode
+0 = Speed，1 = Duty
+08-02: Speed Control PID gain P
+value：1 ~ 65535
+08-03: Tq control PID gain P
+value：1 ~ 65535
+08-04: Speed Control PID gain D
+value：1 ~ 65535
+08-05: SPD PID feedback max
+uint：0.02 % Duty
+08-06: DEC feature
+0 = Motor output Dir. can ONLY be the same as the operation Dir., 1 = Motor outpu Dir. CAN be the same as the operation Dir..
+08-07: Inverse Operation
+0 = Do nothing，1 = Stop
+08-08: Brake Enable
+0 = OFF，1 = ON ( When using Abs or Single Abs, Brake can NOT be OFF )
+08-09: Motor Stop State
+0 = Free，1 = Dynamic brake
+08-10: VA out activate speed
+When the difference of operation speed and the target speed is lower than this value the VA Out is activated. If not the VA out is inactivated. (unit: RPM)
+08-11: Park (E)Brake delay
+The delay time of park (E)Brake to activate after the motor stops.( uint：0.1 sec )
+08-12: Key Switch delay
+uint：0.1 sec
+08-13: Emergancy ACC
+uint：0.1 sec
+08-14: Emergancy DEC
+uint：0.1 sec
+08-15: Battery V Display 1
+uint：0.01V
+08-16: Battery V Display 2
+uint：0.01V
+Major	9 
+09-01: EXT I/O X1 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-02: EXT I/O X2 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-03: EXT I/O X3 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-04: EXT I/O X4 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-05: EXT I/O X5 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-06: EXT I/O X6 function
+0 = NC，1 = S/S( SC ) / CW Stop( CC )，2 = CW/CCW( SC ) / CCW Stop( CC )，5 = Free，6 = Stop Mode，7 = EBA Reset，8 = Reset，10 = M0，13 = E Brake，14 = Key Switch，15 = E Forward，16 = E Reverse
+09-07:  
+reserved
+09-08: 
+reserved
+09-09: 
+reserved
+09-10: 
+reserved
+09-11: 
+reserved
+09-12: 
+reserved
+09-13: 
+reserved
+09-14:
+reserved
+09-15:
+reserved
+09-16:
+reserved
+Major	10
+10-01: Alarm History 1
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-02: Alarm History 2
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-03: Alarm History 3
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-04: Alarm History 4
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-05: Alarm History 5
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-06: Alarm History 6
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-07: Alarm History 7
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-08: Alarm History 8
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-09: Alarm History 9
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-10: Alarm History 10
+1 = OC，2 = OverLoad，3 = Hall，4 = OVP，5 = UVP，6= Mos OT，7 = Start Failed，8 = EEP，9 = RGN OT，10 = Motor OT，12 = Over SPD，14 = Init Fault，20 = Hall Seq，21 = CMD error，22 = PA error
+10-11:
+reserved
+10-12:
+reserved
+10-13:
+reserved
+10-14:
+reserved
+10-15:
+reserved
+10-16:
+reserved
+Major	11
+11-01: 
+reserved
+11-02: 
+reserved
+11-03: 
+reserved
+11-04: 
+reserved
+11-05: 
+reserved
+11-06: 
+reserved
+11-07: 
+reserved
+11-08: 
+reserved
+11-09: 
+reserved
+11-10: 
+reserved
+11-11: 
+reserved
+11-12: 
+reserved
+11-13: 
+reserved
+11-14:
+reserved
+11-15:
+reserved
+11-16:
+reserved
+Major	12
+12-01: 
+reserved
+12-02: 
+reserved
+12-03: 
+reserved
+12-04: 
+reserved
+12-05: 
+reserved
+12-06: 
+reserved
+12-07: 
+reserved
+12-08: 
+reserved
+12-09: 
+reserved
+12-10: 
+reserved
+12-11: 
+reserved
+12-12: 
+reserved
+12-13: 
+reserved
+12-14:
+reserved
+12-15:
+reserved
+12-16:
+reserved
+TMDriverEND
+FileEnd

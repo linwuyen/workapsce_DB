@@ -1,0 +1,71 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: £gVision V5.38.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 1 11, 1, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.38.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.38.0.0
+Dialog DLL:      DARMCM1.DLL V1.19.6.0
+Target DLL:      Nu_Link.dll V3.13
+Dialog DLL:      TARMCM1.DLL V1.14.6.0
+ 
+<h2>Project:</h2>
+C:\Users\roger_lin\Downloads\Nuvoton\EEPROM_Emulation\DataFlash_EEPROM_V2\KEIL\fmc_rw.uvproj
+Project File Date:  10/12/2023
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'FMC_RW'
+creating preprocessor file for fmc.c...
+compiling main.c...
+..\main.c(12): error:  #5: cannot open source input file "M051Series.h": No such file or directory
+  #include "M051Series.h"
+..\main.c: 0 warnings, 1 error
+assembling startup_M051Series.s...
+startup_M051Series.s: error: A1023E: File "..\..\..\..\Library\Device\Nuvoton\M051Series\Source\ARM\startup_M051Series.s" could not be opened: No such file or directory
+compiling retarget.c...
+"no source": Error:  #5: cannot open source input file "..\..\..\..\Library\StdDriver\src\retarget.c": No such file or directory
+..\..\..\..\Library\StdDriver\src\retarget.c: 0 warnings, 1 error
+compiling fmc.c...
+"no source": Error:  #5: cannot open source input file "..\..\..\..\Library\StdDriver\src\fmc.c": No such file or directory
+..\..\..\..\Library\StdDriver\src\fmc.c: 0 warnings, 1 error
+creating preprocessor file for retarget.c...
+creating preprocessor file for system_M051Series.c...
+compiling EEPROM_Emulate.c...
+..\EEPROM_Emulate.h(8): error:  #5: cannot open source input file "M051Series.h": No such file or directory
+  #include "M051Series.h"
+..\EEPROM_Emulate.c: 0 warnings, 1 error
+creating preprocessor file for uart.c...
+compiling system_M051Series.c...
+"no source": Error:  #5: cannot open source input file "..\..\..\..\Library\Device\Nuvoton\M051Series\Source\system_M051Series.c": No such file or directory
+..\..\..\..\Library\Device\Nuvoton\M051Series\Source\system_M051Series.c: 0 warnings, 1 error
+creating preprocessor file for main.c...
+creating preprocessor file for EEPROM_Emulate.c...
+compiling uart.c...
+"no source": Error:  #5: cannot open source input file "..\..\..\..\Library\StdDriver\src\uart.c": No such file or directory
+..\..\..\..\Library\StdDriver\src\uart.c: 0 warnings, 1 error
+creating preprocessor file for clk.c...
+compiling clk.c...
+"no source": Error:  #5: cannot open source input file "..\..\..\..\Library\StdDriver\src\clk.c": No such file or directory
+..\..\..\..\Library\StdDriver\src\clk.c: 0 warnings, 1 error
+creating preprocessor file for gpio.c...
+compiling gpio.c...
+"no source": Error:  #5: cannot open source input file "..\..\..\..\Library\StdDriver\src\gpio.c": No such file or directory
+..\..\..\..\Library\StdDriver\src\gpio.c: 0 warnings, 1 error
+".\obj\fmc_rw.axf" - 9 Error(s), 0 Warning(s).
+Target not created.
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>

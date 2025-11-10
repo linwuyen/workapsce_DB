@@ -1,0 +1,6 @@
+DRC Rules Export File for PCB: C:\Users\USER\Dropbox\SSTC_共用資料夾\105002501_XDS100V2\PCB.PcbDoc
+RuleKind=Clearance|RuleName=ClearancePolygon|Scope=Board|Minimum=15.75
+RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=7.87
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=7.87
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=3.00
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0

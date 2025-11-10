@@ -1,0 +1,54 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28004x" --package "F28004x_100PZ" --part "F28004x_100PZ" --context "system" --product "C2000WARE@5.01.00.00"
+ * @versions {"tool":"1.19.0+3426"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const adc     = scripting.addModule("/driverlib/adc.js");
+const adc1    = adc.addInstance();
+const asysctl = scripting.addModule("/driverlib/asysctl.js");
+const epwm    = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1   = epwm.addInstance();
+const gpio    = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1   = gpio.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+adc.synchronousModeCheck = true;
+
+adc1.$name                   = "myADC0";
+adc1.enabledSOCs             = ["ADC_SOC_NUMBER0"];
+adc1.enableInterrupt1        = true;
+adc1.registerInterrupts      = ["1"];
+adc1.soc0Trigger             = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.ppb1EventEnable         = ["ADC_EVT_TRIPHI"];
+adc1.enabledInts             = ["ADC_INT_NUMBER1"];
+adc1.adcClockPrescaler       = "ADC_CLK_DIV_2_0";
+adc1.soc0SampleWindow        = 34;
+adc1.adcInt1.enableInterrupt = true;
+
+asysctl.analogReference        = "INTERNAL";
+asysctl.analogReferenceVoltage = "1P65";
+
+epwm1.$name                   = "myEPWM0";
+epwm1.epwmTimebase_hsClockDiv = "EPWM_HSCLOCK_DIVIDER_1";
+epwm1.epwm.epwm_aPin.$assign  = "GPIO0";
+epwm1.epwm.epwm_bPin.$assign  = "GPIO1";
+
+gpio1.$name             = "myGPIO0";
+gpio1.writeInitialValue = true;
+gpio1.initialValue      = 1;
+gpio1.direction         = "GPIO_DIR_MODE_OUT";
+gpio1.gpioPin.$assign   = "GPIO2";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+epwm1.epwm.$suggestSolution = "EPWM1";

@@ -1,0 +1,227 @@
+/*
+ * Copyright (c) 2023, Texas Instruments Incorporated
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/*
+ *  ============ ti_msp_dl_config.c =============
+ *  Configured MSPM0 DriverLib module definitions
+ *
+ *  DO NOT EDIT - This file is generated for the MSPM0G350X
+ *  by the SysConfig tool.
+ */
+
+#include "ti_msp_dl_config.h"
+
+/*
+ *  ======== SYSCFG_DL_init ========
+ *  Perform any initialization needed before using any board APIs
+ */
+SYSCONFIG_WEAK void SYSCFG_DL_init(void)
+{
+    SYSCFG_DL_initPower();
+    SYSCFG_DL_GPIO_init();
+    /* Module-Specific Initializations*/
+    SYSCFG_DL_SYSCTL_init();
+    SYSCFG_DL_I2C_EEPROM_init();
+    SYSCFG_DL_UART_0_DEBUG_init();
+    SYSCFG_DL_ADC0_BUCK_init();
+    SYSCFG_DL_ADC1_DAB_init();
+}
+
+
+
+SYSCONFIG_WEAK void SYSCFG_DL_initPower(void)
+{
+    DL_GPIO_reset(GPIOA);
+    DL_GPIO_reset(GPIOB);
+    DL_I2C_reset(I2C_EEPROM_INST);
+    DL_UART_Main_reset(UART_0_DEBUG_INST);
+    DL_ADC12_reset(ADC0_BUCK_INST);
+    DL_ADC12_reset(ADC1_DAB_INST);
+
+    DL_GPIO_enablePower(GPIOA);
+    DL_GPIO_enablePower(GPIOB);
+    DL_I2C_enablePower(I2C_EEPROM_INST);
+    DL_UART_Main_enablePower(UART_0_DEBUG_INST);
+    DL_ADC12_enablePower(ADC0_BUCK_INST);
+    DL_ADC12_enablePower(ADC1_DAB_INST);
+    delay_cycles(POWER_STARTUP_DELAY);
+}
+
+SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
+{
+
+    DL_GPIO_initPeripheralInputFunctionFeatures(GPIO_I2C_EEPROM_IOMUX_SDA,
+        GPIO_I2C_EEPROM_IOMUX_SDA_FUNC, DL_GPIO_INVERSION_DISABLE,
+        DL_GPIO_RESISTOR_NONE, DL_GPIO_HYSTERESIS_DISABLE,
+        DL_GPIO_WAKEUP_DISABLE);
+    DL_GPIO_initPeripheralInputFunctionFeatures(GPIO_I2C_EEPROM_IOMUX_SCL,
+        GPIO_I2C_EEPROM_IOMUX_SCL_FUNC, DL_GPIO_INVERSION_DISABLE,
+        DL_GPIO_RESISTOR_NONE, DL_GPIO_HYSTERESIS_DISABLE,
+        DL_GPIO_WAKEUP_DISABLE);
+    DL_GPIO_enableHiZ(GPIO_I2C_EEPROM_IOMUX_SDA);
+    DL_GPIO_enableHiZ(GPIO_I2C_EEPROM_IOMUX_SCL);
+
+    DL_GPIO_initPeripheralOutputFunction(
+        GPIO_UART_0_DEBUG_IOMUX_TX, GPIO_UART_0_DEBUG_IOMUX_TX_FUNC);
+    DL_GPIO_initPeripheralInputFunction(
+        GPIO_UART_0_DEBUG_IOMUX_RX, GPIO_UART_0_DEBUG_IOMUX_RX_FUNC);
+
+    DL_GPIO_initDigitalInput(GD_nPG1_PIN_0_IOMUX);
+
+    DL_GPIO_initDigitalInput(GD_nPG2_PIN_1_IOMUX);
+
+    DL_GPIO_initDigitalOutput(GD_Enable_PIN_2_IOMUX);
+
+    DL_GPIO_clearPins(GPIOA, GD_Enable_PIN_2_PIN);
+    DL_GPIO_enableOutput(GPIOA, GD_Enable_PIN_2_PIN);
+
+}
+
+
+SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
+{
+
+	//Low Power Mode is configured to be SLEEP0
+    DL_SYSCTL_setBORThreshold(DL_SYSCTL_BOR_THRESHOLD_LEVEL_0);
+
+    DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
+    DL_SYSCTL_setULPCLKDivider(DL_SYSCTL_ULPCLK_DIV_1);
+    DL_SYSCTL_setMCLKDivider(DL_SYSCTL_MCLK_DIVIDER_DISABLE);
+
+}
+
+
+static const DL_I2C_ClockConfig gI2C_EEPROMClockConfig = {
+    .clockSel = DL_I2C_CLOCK_BUSCLK,
+    .divideRatio = DL_I2C_CLOCK_DIVIDE_1,
+};
+
+SYSCONFIG_WEAK void SYSCFG_DL_I2C_EEPROM_init(void) {
+
+    DL_I2C_setClockConfig(I2C_EEPROM_INST,
+        (DL_I2C_ClockConfig *) &gI2C_EEPROMClockConfig);
+    DL_I2C_setAnalogGlitchFilterPulseWidth(I2C_EEPROM_INST,
+        DL_I2C_ANALOG_GLITCH_FILTER_WIDTH_50NS);
+    DL_I2C_enableAnalogGlitchFilter(I2C_EEPROM_INST);
+
+
+
+
+}
+
+
+static const DL_UART_Main_ClockConfig gUART_0_DEBUGClockConfig = {
+    .clockSel    = DL_UART_MAIN_CLOCK_BUSCLK,
+    .divideRatio = DL_UART_MAIN_CLOCK_DIVIDE_RATIO_1
+};
+
+static const DL_UART_Main_Config gUART_0_DEBUGConfig = {
+    .mode        = DL_UART_MAIN_MODE_NORMAL,
+    .direction   = DL_UART_MAIN_DIRECTION_TX_RX,
+    .flowControl = DL_UART_MAIN_FLOW_CONTROL_NONE,
+    .parity      = DL_UART_MAIN_PARITY_NONE,
+    .wordLength  = DL_UART_MAIN_WORD_LENGTH_8_BITS,
+    .stopBits    = DL_UART_MAIN_STOP_BITS_ONE
+};
+
+SYSCONFIG_WEAK void SYSCFG_DL_UART_0_DEBUG_init(void)
+{
+    DL_UART_Main_setClockConfig(UART_0_DEBUG_INST, (DL_UART_Main_ClockConfig *) &gUART_0_DEBUGClockConfig);
+
+    DL_UART_Main_init(UART_0_DEBUG_INST, (DL_UART_Main_Config *) &gUART_0_DEBUGConfig);
+    /*
+     * Configure baud rate by setting oversampling and baud rate divisors.
+     *  Target baud rate: 9600
+     *  Actual baud rate: 9600.24
+     */
+    DL_UART_Main_setOversampling(UART_0_DEBUG_INST, DL_UART_OVERSAMPLING_RATE_16X);
+    DL_UART_Main_setBaudRateDivisor(UART_0_DEBUG_INST, UART_0_DEBUG_IBRD_32_MHZ_9600_BAUD, UART_0_DEBUG_FBRD_32_MHZ_9600_BAUD);
+
+
+
+    DL_UART_Main_enable(UART_0_DEBUG_INST);
+}
+
+/* ADC0_BUCK Initialization */
+static const DL_ADC12_ClockConfig gADC0_BUCKClockConfig = {
+    .clockSel       = DL_ADC12_CLOCK_SYSOSC,
+    .divideRatio    = DL_ADC12_CLOCK_DIVIDE_1,
+    .freqRange      = DL_ADC12_CLOCK_FREQ_RANGE_24_TO_32,
+};
+SYSCONFIG_WEAK void SYSCFG_DL_ADC0_BUCK_init(void)
+{
+    DL_ADC12_setClockConfig(ADC0_BUCK_INST, (DL_ADC12_ClockConfig *) &gADC0_BUCKClockConfig);
+
+    DL_ADC12_initSeqSample(ADC0_BUCK_INST,
+        DL_ADC12_REPEAT_MODE_DISABLED, DL_ADC12_SAMPLING_SOURCE_AUTO, DL_ADC12_TRIG_SRC_SOFTWARE,
+        DL_ADC12_SEQ_START_ADDR_00, DL_ADC12_SEQ_END_ADDR_03, DL_ADC12_SAMP_CONV_RES_12_BIT,
+        DL_ADC12_SAMP_CONV_DATA_FORMAT_SIGNED);
+    DL_ADC12_configConversionMem(ADC0_BUCK_INST, ADC0_BUCK_ADCMEM_NTC_BUCK_MOS1,
+        DL_ADC12_INPUT_CHAN_12, DL_ADC12_REFERENCE_VOLTAGE_VDDA, DL_ADC12_SAMPLE_TIMER_SOURCE_SCOMP0, DL_ADC12_AVERAGING_MODE_DISABLED,
+        DL_ADC12_BURN_OUT_SOURCE_DISABLED, DL_ADC12_TRIGGER_MODE_AUTO_NEXT, DL_ADC12_WINDOWS_COMP_MODE_DISABLED);
+    DL_ADC12_configConversionMem(ADC0_BUCK_INST, ADC0_BUCK_ADCMEM_NTC_BUCK_MOS2,
+        DL_ADC12_INPUT_CHAN_2, DL_ADC12_REFERENCE_VOLTAGE_VDDA, DL_ADC12_SAMPLE_TIMER_SOURCE_SCOMP0, DL_ADC12_AVERAGING_MODE_DISABLED,
+        DL_ADC12_BURN_OUT_SOURCE_DISABLED, DL_ADC12_TRIGGER_MODE_AUTO_NEXT, DL_ADC12_WINDOWS_COMP_MODE_DISABLED);
+    DL_ADC12_configConversionMem(ADC0_BUCK_INST, ADC0_BUCK_ADCMEM_NTC_BUCK_SHUNT1,
+        DL_ADC12_INPUT_CHAN_3, DL_ADC12_REFERENCE_VOLTAGE_VDDA, DL_ADC12_SAMPLE_TIMER_SOURCE_SCOMP0, DL_ADC12_AVERAGING_MODE_DISABLED,
+        DL_ADC12_BURN_OUT_SOURCE_DISABLED, DL_ADC12_TRIGGER_MODE_AUTO_NEXT, DL_ADC12_WINDOWS_COMP_MODE_DISABLED);
+    DL_ADC12_configConversionMem(ADC0_BUCK_INST, ADC0_BUCK_ADCMEM_NTC_BUCK_SHUNT2,
+        DL_ADC12_INPUT_CHAN_7, DL_ADC12_REFERENCE_VOLTAGE_VDDA, DL_ADC12_SAMPLE_TIMER_SOURCE_SCOMP0, DL_ADC12_AVERAGING_MODE_DISABLED,
+        DL_ADC12_BURN_OUT_SOURCE_DISABLED, DL_ADC12_TRIGGER_MODE_AUTO_NEXT, DL_ADC12_WINDOWS_COMP_MODE_DISABLED);
+    DL_ADC12_enableConversions(ADC0_BUCK_INST);
+}
+/* ADC1_DAB Initialization */
+static const DL_ADC12_ClockConfig gADC1_DABClockConfig = {
+    .clockSel       = DL_ADC12_CLOCK_SYSOSC,
+    .divideRatio    = DL_ADC12_CLOCK_DIVIDE_1,
+    .freqRange      = DL_ADC12_CLOCK_FREQ_RANGE_24_TO_32,
+};
+SYSCONFIG_WEAK void SYSCFG_DL_ADC1_DAB_init(void)
+{
+    DL_ADC12_setClockConfig(ADC1_DAB_INST, (DL_ADC12_ClockConfig *) &gADC1_DABClockConfig);
+
+    DL_ADC12_initSeqSample(ADC1_DAB_INST,
+        DL_ADC12_REPEAT_MODE_DISABLED, DL_ADC12_SAMPLING_SOURCE_AUTO, DL_ADC12_TRIG_SRC_SOFTWARE,
+        DL_ADC12_SEQ_START_ADDR_00, DL_ADC12_SEQ_END_ADDR_02, DL_ADC12_SAMP_CONV_RES_12_BIT,
+        DL_ADC12_SAMP_CONV_DATA_FORMAT_SIGNED);
+    DL_ADC12_configConversionMem(ADC1_DAB_INST, ADC1_DAB_ADCMEM_NTC_DAB_MOS1,
+        DL_ADC12_INPUT_CHAN_0, DL_ADC12_REFERENCE_VOLTAGE_VDDA, DL_ADC12_SAMPLE_TIMER_SOURCE_SCOMP0, DL_ADC12_AVERAGING_MODE_DISABLED,
+        DL_ADC12_BURN_OUT_SOURCE_DISABLED, DL_ADC12_TRIGGER_MODE_AUTO_NEXT, DL_ADC12_WINDOWS_COMP_MODE_DISABLED);
+    DL_ADC12_configConversionMem(ADC1_DAB_INST, ADC1_DAB_ADCMEM_NTC_DAB_MOS2,
+        DL_ADC12_INPUT_CHAN_1, DL_ADC12_REFERENCE_VOLTAGE_VDDA, DL_ADC12_SAMPLE_TIMER_SOURCE_SCOMP0, DL_ADC12_AVERAGING_MODE_DISABLED,
+        DL_ADC12_BURN_OUT_SOURCE_DISABLED, DL_ADC12_TRIGGER_MODE_AUTO_NEXT, DL_ADC12_WINDOWS_COMP_MODE_DISABLED);
+    DL_ADC12_configConversionMem(ADC1_DAB_INST, ADC1_DAB_ADCMEM_NTC_BUCK_PCB,
+        DL_ADC12_INPUT_CHAN_2, DL_ADC12_REFERENCE_VOLTAGE_VDDA, DL_ADC12_SAMPLE_TIMER_SOURCE_SCOMP0, DL_ADC12_AVERAGING_MODE_DISABLED,
+        DL_ADC12_BURN_OUT_SOURCE_DISABLED, DL_ADC12_TRIGGER_MODE_AUTO_NEXT, DL_ADC12_WINDOWS_COMP_MODE_DISABLED);
+    DL_ADC12_enableConversions(ADC1_DAB_INST);
+}
+

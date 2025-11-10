@@ -1,0 +1,9 @@
+C:\Users\roger_lin\Desktop\MCP2221\MCP2221_DLL(v2.2.1)\code examples\Managed\MCP2221A Code Examples\MCP2221A Code Examples\bin\Debug\MCP2221A Code Examples.exe.config
+C:\Users\roger_lin\Desktop\MCP2221\MCP2221_DLL(v2.2.1)\code examples\Managed\MCP2221A Code Examples\MCP2221A Code Examples\bin\Debug\MCP2221A Code Examples.exe
+C:\Users\roger_lin\Desktop\MCP2221\MCP2221_DLL(v2.2.1)\code examples\Managed\MCP2221A Code Examples\MCP2221A Code Examples\bin\Debug\MCP2221A Code Examples.pdb
+C:\Users\roger_lin\Desktop\MCP2221\MCP2221_DLL(v2.2.1)\code examples\Managed\MCP2221A Code Examples\MCP2221A Code Examples\bin\Debug\mcp2221_dll_m_dotnetv4_x86.dll
+C:\Users\roger_lin\Desktop\MCP2221\MCP2221_DLL(v2.2.1)\code examples\Managed\MCP2221A Code Examples\MCP2221A Code Examples\obj\Debug\MCP2221A Code Examples.csproj.AssemblyReference.cache
+C:\Users\roger_lin\Desktop\MCP2221\MCP2221_DLL(v2.2.1)\code examples\Managed\MCP2221A Code Examples\MCP2221A Code Examples\obj\Debug\MCP2221A Code Examples.csproj.CoreCompileInputs.cache
+C:\Users\roger_lin\Desktop\MCP2221\MCP2221_DLL(v2.2.1)\code examples\Managed\MCP2221A Code Examples\MCP2221A Code Examples\obj\Debug\MCP2221A Code Examples.csproj.CopyComplete
+C:\Users\roger_lin\Desktop\MCP2221\MCP2221_DLL(v2.2.1)\code examples\Managed\MCP2221A Code Examples\MCP2221A Code Examples\obj\Debug\MCP2221A Code Examples.exe
+C:\Users\roger_lin\Desktop\MCP2221\MCP2221_DLL(v2.2.1)\code examples\Managed\MCP2221A Code Examples\MCP2221A Code Examples\obj\Debug\MCP2221A Code Examples.pdb

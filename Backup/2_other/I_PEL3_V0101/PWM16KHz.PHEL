@@ -1,0 +1,4 @@
+Block	1	type 0 = 1byte num, type 1 = 1byte char, type 2 = 2bytes num
+Des	num	type	add h	add l	value					description
+Block	7
+0196	1	2	131	66	1					PWM Frequence ( 0 = 20K Hz, 1 = 16K Hz, 2 = 12K Hz, 3 = 8K Hz )

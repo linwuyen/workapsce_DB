@@ -1,0 +1,56 @@
+/*
+ * timetask.h
+ *
+ *  Created on: Mar 1, 2024
+ *      Author: User
+ */
+
+#ifndef TIMETASK_H_
+#define TIMETASK_H_
+
+#include "common.h"
+
+#define SW_TIMER        39063
+#define U32_COUNTER     (uint32_t)DL_TimerG_getTimerCount(SWTIMER_INST)
+
+#define T_500US         (SW_TIMER/2000)
+#define T_1MS           (SW_TIMER/1000)
+#define T_2MS           (SW_TIMER/500)
+#define T_2D5MS         (SW_TIMER/400)
+#define T_5MS           (SW_TIMER/200)
+#define T_10MS          (SW_TIMER/100)
+#define T_20MS          (SW_TIMER/50)
+#define T_25MS          (SW_TIMER/40)
+#define T_50MS          (SW_TIMER/20)
+#define T_100MS         (SW_TIMER/10)
+#define T_200MS         (SW_TIMER/5)
+#define T_500MS         (SW_TIMER/2)
+#define T_1S            (SW_TIMER/1)
+
+typedef struct _ST_TIMETASK{
+    void (*fn) (void * s);
+    uint32_t cnt;
+    uint32_t max;
+} ST_TIMETASK;
+
+static inline void scanTimeTask(ST_TIMETASK *t, void *s)
+{
+    static uint32_t delta_t;
+    static uint32_t u32Cnt = 0;
+
+    u32Cnt = SW_TIMER - U32_COUNTER;
+
+    if(t->cnt > u32Cnt) {
+        delta_t = u32Cnt + SW_TIMER - t->cnt;
+    }
+    else {
+        delta_t = u32Cnt - t->cnt;
+    }
+
+    if(delta_t >= t->max) {
+        t->fn(s);
+        t->cnt = u32Cnt;
+    }
+}
+
+#endif /* TIMETASK_H_ */

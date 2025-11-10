@@ -1,0 +1,267 @@
+/*
+ * clatask.cla
+ *
+ *  Created on: 2022�~3��29��
+ *      Author: cody_chen
+ */
+
+#include "ctypedef.h"
+#include "cla_task.h"
+#include "HwConfig.h"
+#include "gpio.h"
+#include "epwm.h"
+#include "inc/hw_hrpwm.h"
+
+
+#define CNT_COUNTING_MAX  ((CNT_BUCK_HRPWM-1))
+#define CNT_HDB           ((CNT_BUCK_HRPWM_DEADBAND>>1))
+#define CNT_LDB           (CNT_BUCK_HRPWM - CNT_HDB)
+
+#define SET_HRCMPA(cmp, base)   HWREG(base + HRPWM_O_CMPA) = cmp << 8U;
+#define SET_HRCMPB(cmp, base)   HWREG(base + HRPWM_O_CMPB) = cmp << 8U;
+
+#define SET_DB_HRPWMA(cmp)  if(__mlt(CNT_HDB , cmp)) sCLA.sHRPWM.u32PwmA = cmp - CNT_HDB; \
+                            else                     sCLA.sHRPWM.u32PwmA = 0;
+
+#define SET_DB_HRPWMB(cmp)  if(__mlt(CNT_LDB , cmp)) sCLA.sHRPWM.u32PwmB = CNT_BUCK_HRPWM; \
+                            else                     sCLA.sHRPWM.u32PwmB = cmp + CNT_HDB;
+
+#define RST_HRPWMAB_DUTY(base)           SET_HRCMPA(0, base); \
+                                         SET_HRCMPB(CNT_BUCK_HRPWM, base);
+
+#define SET_HRPWMAB_DUTY(cmp, base)      SET_DB_HRPWMA(cmp); \
+                                         SET_DB_HRPWMB(cmp); \
+                                         SET_HRCMPA(sCLA.sHRPWM.u32PwmA, base); \
+                                         SET_HRCMPB(sCLA.sHRPWM.u32PwmB, base);
+
+#define SET_HRPWMA_DUTY(cmp, base)       SET_HRCMPA(cmp, base); \
+                                         SET_HRCMPB(CNT_BUCK_HRPWM, base);
+
+#define SET_HRPWMB_DUTY(cmp, base)       SET_HRCMPA(0, base); \
+                                         SET_HRCMPB(cmp, base);
+
+
+static void CLA_Measurement(void)
+{
+    sCLA.sVO.f32Adc = VO_SENSE;
+    CLA_getCaliData((float32_t *)&sCLA.sVO.f32Adc, (ST_CAL *)&sCLA.sVO.sCali);
+
+    sCLA.sVIN.f32Adc = VIN_SENSE;
+    CLA_getCaliData((float32_t *)&sCLA.sVIN.f32Adc, (ST_CAL *)&sCLA.sVIN.sCali);
+
+    sCLA.sIO.f32Adc = IO_SENSE;
+    CLA_getCaliData((float32_t *)&sCLA.sIO.f32Adc, (ST_CAL *)&sCLA.sIO.sCali);
+
+    sCLA.sIL.f32Adc = IL_SENSE;
+    CLA_getCaliData((float32_t *)&sCLA.sIL.f32Adc, (ST_CAL *)&sCLA.sIL.sCali);
+
+    sCLA.sIEL.f32Adc = IEL_SENSE;
+    CLA_getCaliData((float32_t *)&sCLA.sIEL.f32Adc, (ST_CAL *)&sCLA.sIEL.sCali);
+}
+
+static void CLA_Protection(void)
+{
+    if(sCLA.f32Ovp < sCLA.sVO.sCali.f32Out) {
+        FG_SETERR(_ERR_VO_OVP);
+    }
+
+    if(sCLA.f32VinOvp < sCLA.sVIN.sCali.f32Out) {
+        FG_SETERR(_ERR_VIN_OVP);
+    }
+
+    if(sCLA.f32Ocp < sCLA.sIO.sCali.f32Out || -sCLA.f32Ocp > sCLA.sIO.sCali.f32Out) {
+        FG_SETERR(_ERR_IO_OCP);
+    }
+
+    if(sCLA.f32ELOcp < sCLA.sIEL.sCali.f32Out) {
+        FG_SETELERR(_ERR_EL_OCP);
+    }
+}
+
+
+//-----------------------------------------------------------------------------
+//
+// Task 1 - Measure ADC
+//
+// Description: PWM control logic can be implemented here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt)) void Cla1Task1 ( void )
+{
+    //
+    // Uncomment this to debug the CLA while connected to the debugger
+    //
+    //__mdebugstop();
+
+    if(FG_GETCLA(_CSTAT_INIT_SUCCESS)) {
+        SET_DEBUG_CLA_TASK1();
+        CLA_Measurement();
+
+        CLA_Protection();
+
+#if FORCE_OUTPUT_PWM
+
+    #if (TEST_MODE == TEST_HRPWM_RANGE)
+        sCLA.sHRPWM.u32PwmDuty = (uint32_t)((float32_t) (CNT_COUNTING_MAX) * (CNV_SPU2UPU(sCLA.f32TestPU)));
+        SET_HRPWMAB_DUTY(sCLA.sHRPWM.u32PwmDuty, sCLA.sHRPWM.u32PwmBase);
+    #elif (TEST_MODE == TEST_HRPWM_MINSTEP)
+        sCLA.sHRPWM.u32PwmDuty = (sCLA.u32DutyStep<<8) | (sCLA.u32MinStep<<0);
+        if(__mlt(sCLA.u32MinStep , sCLA.u32RollStep)) sCLA.u32MinStep+=sCLA.u32UnitStep;
+        else                                          sCLA.u32MinStep=0;
+        SET_HRPWMAB_DUTY(sCLA.sHRPWM.u32PwmDuty, sCLA.sHRPWM.u32PwmBase);
+
+    #elif (TEST_MODE == TEST_HRPWM_REMOTE)
+        if(FG_GETCLA(_CSTAT_ENABLE_PWM)) {
+            sCLA.sHRPWM.u32PwmDuty = (uint32_t)(((float32_t) CNT_COUNTING_MAX) * (sCLA.f32Vref));
+            SET_HRPWMAB_DUTY(sCLA.sHRPWM.u32PwmDuty, sCLA.sHRPWM.u32PwmBase);
+        }
+        else {
+            RST_HRPWMAB_DUTY(sCLA.sHRPWM.u32PwmBase);
+        }
+
+    #else
+        RST_HRPWMAB_DUTY(sCLA.sHRPWM.u32PwmBase);
+    #endif
+
+#else
+
+            if(FG_GETCLA(_CSTAT_OUTPUT_READY)) {
+                sCLA.u32HeartBeat++;
+                sCLA.u32HeartBeat &= 0x7FFFFFFF;
+
+
+#if (V_LOOP == LOOP_MODE)
+                sCLA.sLoopV.f32Err = sCLA.f32Vref - sCLA.sVO.sCali.f32Out;
+                CLA_mPiLoop(&sCLA.sLoopV);
+
+                sCLA.sHRPWM.u32PwmDuty = (uint32_t)((float32_t) CNT_COUNTING_MAX * (CNV_SPU2UPU(sCLA.sLoopV.f32Out)));
+
+#elif ((OPEN_LOOP+I_FWD+I_LOOP+V_LOOP) == LOOP_MODE)
+                sCLA.sLoopV.f32Err = sCLA.f32Vref - sCLA.sVO.sCali.f32Out;
+                sCLA.sLoopV.u16StopUi = ((sCLA.f32Iref == sCLA.f32IrefLimitP)||(sCLA.f32Iref == sCLA.f32IrefLimitN));
+                CLA_mPiLoop(&sCLA.sLoopV);
+
+                sCLA.f32Iref = CLA_csatf(sCLA.sLoopV.f32Out * V2I_SCALE + sCLA.sIO.sCali.f32Out, sCLA.f32IrefLimitP, sCLA.f32IrefLimitN);
+                sCLA.sLoopI.f32Err = CLA_csatf(sCLA.f32Iref - sCLA.sIL.sCali.f32Out, 1.0, -1.0);
+                CLA_mPiLoop(&sCLA.sLoopI);
+
+                sCLA.f32Duty = CNV_UPU2SPU(sCLA.f32OpenGain);
+
+                sCLA.f32PwmPU = CLA_csatf(sCLA.f32Duty + sCLA.sLoopI.f32Out, 1.0, -1.0);
+
+                sCLA.sHRPWM.u32PwmDuty = (uint32_t)((float32_t) CNT_COUNTING_MAX * (CNV_SPU2UPU(sCLA.f32PwmPU)));
+#else
+                sCLA.sHRPWM.u32PwmDuty = 0;
+#endif
+                SET_HRPWMAB_DUTY(sCLA.sHRPWM.u32PwmDuty, sCLA.sHRPWM.u32PwmBase);
+            }
+            else {
+
+#if (V_LOOP == LOOP_MODE)
+                sCLA.sLoopV.f32Out = sCLA.sLoopV.f32Itemp = -1.0f;
+
+#else
+                sCLA.sLoopV.f32Out = sCLA.sLoopV.f32Itemp = 0.0f;
+                sCLA.sLoopI.f32Out = sCLA.sLoopI.f32Itemp = 0.0f;
+#endif
+                RST_HRPWMAB_DUTY(sCLA.sHRPWM.u32PwmBase);
+            }
+#endif //FORCE_OUTPUT_PWM
+
+
+
+        FG_SETCLA(_CSTAT_TASK1_OK);
+
+    }
+
+    RST_DEBUG_CLA_TASK1();
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 2 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task2 ( void )
+{
+
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 3 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task3 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 4 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task4 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 5 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task5 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 6 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task6 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 7 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task7 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 8 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task8 ( void )
+{
+
+}
+
+//
+// End of File
+//

@@ -1,0 +1,161 @@
+Profile,MDI2,,,,,,,,,,,,
+Code,85,,,,,,,,,,,,
+Model,F01,,,,,,,,,,,,
+FW,MDS3,,,,,,,,,,,,
+Version,300,,,,,,,,,,,,
+Language,中文,,,,,,,,,,,,
+Document,PGNUM-034_ELV-UserManual.pdf,,,,,,,,,,,,
+ID,Value,Def,Max,Min,Ram,Addrees,Lv,Type,Parameter,HMI Description,Apply,Version,Document Page
+,value,def,max,min,Ram,,,,1,Motor,,,
+01-01:,1,1,1,0,1,0100h,0,Motor,Hall sensor 序列,"0 = 序列 B, 1 = 序列 A",C,100,0
+01-02:,8,8,10,2,8,0101h,0,Motor,馬達極數,"2, 4, 8, 10極等",C,100,0
+01-03:,4188,4188,65535,0,4188,0102h,0,Motor,無載全轉速,單位: r/min,C,100,0
+01-04:,0,0,1,0,0,0103h,0,Motor,順時針方向定義,"0 = Top, 1 = Bottom",C,100,0
+01-05:,0,0,0,0,0,0104h,1,Motor,馬達類型,0 = 無刷馬達，1 = 有刷馬達。注：當設定為有刷馬達時，參數08-01: 控制模式必須設為1 ( Duty )。,D,100,0
+01-06:,1000,1000,1000,250,1000,0105h,0,Motor,功率輸出額度,依搭配馬達調整額定輸出功率 (單位: 0.1%),D,100,0
+01-07:,0,0,0,0,0,0106h,-,-,-,保留,-,100,0
+01-08:,0,0,1,0,0,0107h,1,Advance,相位提前,"0 = 關閉, 1 = 開啟",C,100,0
+01-09:,128,128,128,128,128,0108h,1,Advance,相位提前角度,128 = 不領先，大於128 = 領先 (x - 128)/128，小於128 = 延遲(128 - x)/128,C,100,0
+01-10:,0,0,65535,0,0,0109h,1,Protect,OVP UVP Alarm Delay,OVP或UVP 時驅動器不激磁，當異常持續時間超過此設定時Alarm停機，單位 = 1ms,C,100,0
+01-11:,0,0,65535,0,0,010Ah,1,Protect,Hall Alarm Delay,Hall 異常時驅動器不激磁，當異常持續時間超過此設定時Alarm停機，單位 = 1ms,C,100,0
+01-12:,100,100,65535,0,100,010Bh,1,Advance,Record Delay Time,"MBrake鎖住後, 再延遲此段時間後記錄位置",C,100,0
+01-13:,0,0,1000,0,0,010Ch,1,Operation,SPK Lock Delay,單位：1ms ( 注：設定 = 0 時，效果與300一樣 ),C,100,0
+01-14:,100,100,1000,0,100,010Dh,1,Operation,SPK轉矩變化率,簡易位置保持( Slight position-keeping )功能中轉矩變化率設定；單位：ms ( 1A/ms ) ,C,100,0
+01-15:,200,200,1000,0,200,010Eh,1,Operation,SPK保持力1,簡易位置保持( Slight position-keeping )功能中原點的保持轉矩；單位：0.1% ( 參考對象為額定電流 ) ,C,100,0
+01-16:,500,500,1000,0,500,010Fh,1,Operation,SPK保持力2,簡易位置保持( Slight position-keeping )功能中偏離原點時的最大保持轉矩；單位：0.1% ( 參考對象為額定電流 ),C,100,0
+,value,def,max,min,Ram,,,,2,General,,,
+02-01:,1,1,1,1,1,0200h,0,IO,SC/CC 模式,"0 = SC Mode, 1 = CC Mode",C,100,0
+02-02:,0,0,300,0,0,0201h,0,Operation,啟動預力輸出,單位: 0.1% Duty,C,100,0
+02-03:,0,0,1,0,0,0202h,0,Common,運轉資料來源設定,"0 = Analog, 1 = Digital",C,100,36
+02-04:,0,0,1,0,0,0203h,0,A/P Input,外部輸入調整信號範圍,"0 = 0~5V, 1 = 0~10V ",C,100,0
+02-05:,708,708,10000,0,708,0204h,1,A/P Input,外部輸入信號增益值,1V變化對應的轉速r/min (單位: r/min per V),C,100,0
+02-06:,20,20,200,0,20,0205h,1,A/P Input,外部輸入信號OFFSET,類比輸入OFFSET的電壓設定 (單位: 0.01V),C,100,0
+02-07:,100,100,10000,0,100,0206h,1,A/P Input,OFFSET對應轉速,類比輸入OFFSET電壓對應轉速 (單位: r/min),C,100,0
+02-08:,0,0,1,0,0,0207h,1,A/P Input,外部調速信號最低值行為,"0 = 馬達停止, 1 = 維持最低速",C,100,0
+02-09:,1,1,1,0,1,0208h,1,A/P Input,加減速設定極性,0: VR由小而大 => 加減速由慢而快。 1: VR由小而大 => 加減速由快而慢,C,100,0
+02-10:,0,0,0,0,0,0209h,0,-,-,保留,-,100,0
+02-11:,500,500,10000,0,500,020Ah,1,Advanced,起動限制轉速,0 = 關閉此功能，>=1 = 轉速低於此設定才能起動運轉 (單位: r/min),C,100,0
+02-12:,1,1,1,0,1,020Bh,0,Common,Open/Close Latch功能,"0 = Disable, 1 = Enable",-,100,0
+02-13:,1,1,1,0,1,020Ch,0,Common,MBrake Mode,"0 = Unlock,不管是否到達目標位置; 1 = 到達目標位置時Lock, 否則Unlock",-,100,0
+02-14:,0,0,2,0,0,020Dh,0,Common,Driver-Enable 設定,"0 = Driver-Enable ; 1 = DRV-EN為ON時 Driver Eable ; MBrake-OUT由Free控制 ( Off = Lock, On = Unlock ) ; 2 = DRV-EN為ON時 Driver Eable,  MBrake-OUT Unlock。 ( DRV-EN 為I/O功能14)",C,100,0
+02-15:,100,100,1000,0,100,020Eh,0,IO,轉速到達範圍(VA),當馬達轉速與目標轉速差在此範圍時，VA-OUT輸出作動 (單位: r/min),C,100,0
+02-16:,800,800,1000,0,800,020Fh,0,IO,Safety IO 失效位置,"關門程度超過此設定時, Safety IO 失效; 設定範圍 0 ~ 1000, 單位: 0.1%",C,100,0
+,value,def,max,min,Ram,,,,3,Speed,,,
+03-01:,3000,3000,10000,100,3000,0300h,0,A/P Input,調速上限,類比/PFM輸入/PWM輸入設定轉速的上限 (單位: r/min),C,100,0
+03-02:,100,100,10000,60,100,0301h,0,A/P Input,調速下限,類比/PFM輸入/PWM輸入設定轉速的下限 (單位: r/min),C,100,0
+03-03:,100,100,65535,2,100,0302h,0,A/P Input,自動關門時間上限,自動關門時間上限 (單位: 0.1秒),C,100,0
+03-04:,20,20,65535,2,20,0303h,0,A/P Input,自動關門時間下限,自動關門時間下限 (單位: 0.1秒),C,100,0
+03-05:,2000,2000,2000,0,2000,0304h,1,A/P Input,調整轉矩限制上限,類比設定轉矩限制的上限 (單位: 0.1%) ,C,100,0
+03-06:,100,100,2000,0,100,0305h,1,A/P Input,調整轉矩限制下限,類比設定轉矩限制的下限 (單位: 0.1%) ,C,100,0
+03-07:,1000,1000,1000,0,1000,0306h,1,A/P Input,Duty輸出上限,Duty控制時的輸出最高值 (單位0.1%) 以類比/PFM輸入/PWM輸入等方式調整,C,100,0
+03-08:,0,0,1000,0,0,0307h,1,A/P Input,Duty輸出下限,Duty控制時的輸出最低值 (單位0.1%) 以類比/PFM輸入/PWM輸入等方式調整,C,100,0
+03-09:,3000,3000,10000,60,3000,0308h,0,Operation Data,數位轉速第0段,單位: r/min,A,100,0
+03-10:,3000,3000,10000,60,3000,0309h,0,Operation Data,數位轉速第1段,單位: r/min,A,100,0
+03-11:,3000,3000,10000,60,3000,030Ah,0,Operation Data,數位轉速第2段,單位: r/min,A,100,0
+03-12:,3000,3000,10000,60,3000,030Bh,0,Operation Data,數位轉速第3段,單位: r/min,A,100,0
+03-13:,0,0,65535,0,0,030Ch,0,Operation Data,Open Pos H,單位: hall cnt,A,100,0
+03-14:,0,0,65535,0,0,030Dh,0,Operation Data,Open Pos L,單位: hall cnt,A,100,0
+03-15:,0,0,65535,0,0,030Eh,0,Operation Data,Close Pos H,單位: hall cnt,A,100,0
+03-16:,0,0,65535,0,0,030Fh,0,Operation Data,Close Pos L,單位: hall cnt,A,100,0
+,value,def,max,min,Ram,,,,4,ACC_DEC,,,
+04-01:,10,10,100,2,10,0400h,0,Operation Data,數位加速時間第0段,單位: 0.1秒,A,100,0
+04-02:,10,10,100,2,10,0401h,0,Operation Data,數位加速時間第1段,單位: 0.1秒,A,100,0
+04-03:,10,10,100,2,10,0402h,0,Operation Data,數位加速時間第2段,單位: 0.1秒,A,100,0
+04-04:,10,10,100,2,10,0403h,0,Operation Data,數位加速時間第3段,單位: 0.1秒,A,100,0
+04-05:,50,50,65535,2,50,0404h,0,Operation Data,數位自動關門第0段,單位: 0.1秒,A,100,0
+04-06:,50,50,65535,2,50,0405h,0,Operation Data,數位自動關門第1段,單位: 0.1秒,A,100,0
+04-07:,50,50,65535,2,50,0406h,0,Operation Data,數位自動關門第2段,單位: 0.1秒,A,100,0
+04-08:,50,50,65535,2,50,0407h,0,Operation Data,數位自動關門第3段,單位: 0.1秒,A,100,0
+04-09:,10,10,100,2,10,0408h,0,Operation Data,數位減速時間第0段,單位: 0.1秒,A,100,0
+04-10:,10,10,100,2,10,0409h,0,Operation Data,數位減速時間第1段,單位: 0.1秒,A,100,0
+04-11:,10,10,100,2,10,040Ah,0,Operation Data,數位減速時間第2段,單位: 0.1秒,A,100,0
+04-12:,10,10,100,2,10,040Bh,0,Operation Data,數位減速時間第3段,單位: 0.1秒,A,100,0
+04-13:,10,10,100,2,10,040Ch,-,-,-,保留,A,100,0
+04-14:,10,10,100,2,10,040Dh,-,-,-,保留,A,100,0
+04-15:,10,10,100,2,10,040Eh,-,-,-,保留,A,100,0
+04-16:,10,10,100,2,10,040Fh,-,-,-,保留,A,100,0
+,value,def,max,min,Ram,,,,5,Protect,,,
+05-01:,2,2,2,0,2,0500h,0,Motor Protect,馬達過溫感測器類型,"0 = 常開 (N.O.), 1 = 常閉 (N.C.), 2 = 關閉保護",C,100,0
+05-02:,0,0,1,0,0,0501h,0,Protect,初期運轉禁止Alarm,"初期運轉禁止保護設定. 0 = 停用保護, 1 = 開啟保護",C,100,0
+05-03:,0,0,1,0,0,0502h,0,Protect,Hall 序列 Alarm,"0 = 停用保護, 1 = 開啟保護 (只在08-01 = 0時才有作用)",C,100,0
+05-04:,4300,4300,10000,0,4300,0503h,0,Protect,過速 Alarm 轉速,"0 = 停用保護, 非0 = 轉速超過此設定跳保護 ( 單位: r/min )",C,100,0
+05-05:,10,10,1000,0,10,0504h,1,Protect,異常自動解除時間,"0 = Start/Stop必須為Off才可以Reset, 1 = 異常發生後0.1秒進行Auto Reset (可自動解除的異常由05-06設定)",C,100,0
+05-06:,65535,65535,65535,0,65535,0505h,1,Protect,設定可自動解除的異常,"有設定的保護將在符合""05-05: 異常自動解除時間""條件時自動解除異常。假如設定值為48 ( 0b 0000 0000 0011 0000 )，第4與5bit不為0，表示燈號為4與5的異常可以被自動解除",C,100,0
+05-07:,5000,5000,65535,0,5000,0506h,0,Operation,轉矩限制堵轉Alarm,"0 = 持續輸出, 1000 = 1.0s後過載Alarm",C,100,0
+05-08:,300,300,1000,0,300,0507h,0,Operatoin,超過轉矩限制允許時間,單位: 0.1秒,C,100,0
+05-09:,600,600,1000,0,600,0508h,0,Operatoin,低於轉矩限制回復時間,單位: 0.1秒,C,100,0
+05-10:,3700,3700,3700,2800,3700,0509h,1,Protect,過電壓保護點,單位: 0.01V,C,100,0
+05-11:,3600,3600,3600,2600,3600,050Ah,1,Protect,過電壓回復點,單位: 0.01V,C,100,0
+05-12:,1500,1500,1900,1500,1500,050Bh,1,Protect,低電壓保護點,單位: 0.01V,C,100,0
+05-13:,1600,1600,2000,1600,1600,050Ch,1,Protect,低電壓回復點,單位: 0.01V,C,100,0
+05-14:,1500,1500,1900,1500,1500,050Dh,1,Protect,LVP保護點,單位: 0.01V,C,100,0
+05-15:,0,0,1,0,0,050Eh,0,Protect,過電流保護機制,"0 = Foldback(拉回), 1= Alarm",C,100,0
+05-16:,0,0,1,0,0,050Fh,0,Protect,過功率保護機制,"0 = Foldback(拉回), 1= Alarm",C,100,0
+,value,def,max,min,Ram,,,,6,I/O,,,
+06-01:,1,1,21,0,1,0600h,0,IO,輸入X1功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+06-02:,2,2,21,0,2,0601h,0,IO,輸入X2功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+06-03:,9,9,21,0,9,0602h,0,IO,輸入X3功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+06-04:,15,15,21,0,15,0603h,0,IO,輸入X4功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+06-05:,6,6,21,0,6,0604h,0,IO,輸入X5功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+06-06:,13,13,21,0,13,0605h,0,IO,輸入X6(XH)之功能 (高速),"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+06-07:,14,14,21,0,14,0606h,0,IO,SW1-1 功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+06-08:,16,16,21,0,16,0607h,0,IO,SW1-5 功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+06-09:,13,13,14,0,13,0608h,0,IO,輸出Y1功能,"0 = NC, 1 = SPD-OUT, 2 = ALM-OUT, 3 = BUSY-OUT, 4 = VA-OUT, 5 = EN-OUT, 6 = ALM-PULSE, 7 = BUSY-ALM-PULSE, 11 = RUN-OUT, 12 = DIR-OUT, 13 = MBRAKE, 14 = MBRAKE-RELEASE, 15 = OPEN-OUT, 16 = CLOSE-OUT",C,100,0
+06-10:,16,16,14,0,16,0609h,0,IO,輸出Y2功能,"0 = NC, 1 = SPD-OUT, 2 = ALM-OUT, 3 = BUSY-OUT, 4 = VA-OUT, 5 = EN-OUT, 6 = ALM-PULSE, 7 = BUSY-ALM-PULSE, 11 = RUN-OUT, 12 = DIR-OUT, 13 = MBRAKE, 14 = MBRAKE-RELEASE, 15 = OPEN-OUT, 16 = CLOSE-OUT",C,100,0
+06-11:,0,0,0,0,0,060Ah,-,-,-,保留,-,100,0
+06-12:,0,0,0,0,0,060Bh,-,-,-,保留,-,100,0
+06-13:,0,0,0,0,0,060Ch,-,-,-,保留,-,100,0
+06-14:,0,0,0,0,0,060Dh,-,-,-,保留,-,100,0
+06-15:,0,0,0,0,0,060Eh,-,-,-,保留,-,100,0
+06-16:,65535,65535,65535,0,65535,060Fh,0,IO,I/O作動邏輯,"設定輸入與輸出功能(06-01~11)作動(ON)的準位,設定值轉為2進制,每個bit對應一個IO；例：255 = 0b 000 0000 1111 1111, bit0對應06-01,bit1對應06-02,依此類推。0:ON準位為不導通, 1:ON準位為導通",C,100,0
+,value,def,max,min,Ram,,,,7,Other,,,
+07-01:,2000,2000,2000,0,2000,0700h,0,Operation Data,數位轉矩限制第0段,單位: 0.1%,A,100,0
+07-02:,2000,2000,2000,0,2000,0701h,0,Operation Data,數位轉矩限制第1段,單位: 0.1%,A,100,0
+07-03:,2000,2000,2000,0,2000,0702h,0,Operation Data,數位轉矩限制第2段,單位: 0.1%,A,100,0
+07-04:,2000,2000,2000,0,2000,0703h,0,Operation Data,數位轉矩限制第3段,單位: 0.1%,A,100,0
+07-05:,2000,2000,2000,0,2000,0704h,0,-,-,保留,A,100,0
+07-06:,2000,2000,2000,0,2000,0705h,0,-,-,保留,A,100,0
+07-07:,2000,2000,2000,0,2000,0706h,0,-,-,保留,A,100,0
+07-08:,2000,2000,2000,0,2000,0707h,0,-,-,保留,A,100,0
+07-09:,100,100,1000,0,100,0708h,0,Operation Data,數位Duty第0段,單位: 0.1%,A,100,0
+07-10:,200,200,1000,0,200,0709h,0,Operation Data,數位Duty第1段,單位: 0.1%,A,100,0
+07-11:,300,300,1000,0,300,070Ah,0,Operation Data,數位Duty第2段,單位: 0.1%,A,100,0
+07-12:,400,400,1000,0,400,070Bh,0,Operation Data,數位Duty第3段,單位: 0.1%,A,100,0
+07-13:,0,0,21,0,0,070Ch,0,Test Function,測試IO功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+07-14:,10,10,65535,0,10,070Dh,0,Test Function,測試IO On 時間,單位: 0.1s,A,100,0
+07-15:,50,50,65535,0,50,070Eh,0,Test Function,測試IO Off 時間,單位: 0.1s,A,100,0
+07-16:,0,0,65535,0,0,070Fh,-,-,-,-,-,100,0
+,value,def,max,min,Ram,,,,8,P8,,,
+08-01:,2,2,2,0,2,0800h,0,Common,控制模式,"0 = Speed, 1 = Duty, 2 = Position",C,100,0
+08-02:,256,256,65535,0,256,0801h,0,Advance,控制常數KP,數值: 1 ~ 65535,C,100,0
+08-03:,100,100,65535,0,100,0802h,0,Advance,-,保留,C,100,0
+08-04:,50,50,65535,0,50,0803h,0,Advance,扭力PID控制常數P,數值: 1 ~ 65535,C,100,0
+08-05:,100,100,5000,0,100,0804h,0,Advance,PID單次最大回補量,單位：0.02% Duty,C,100,0
+08-06:,1,1,1,0,1,0805h,0,Advance,減速特徵,0 = 馬達輸出方向不允許與運轉方向相反，1 = 馬達輸出方向允許與運轉方向相反,C,100,0
+08-07:,1,1,1,0,1,0806h,0,Advance,正反轉模式,"0 = 不作動, 1 = 停止",C,100,0
+08-08:,1,1,1,0,1,0807h,0,Advance,剎車功能,"0 = 不開啟, 1 = 啟動",C,100,0
+08-09:,0,0,65535,0,0,0808h,0,A/P Input,XH PWM 訊號 OFFSET,"加入PWM訊號上升/下降時間微調，用以修正原件造成的誤差 ( 單位：0.0167us, 此參數為 int16_t, 1 = 上升1單位, 65535 = 下降1單位 )",C,100,0
+08-10:,256,256,65535,0,256,0809h,1,Advance,速度PID常數P,數值: 1 ~ 65535,,100,0
+08-11:,1,1,2,0,1,080Ah,0,Operation,停止時保持力,"0 = Free, 1 = 制動剎車(馬達短路), 2 = 簡易位置保持",C,100,0
+08-12:,5,5,100,0,5,080Bh,1,Advance,急停額外作動時間,當急停Duty增加至100%後啟動timer，而當timer到達此設定值或者馬達停止時結束急停作動。 (單位：0.1秒),C,100,0
+08-13:,10,10,300,2,10,080Ch,0,Advance,Safety 加速時間,Safety 觸發時加速時間 (單位：0.1秒),C,100,0
+08-14:,5,5,300,2,5,080Dh,0,Advance,Safety 減速時間,Safety 觸發時減速時間 (單位：0.1秒),C,100,0
+08-15:,2,2,300,2,2,080Eh,0,Advance,EBrake減速時間,E Brake 時短路剎車緩減速時間 (單位：0.1秒),C,100,0
+08-16:,0,0,65535,0,0,080Fh,1,Advance,速度PID常數I,數值: 1 ~ 65535,,100,0
+,value,def,max,min,Ram,,,,9,P9,,,
+09-01:,1,1,21,0,1,0900h,0,NET-IO,NET-X0輸入功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+09-02:,2,2,21,0,2,0901h,0,NET-IO,NET-X1輸入功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+09-03:,9,9,21,0,9,0902h,0,NET-IO,NET-X2輸入功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+09-04:,15,15,21,0,15,0903h,0,NET-IO,NET-X3輸入功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+09-05:,6,6,21,0,6,0904h,0,NET-IO,NET-X4輸入功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+09-06:,13,13,21,0,13,0905h,0,NET-IO,NET-X5輸入功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+09-07:,14,14,21,0,14,0906h,0,NET-IO,NET-X6輸入功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+09-08:,16,16,21,0,16,0907h,0,NET-IO,NET-X7輸入功能,"0=NC, 1=OPEN, 2=CLOSE, 5=FREE, 6=AUTO/SET_OPEN, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9 = TOGGLE/SET-CLOSE, 10=M0, 11=M1, 12=CS, 13=EBRAKE, 14=ADJUST, 15 = SAFETY, 16 = HALF-MODE, 17=STOP,  21=EXT-ERROR",C,100,0
+09-09:,0,0,5,0,0,0908h,0,Common,RTU C3.5 最小值,"0 = 1.75ms, 1 = 1.50ms, 2 = 1.25ms, 3 = 1.00ms, 4 = 0.75ms, 5 = 0.50ms",C,100,0
+09-10:,0,0,2,0,0,0909h,0,Protect,通訊異常保護行為,"0 = Alarm, 1 = 虛擬I/O狀態清除，2 = Alarm + 虛擬I/O狀態清除",C,100,0
+09-11:,0,0,3,0,0,090Ah,0,Common,WatchData選擇,"選擇DynamicData與WatchData頁面。0 = Page0, 1 = Page1",C,100,0
+09-12:,0,0,10000,0,0,090Bh,0,Protect,RS485通訊逾時,"0 = 不作動, 1000 = 失去連線1000ms後Alarm",C,100,0
+09-13:,0,0,10,0,0,090Ch,0,Protect,RS485通訊異常次數,通訊異常次數大於等於此設定時Alarm (單位：次),C,100,0
+09-14:,0,0,10000,0,0,090Dh,0,Protect,RS232/藍芽通訊逾時,"0 = 不作動, 1000 = 失去連線1000ms後Alarm",C,100,0
+09-15:,0,0,10,0,0,090Eh,0,Protect,RS232/藍芽通訊異常次數,通訊異常次數大於等於此設定時Alarm (單位：次),C,100,0
+09-16:,0,0,65535,0,0,090Fh,0,Common,RS485訊號設定,"Bit0 = Protocol : 0=RTU, 1=ASCII; Bit3 + Bit2 + Bit1 = Slave ID ( 0 = 8 ) ; Bit5 + Bit4 = Baud Rate ( 0 = 115200, 1 = 57600, 2 = 38400, 3 = 19200 )",D,100,0

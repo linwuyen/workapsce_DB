@@ -1,0 +1,5 @@
+en,id,func,data,len,type,gain,offset,max,min
+False,0x309,,,,,,,,
+True,0x308,F32,13.123,f32,Dec,,,,
+False,0x303,,,,,,,,
+True,0x305,Q31,0.7398125,q31,Dec,,,,

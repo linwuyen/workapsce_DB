@@ -1,0 +1,58 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2837xS" --package "F2837xS_176PTP" --part "F2837xS_176PTP" --context "system" --product "C2000WARE@4.03.00.00"
+ * @versions {"tool":"1.15.0+2826"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const cputimer  = scripting.addModule("/driverlib/cputimer.js", {}, false);
+const cputimer1 = cputimer.addInstance();
+const gpio      = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1     = gpio.addInstance();
+const i2c       = scripting.addModule("/driverlib/i2c.js", {}, false);
+const i2c1      = i2c.addInstance();
+const sci       = scripting.addModule("/driverlib/sci.js", {}, false);
+const sci1      = sci.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+cputimer1.cputimerBase   = "CPUTIMER2_BASE";
+cputimer1.emulationMode  = "CPUTIMER_EMULATIONMODE_RUNFREE";
+cputimer1.timerPeriod    = 50000000;
+cputimer1.startTimer     = true;
+cputimer1.$name          = "SWTIRMER";
+cputimer1.timerPrescaler = 3;
+
+gpio1.$name             = "DEBUG_C28";
+gpio1.direction         = "GPIO_DIR_MODE_OUT";
+gpio1.padConfig         = "PULLUP";
+gpio1.writeInitialValue = true;
+gpio1.gpioPin.$assign   = "ball.162";
+
+i2c1.useInterrupts      = false;
+i2c1.emulationMode      = "I2C_EMULATION_FREE_RUN";
+i2c1.bitCount           = "I2C_BITCOUNT_8";
+i2c1.targetAddress      = 0x50;
+i2c1.$name              = "EEPROM";
+i2c1.i2c.$assign        = "I2CA";
+i2c1.i2c.sdaPin.$assign = "ball.160";
+i2c1.i2c.sclPin.$assign = "ball.161";
+i2c1.sdaQual.qualMode   = "GPIO_QUAL_SYNC";
+i2c1.sclQual.qualMode   = "GPIO_QUAL_SYNC";
+
+sci1.$name         = "DEBUG_SCI";
+sci1.parity        = "SCI_CONFIG_PAR_EVEN";
+sci1.useInterrupts = false;
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+sci1.sci.$suggestSolution           = "SCIA";
+sci1.sci.scirxdPin.$suggestSolution = "ball.64";
+sci1.sci.scitxdPin.$suggestSolution = "ball.65";

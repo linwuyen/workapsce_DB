@@ -1,0 +1,1470 @@
+Component: ARM Compiler 5.06 update 7 (build 960) Tool: armlink [4d3601]
+
+==============================================================================
+
+Small function inlining results
+
+Inlined total of 0 calls.
+
+==============================================================================
+
+Section Cross References
+
+    system_m0a21.o(i.SystemCoreClockUpdate) refers to uidiv.o(.text) for __aeabi_uidivmod
+    system_m0a21.o(i.SystemCoreClockUpdate) refers to system_m0a21.o(.constdata) for .constdata
+    system_m0a21.o(i.SystemCoreClockUpdate) refers to system_m0a21.o(.data) for .data
+    startup_m0a21.o(RESET) refers to startup_m0a21.o(STACK) for __initial_sp
+    startup_m0a21.o(RESET) refers to startup_m0a21.o(.text) for Reset_Handler
+    startup_m0a21.o(RESET) refers to retarget.o(.emb_text) for HardFault_Handler
+    startup_m0a21.o(RESET) refers to i2c_eeprom.o(i.USCI0_IRQHandler) for USCI0_IRQHandler
+    startup_m0a21.o(.text) refers to system_m0a21.o(i.SystemInit) for SystemInit
+    startup_m0a21.o(.text) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    main.o(i.SYS_Init) refers to main.o(i.SYS_UnlockReg) for SYS_UnlockReg
+    main.o(i.SYS_Init) refers to clk.o(i.CLK_EnableXtalRC) for CLK_EnableXtalRC
+    main.o(i.SYS_Init) refers to clk.o(i.CLK_WaitClockReady) for CLK_WaitClockReady
+    main.o(i.SYS_Init) refers to clk.o(i.CLK_SetHCLK) for CLK_SetHCLK
+    main.o(i.SYS_Init) refers to clk.o(i.CLK_EnableModuleClock) for CLK_EnableModuleClock
+    main.o(i.SYS_Init) refers to clk.o(i.CLK_SetModuleClock) for CLK_SetModuleClock
+    main.o(i.SYS_Init) refers to system_m0a21.o(i.SystemCoreClockUpdate) for SystemCoreClockUpdate
+    main.o(i.UART0_Init) refers to sys.o(i.SYS_ResetModule) for SYS_ResetModule
+    main.o(i.UART0_Init) refers to g_uart.o(i.openUart) for openUart
+    main.o(i.UARTEEPROM) refers to g_uart.o(i.isTxFull) for isTxFull
+    main.o(i.UARTEEPROM) refers to g_uart.o(i.DL_UART_transmitData) for DL_UART_transmitData
+    main.o(i.UARTEEPROM) refers to emu_eeprom.o(i.getEepromErrorStatus) for getEepromErrorStatus
+    main.o(i.UARTEEPROM) refers to main.o(i.intToStr) for intToStr
+    main.o(i.UARTEEPROM) refers to emu_eeprom.o(i.setProgramEmuEeprom) for setProgramEmuEeprom
+    main.o(i.UARTEEPROM) refers to emu_eeprom.o(i.setVerifyEmuEeprom) for setVerifyEmuEeprom
+    main.o(i.UARTEEPROM) refers to main.o(.data) for .data
+    main.o(i.intToStr) refers to uidiv.o(.text) for __aeabi_uidivmod
+    main.o(i.intToStr) refers to main.o(i.reverse) for reverse
+    main.o(i.main) refers to main.o(i.SYS_UnlockReg) for SYS_UnlockReg
+    main.o(i.main) refers to main.o(i.SYS_Init) for SYS_Init
+    main.o(i.main) refers to main.o(i.UART0_Init) for UART0_Init
+    main.o(i.main) refers to g_timer.o(i.openTimer) for openTimer
+    main.o(i.main) refers to gpio.o(i.GPIO_SetMode) for GPIO_SetMode
+    main.o(i.main) refers to main.o(i.scanTimeTask) for scanTimeTask
+    main.o(i.main) refers to modbusslave.o(i.exeModbusSlave) for exeModbusSlave
+    main.o(i.main) refers to i2c_eeprom.o(i.execI2cSlave) for execI2cSlave
+    main.o(i.main) refers to emu_eeprom.o(i.execEmuEeprom) for execEmuEeprom
+    main.o(i.main) refers to tstblock.o(i.tstEmuEeprom) for tstEmuEeprom
+    main.o(i.main) refers to emu_eeprom.o(i.tstFlashWrite) for tstFlashWrite
+    main.o(i.main) refers to main.o(i.UARTEEPROM) for UARTEEPROM
+    main.o(i.main) refers to main.o(.data) for .data
+    main.o(i.main) refers to modbusfunction.o(.data) for mbcomm
+    main.o(i.main) refers to main.o(.bss) for .bss
+    main.o(i.scanTimeTask) refers to g_timer.o(i.getTimerCounts) for getTimerCounts
+    main.o(.data) refers to main.o(i.task2D5msec) for task2D5msec
+    main.o(.data) refers to main.o(i.task25msec) for task25msec
+    g_uart.o(i.openUart) refers to memcpya.o(.text) for __aeabi_memcpy4
+    g_uart.o(i.openUart) refers to clk.o(i.CLK_GetPCLK0Freq) for CLK_GetPCLK0Freq
+    g_uart.o(i.openUart) refers to clk.o(i.CLK_GetPCLK1Freq) for CLK_GetPCLK1Freq
+    g_uart.o(i.openUart) refers to uidiv.o(.text) for __aeabi_uidivmod
+    g_uart.o(i.openUart) refers to g_uart.o(.constdata) for .constdata
+    g_timer.o(i.openTimer) refers to timer.o(i.TIMER_GetModuleClock) for TIMER_GetModuleClock
+    g_timer.o(i.openTimer) refers to uidiv.o(.text) for __aeabi_uidivmod
+    i2c_eeprom.o(i.UI2C0_Init) refers to usci_i2c.o(i.UI2C_Open) for UI2C_Open
+    i2c_eeprom.o(i.UI2C0_Init) refers to usci_i2c.o(i.UI2C_GetBusClockFreq) for UI2C_GetBusClockFreq
+    i2c_eeprom.o(i.UI2C0_Init) refers to printf5.o(i.__0printf$5) for __2printf
+    i2c_eeprom.o(i.UI2C0_Init) refers to usci_i2c.o(i.UI2C_SetSlaveAddr) for UI2C_SetSlaveAddr
+    i2c_eeprom.o(i.UI2C0_Init) refers to usci_i2c.o(i.UI2C_SetSlaveAddrMask) for UI2C_SetSlaveAddrMask
+    i2c_eeprom.o(i.USCI0_IRQHandler) refers to emu_eeprom.o(i.readEmuEeprom) for readEmuEeprom
+    i2c_eeprom.o(i.USCI0_IRQHandler) refers to emu_eeprom.o(i.writeEmuEeprom) for writeEmuEeprom
+    i2c_eeprom.o(i.USCI0_IRQHandler) refers to i2c_eeprom.o(.bss) for .bss
+    i2c_eeprom.o(i.USCI0_IRQHandler) refers to i2c_eeprom.o(.data) for .data
+    i2c_eeprom.o(i.USCI0_IRQHandler) refers to main.o(.data) for startcnt
+    i2c_eeprom.o(i.execI2cSlave) refers to emu_eeprom.o(i.isEmuEepromFree) for isEmuEepromFree
+    i2c_eeprom.o(i.execI2cSlave) refers to i2c_eeprom.o(i.UI2C0_Init) for UI2C0_Init
+    i2c_eeprom.o(i.execI2cSlave) refers to i2c_eeprom.o(.bss) for .bss
+    i2c_eeprom.o(i.execI2cSlave) refers to emu_eeprom.o(i.readEmuEeprom) for readEmuEeprom
+    i2c_eeprom.o(i.execI2cSlave) refers to emu_eeprom.o(i.writeEmuEeprom) for writeEmuEeprom
+    i2c_eeprom.o(i.execI2cSlave) refers to emu_eeprom.o(i.setProgramEmuEeprom) for setProgramEmuEeprom
+    i2c_eeprom.o(i.execI2cSlave) refers to i2c_eeprom.o(.data) for .data
+    emu_eeprom.o(i.callbackFromFlash) refers to emu_eeprom.o(i.getChecksum) for getChecksum
+    emu_eeprom.o(i.callbackFromFlash) refers to emu_eeprom.o(i.builtin_ctz64) for builtin_ctz64
+    emu_eeprom.o(i.callbackFromFlash) refers to emu_eeprom.o(.data) for .data
+    emu_eeprom.o(i.callbackFromFlash) refers to emu_eeprom.o(.bss) for .bss
+    emu_eeprom.o(i.eraseAllDataFlash) refers to dl_flashctrl.o(i.DL_FlashCTL_unprotectSector) for DL_FlashCTL_unprotectSector
+    emu_eeprom.o(i.eraseAllDataFlash) refers to dl_flashctrl.o(i.DL_FlashCTL_eraseMemory) for DL_FlashCTL_eraseMemory
+    emu_eeprom.o(i.eraseAllDataFlash) refers to emu_eeprom.o(.bss) for .bss
+    emu_eeprom.o(i.execEmuEeprom) refers to emu_eeprom.o(i.initEmuEeprom) for initEmuEeprom
+    emu_eeprom.o(i.execEmuEeprom) refers to emu_eeprom.o(i.callbackFromFlash) for callbackFromFlash
+    emu_eeprom.o(i.execEmuEeprom) refers to emu_eeprom.o(i.progEmuEeprom) for progEmuEeprom
+    emu_eeprom.o(i.execEmuEeprom) refers to emu_eeprom.o(i.varifyFlashByRAM) for varifyFlashByRAM
+    emu_eeprom.o(i.execEmuEeprom) refers to emu_eeprom.o(i.eraseAllDataFlash) for eraseAllDataFlash
+    emu_eeprom.o(i.execEmuEeprom) refers to emu_eeprom.o(.bss) for .bss
+    emu_eeprom.o(i.getEepromErrorStatus) refers to emu_eeprom.o(.bss) for .bss
+    emu_eeprom.o(i.initEmuEeprom) refers to emu_eeprom.o(.constdata) for .constdata
+    emu_eeprom.o(i.initEmuEeprom) refers to emu_eeprom.o(.bss) for .bss
+    emu_eeprom.o(i.isEmuEepromFree) refers to emu_eeprom.o(.bss) for .bss
+    emu_eeprom.o(i.progEmuEeprom) refers to dl_flashctrl.o(i.DL_FlashCTL_unprotectSector) for DL_FlashCTL_unprotectSector
+    emu_eeprom.o(i.progEmuEeprom) refers to dl_flashctrl.o(i.DL_FlashCTL_eraseMemory) for DL_FlashCTL_eraseMemory
+    emu_eeprom.o(i.progEmuEeprom) refers to emu_eeprom.o(i.getChecksum) for getChecksum
+    emu_eeprom.o(i.progEmuEeprom) refers to dl_flashctrl.o(i.DL_FlashCTL_programMemoryFromRAM64) for DL_FlashCTL_programMemoryFromRAM64
+    emu_eeprom.o(i.progEmuEeprom) refers to emu_eeprom.o(i.clearBit) for clearBit
+    emu_eeprom.o(i.progEmuEeprom) refers to main.o(.data) for writesuccess
+    emu_eeprom.o(i.progEmuEeprom) refers to emu_eeprom.o(.bss) for .bss
+    emu_eeprom.o(i.readEmuEeprom) refers to emu_eeprom.o(.bss) for .bss
+    emu_eeprom.o(i.setProgramEmuEeprom) refers to emu_eeprom.o(.bss) for .bss
+    emu_eeprom.o(i.setVerifyEmuEeprom) refers to emu_eeprom.o(.bss) for .bss
+    emu_eeprom.o(i.set_data_flash_base) refers to fmc.o(i.FMC_ReadConfig) for FMC_ReadConfig
+    emu_eeprom.o(i.set_data_flash_base) refers to printf5.o(i.__0printf$5) for __2printf
+    emu_eeprom.o(i.set_data_flash_base) refers to fmc.o(i.FMC_Erase) for FMC_Erase
+    emu_eeprom.o(i.set_data_flash_base) refers to fmc.o(i.FMC_WriteConfig) for FMC_WriteConfig
+    emu_eeprom.o(i.set_data_flash_base) refers to retarget.o(i.IsDebugFifoEmpty) for IsDebugFifoEmpty
+    emu_eeprom.o(i.tstFlashWrite) refers to emu_eeprom.o(i.__ARM_common_switch8) for __ARM_common_switch8
+    emu_eeprom.o(i.tstFlashWrite) refers to emu_eeprom.o(i.set_data_flash_base) for set_data_flash_base
+    emu_eeprom.o(i.tstFlashWrite) refers to fmc.o(i.FMC_Open) for FMC_Open
+    emu_eeprom.o(i.tstFlashWrite) refers to printf5.o(i.__0printf$5) for __2printf
+    emu_eeprom.o(i.tstFlashWrite) refers to fmc.o(i.FMC_Write) for FMC_Write
+    emu_eeprom.o(i.tstFlashWrite) refers to fmc.o(i.FMC_Read) for FMC_Read
+    emu_eeprom.o(i.tstFlashWrite) refers to fmc.o(i.FMC_Close) for FMC_Close
+    emu_eeprom.o(i.tstFlashWrite) refers to fmc.o(i.FMC_Erase) for FMC_Erase
+    emu_eeprom.o(i.tstFlashWrite) refers to emu_eeprom.o(.data) for .data
+    emu_eeprom.o(i.varifyFlashByRAM) refers to emu_eeprom.o(i.getChecksum) for getChecksum
+    emu_eeprom.o(i.varifyFlashByRAM) refers to emu_eeprom.o(i.__ARM_common_ctz) for __ARM_common_ctz
+    emu_eeprom.o(i.varifyFlashByRAM) refers to emu_eeprom.o(.bss) for .bss
+    emu_eeprom.o(i.writeEmuEeprom) refers to emu_eeprom.o(.bss) for .bss
+    emu_eeprom.o(i.writeEmuEepromBlock) refers to emu_eeprom.o(.bss) for .bss
+    tstblock.o(i.initBlockRam) refers to idiv.o(.text) for __aeabi_idivmod
+    tstblock.o(i.initBlockRam) refers to emu_eeprom.o(i.writeEmuEeprom) for writeEmuEeprom
+    tstblock.o(i.initBlockRam) refers to tstblock.o(.data) for .data
+    tstblock.o(i.loopWriteBlock) refers to g_timer.o(i.getTimerCounts) for getTimerCounts
+    tstblock.o(i.loopWriteBlock) refers to tstblock.o(i.initBlockRam) for initBlockRam
+    tstblock.o(i.loopWriteBlock) refers to emu_eeprom.o(i.setProgramEmuEeprom) for setProgramEmuEeprom
+    tstblock.o(i.loopWriteBlock) refers to tstblock.o(.data) for .data
+    tstblock.o(i.resetBlockRam) refers to emu_eeprom.o(i.writeEmuEeprom) for writeEmuEeprom
+    tstblock.o(i.resetBlockRam) refers to tstblock.o(.data) for .data
+    tstblock.o(i.tstEmuEeprom) refers to tstblock.o(i.loopWriteBlock) for loopWriteBlock
+    tstblock.o(i.tstEmuEeprom) refers to emu_eeprom.o(i.setVerifyEmuEeprom) for setVerifyEmuEeprom
+    tstblock.o(i.tstEmuEeprom) refers to tstblock.o(i.initBlockRam) for initBlockRam
+    tstblock.o(i.tstEmuEeprom) refers to tstblock.o(i.resetBlockRam) for resetBlockRam
+    tstblock.o(i.tstEmuEeprom) refers to emu_eeprom.o(i.setProgramEmuEeprom) for setProgramEmuEeprom
+    tstblock.o(i.tstEmuEeprom) refers to tstblock.o(.data) for .data
+    dl_flashctrl.o(i.DL_FlashCTL_eraseMemory) refers to fmc.o(i.FMC_Erase) for FMC_Erase
+    dl_flashctrl.o(i.DL_FlashCTL_eraseMemory) refers to fmc.o(i.FMC_Close) for FMC_Close
+    dl_flashctrl.o(i.DL_FlashCTL_programMemoryFromRAM64) refers to fmc.o(i.FMC_Write) for FMC_Write
+    dl_flashctrl.o(i.DL_FlashCTL_programMemoryFromRAM64) refers to fmc.o(i.FMC_Close) for FMC_Close
+    dl_flashctrl.o(i.DL_FlashCTL_unprotectSector) refers to fmc.o(i.FMC_Open) for FMC_Open
+    retarget.o(.emb_text) refers to retarget.o(i.Hard_Fault_Handler) for Hard_Fault_Handler
+    retarget.o(i.Hard_Fault_Handler) refers to printf5.o(i.__0printf$5) for __2printf
+    retarget.o(i.Hard_Fault_Handler) refers to retarget.o(i.stackDump) for stackDump
+    retarget.o(i._ttywrch) refers to retarget.o(i.SendChar) for SendChar
+    retarget.o(i.fputc) refers to retarget.o(i.SendChar) for SendChar
+    retarget.o(i.stackDump) refers to printf5.o(i.__0printf$5) for __2printf
+    clk.o(i.CLK_DisableModuleClock) refers to clk.o(.constdata) for .constdata
+    clk.o(i.CLK_EnableModuleClock) refers to clk.o(.constdata) for .constdata
+    clk.o(i.CLK_GetCPUFreq) refers to system_m0a21.o(i.SystemCoreClockUpdate) for SystemCoreClockUpdate
+    clk.o(i.CLK_GetCPUFreq) refers to system_m0a21.o(.data) for SystemCoreClock
+    clk.o(i.CLK_GetHCLKFreq) refers to system_m0a21.o(i.SystemCoreClockUpdate) for SystemCoreClockUpdate
+    clk.o(i.CLK_GetHCLKFreq) refers to system_m0a21.o(.data) for SystemCoreClock
+    clk.o(i.CLK_GetPCLK0Freq) refers to system_m0a21.o(i.SystemCoreClockUpdate) for SystemCoreClockUpdate
+    clk.o(i.CLK_GetPCLK0Freq) refers to system_m0a21.o(.data) for SystemCoreClock
+    clk.o(i.CLK_GetPCLK1Freq) refers to system_m0a21.o(i.SystemCoreClockUpdate) for SystemCoreClockUpdate
+    clk.o(i.CLK_GetPCLK1Freq) refers to system_m0a21.o(.data) for SystemCoreClock
+    clk.o(i.CLK_SetCoreClock) refers to clk.o(i.CLK_WaitClockReady) for CLK_WaitClockReady
+    clk.o(i.CLK_SetHCLK) refers to clk.o(i.CLK_WaitClockReady) for CLK_WaitClockReady
+    clk.o(i.CLK_SetHCLK) refers to system_m0a21.o(i.SystemCoreClockUpdate) for SystemCoreClockUpdate
+    clk.o(i.CLK_SetModuleClock) refers to clk.o(.constdata) for .constdata
+    uart.o(i.UART_Open) refers to memcpya.o(.text) for __aeabi_memcpy4
+    uart.o(i.UART_Open) refers to clk.o(i.CLK_GetPCLK0Freq) for CLK_GetPCLK0Freq
+    uart.o(i.UART_Open) refers to clk.o(i.CLK_GetPCLK1Freq) for CLK_GetPCLK1Freq
+    uart.o(i.UART_Open) refers to uidiv.o(.text) for __aeabi_uidivmod
+    uart.o(i.UART_Open) refers to uart.o(.constdata) for .constdata
+    uart.o(i.UART_SelectIrDAMode) refers to memcpya.o(.text) for __aeabi_memcpy4
+    uart.o(i.UART_SelectIrDAMode) refers to clk.o(i.CLK_GetPCLK0Freq) for CLK_GetPCLK0Freq
+    uart.o(i.UART_SelectIrDAMode) refers to clk.o(i.CLK_GetPCLK1Freq) for CLK_GetPCLK1Freq
+    uart.o(i.UART_SelectIrDAMode) refers to uidiv.o(.text) for __aeabi_uidivmod
+    uart.o(i.UART_SelectIrDAMode) refers to uart.o(.constdata) for .constdata
+    uart.o(i.UART_SetLine_Config) refers to memcpya.o(.text) for __aeabi_memcpy4
+    uart.o(i.UART_SetLine_Config) refers to clk.o(i.CLK_GetPCLK0Freq) for CLK_GetPCLK0Freq
+    uart.o(i.UART_SetLine_Config) refers to clk.o(i.CLK_GetPCLK1Freq) for CLK_GetPCLK1Freq
+    uart.o(i.UART_SetLine_Config) refers to uidiv.o(.text) for __aeabi_uidivmod
+    uart.o(i.UART_SetLine_Config) refers to uart.o(.constdata) for .constdata
+    timer.o(i.TIMER_Delay) refers to timer.o(i.TIMER_GetModuleClock) for TIMER_GetModuleClock
+    timer.o(i.TIMER_Delay) refers to uidiv.o(.text) for __aeabi_uidivmod
+    timer.o(i.TIMER_Delay) refers to system_m0a21.o(.data) for SystemCoreClock
+    timer.o(i.TIMER_GetModuleClock) refers to memcpya.o(.text) for __aeabi_memcpy4
+    timer.o(i.TIMER_GetModuleClock) refers to clk.o(i.CLK_GetPCLK0Freq) for CLK_GetPCLK0Freq
+    timer.o(i.TIMER_GetModuleClock) refers to clk.o(i.CLK_GetPCLK1Freq) for CLK_GetPCLK1Freq
+    timer.o(i.TIMER_GetModuleClock) refers to timer.o(.constdata) for .constdata
+    timer.o(i.TIMER_Open) refers to timer.o(i.TIMER_GetModuleClock) for TIMER_GetModuleClock
+    timer.o(i.TIMER_Open) refers to uidiv.o(.text) for __aeabi_uidivmod
+    fmc.o(i.FMC_ReadConfig) refers to fmc.o(i.FMC_Read) for FMC_Read
+    fmc.o(i.FMC_WriteConfig) refers to fmc.o(i.FMC_Write) for FMC_Write
+    fmc.o(i.FMC_WriteConfig) refers to fmc.o(i.FMC_Read) for FMC_Read
+    usci_i2c.o(i.UI2C_GetBusClockFreq) refers to clk.o(i.CLK_GetPCLK0Freq) for CLK_GetPCLK0Freq
+    usci_i2c.o(i.UI2C_GetBusClockFreq) refers to clk.o(i.CLK_GetPCLK1Freq) for CLK_GetPCLK1Freq
+    usci_i2c.o(i.UI2C_GetBusClockFreq) refers to uidiv.o(.text) for __aeabi_uidivmod
+    usci_i2c.o(i.UI2C_Open) refers to clk.o(i.CLK_GetPCLK0Freq) for CLK_GetPCLK0Freq
+    usci_i2c.o(i.UI2C_Open) refers to clk.o(i.CLK_GetPCLK1Freq) for CLK_GetPCLK1Freq
+    usci_i2c.o(i.UI2C_Open) refers to uidiv.o(.text) for __aeabi_uidivmod
+    usci_i2c.o(i.UI2C_SetBusClockFreq) refers to clk.o(i.CLK_GetPCLK0Freq) for CLK_GetPCLK0Freq
+    usci_i2c.o(i.UI2C_SetBusClockFreq) refers to clk.o(i.CLK_GetPCLK1Freq) for CLK_GetPCLK1Freq
+    usci_i2c.o(i.UI2C_SetBusClockFreq) refers to uidiv.o(.text) for __aeabi_uidivmod
+    modbusslave.o(i.cntModbusTimeout) refers to g_timer.o(i.getTimerCounts) for getTimerCounts
+    modbusslave.o(i.exeModbusSlave) refers to main.o(i.UART0_Init) for UART0_Init
+    modbusslave.o(i.exeModbusSlave) refers to modbusslave.o(i.rstModbusError) for rstModbusError
+    modbusslave.o(i.exeModbusSlave) refers to modbusslave.o(i.initMbusConfig) for initMbusConfig
+    modbusslave.o(i.exeModbusSlave) refers to modbusslave.o(i.isrMbusRxData) for isrMbusRxData
+    modbusslave.o(i.exeModbusSlave) refers to modbusslave.o(i.cntModbusTimeout) for cntModbusTimeout
+    modbusslave.o(i.exeModbusSlave) refers to modbusfunction.o(i.ModbusCommError) for ModbusCommError
+    modbusslave.o(i.exeModbusSlave) refers to g_uart.o(i.isTxFull) for isTxFull
+    modbusslave.o(i.exeModbusSlave) refers to g_uart.o(i.wrBytes) for wrBytes
+    modbusslave.o(i.exeModbusSlave) refers to modbusslave.o(i.rstModbusTimeout) for rstModbusTimeout
+    modbusslave.o(i.exeModbusSlave) refers to memseta.o(.text) for __aeabi_memclr4
+    modbusslave.o(i.exeModbusSlave) refers to memcpya.o(.text) for __aeabi_memcpy4
+    modbusslave.o(i.exeModbusSlave) refers to modbusfunction.o(.data) for ModbusFunc
+    modbusslave.o(i.exeModbusSlave) refers to modbusslave.o(.constdata) for .constdata
+    modbusslave.o(i.initMbusConfig) refers to modbusslave.o(i.rstModbusTimeout) for rstModbusTimeout
+    modbusslave.o(i.initMbusConfig) refers to memseta.o(.text) for __aeabi_memclr4
+    modbusslave.o(i.initMbusConfig) refers to memcpya.o(.text) for __aeabi_memcpy4
+    modbusslave.o(i.initMbusConfig) refers to modbusslave.o(.constdata) for .constdata
+    modbusslave.o(i.isrMbusRxData) refers to g_uart.o(i.isRxEmpty) for isRxEmpty
+    modbusslave.o(i.isrMbusRxData) refers to modbusslave.o(i.rstModbusTimeout) for rstModbusTimeout
+    modbusslave.o(i.isrMbusRxData) refers to g_uart.o(i.rdByte) for rdByte
+    modbusslave.o(i.isrMbusRxData) refers to crc16.o(i.ucMBCRC16) for ucMBCRC16
+    modbusslave.o(i.rstModbusTimeout) refers to g_timer.o(i.getTimerCounts) for getTimerCounts
+    crc16.o(i.setCRC16) refers to crc16.o(i.ucMBCRC16) for ucMBCRC16
+    crc16.o(i.ucBLOCKCRC16) refers to crc16.o(.constdata) for .constdata
+    crc16.o(i.ucMBCRC16) refers to crc16.o(.constdata) for .constdata
+    linkvariables.o(i.readRegN) refers to main.o(.data) for writesuccess
+    linkvariables.o(i.writeReg) refers to main.o(.data) for writesuccess
+    linkvariables.o(i.writeRegN) refers to main.o(.data) for writesuccess
+    modbusfunction.o(i.ModbusCommError) refers to modbusfunction.o(i.pushModbusByte) for pushModbusByte
+    modbusfunction.o(i.ModbusCommError) refers to modbusfunction.o(.data) for .data
+    modbusfunction.o(i.ModbusCommError) refers to modbusfunction.o(.constdata) for .constdata
+    modbusfunction.o(i.pushModbusByte) refers to crc16.o(i.ucMBCRC16) for ucMBCRC16
+    modbusfunction.o(i.readHoldingRegister) refers to memseta.o(.text) for __aeabi_memclr4
+    modbusfunction.o(i.readHoldingRegister) refers to memcpya.o(.text) for __aeabi_memcpy4
+    modbusfunction.o(i.readHoldingRegister) refers to tbmenu.o(i.chkValidAddress) for chkValidAddress
+    modbusfunction.o(i.readHoldingRegister) refers to modbusfunction.o(i.pushModbusByte) for pushModbusByte
+    modbusfunction.o(i.readHoldingRegister) refers to tbmenu.o(i.getModbusData) for getModbusData
+    modbusfunction.o(i.readHoldingRegister) refers to modbusfunction.o(.data) for .data
+    modbusfunction.o(i.readHoldingRegister) refers to modbusfunction.o(.constdata) for .constdata
+    modbusfunction.o(i.writeHoldingNRegister) refers to memseta.o(.text) for __aeabi_memclr4
+    modbusfunction.o(i.writeHoldingNRegister) refers to memcpya.o(.text) for __aeabi_memcpy4
+    modbusfunction.o(i.writeHoldingNRegister) refers to tbmenu.o(i.chkValidAddress) for chkValidAddress
+    modbusfunction.o(i.writeHoldingNRegister) refers to modbusfunction.o(i.pushModbusByte) for pushModbusByte
+    modbusfunction.o(i.writeHoldingNRegister) refers to tbmenu.o(i.setModbusData) for setModbusData
+    modbusfunction.o(i.writeHoldingNRegister) refers to modbusfunction.o(.data) for .data
+    modbusfunction.o(i.writeHoldingNRegister) refers to modbusfunction.o(.constdata) for .constdata
+    modbusfunction.o(i.writeHoldingRegister) refers to memseta.o(.text) for __aeabi_memclr4
+    modbusfunction.o(i.writeHoldingRegister) refers to memcpya.o(.text) for __aeabi_memcpy4
+    modbusfunction.o(i.writeHoldingRegister) refers to tbmenu.o(i.chkValidAddress) for chkValidAddress
+    modbusfunction.o(i.writeHoldingRegister) refers to modbusfunction.o(i.pushModbusByte) for pushModbusByte
+    modbusfunction.o(i.writeHoldingRegister) refers to tbmenu.o(i.setModbusData) for setModbusData
+    modbusfunction.o(i.writeHoldingRegister) refers to modbusfunction.o(.data) for .data
+    modbusfunction.o(i.writeHoldingRegister) refers to modbusfunction.o(.constdata) for .constdata
+    modbusfunction.o(.data) refers to modbusfunction.o(i.ReservedFunction) for ReservedFunction
+    modbusfunction.o(.data) refers to modbusfunction.o(i.readHoldingRegister) for readHoldingRegister
+    modbusfunction.o(.data) refers to modbusfunction.o(i.writeHoldingRegister) for writeHoldingRegister
+    modbusfunction.o(.data) refers to modbusfunction.o(i.writeHoldingNRegister) for writeHoldingNRegister
+    modbusfunction.o(.data) refers to tbmenu.o(.bss) for regMbusData
+    modbusfunction.o(.data) refers to linkvariables.o(i.initRegN) for initRegN
+    modbusfunction.o(.data) refers to linkvariables.o(i.readRegN) for readRegN
+    modbusfunction.o(.data) refers to linkvariables.o(i.writeReg) for writeReg
+    modbusfunction.o(.data) refers to linkvariables.o(i.writeRegN) for writeRegN
+    tbmenu.o(i.getModbusData) refers to emu_eeprom.o(i.__ARM_common_switch8) for __ARM_common_switch8
+    tbmenu.o(i.getModbusData) refers to tbmenu.o(.bss) for .bss
+    tbmenu.o(i.setModbusData) refers to emu_eeprom.o(i.__ARM_common_switch8) for __ARM_common_switch8
+    tbmenu.o(i.setModbusData) refers to tbmenu.o(.bss) for .bss
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000F) for __rt_final_cpp
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$00000011) for __rt_final_exit
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry12b.o(.ARM.Collect$$$$0000000E) for __rt_lib_shutdown_fini
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry8b.o(.ARM.Collect$$$$0000000A) for _main_cpp_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry9a.o(.ARM.Collect$$$$0000000B) for _main_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry5.o(.ARM.Collect$$$$00000004) for _main_scatterload
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry2.o(.ARM.Collect$$$$00000001) for _main_stk
+    idiv.o(.text) refers to uidiv.o(.text) for __aeabi_uidivmod
+    printfb.o(i.__0fprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0fprintf$bare) refers to retarget.o(i.fputc) for fputc
+    printfb.o(i.__0printf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0printf$bare) refers to retarget.o(i.fputc) for fputc
+    printfb.o(i.__0printf$bare) refers to retarget.o(.data) for __stdout
+    printfb.o(i.__0snprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0snprintf$bare) refers to printfb.o(i._snputc) for _snputc
+    printfb.o(i.__0sprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0sprintf$bare) refers to printfb.o(i._sputc) for _sputc
+    printfb.o(i.__0vfprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0vfprintf$bare) refers to retarget.o(i.fputc) for fputc
+    printfb.o(i.__0vprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0vprintf$bare) refers to retarget.o(i.fputc) for fputc
+    printfb.o(i.__0vprintf$bare) refers to retarget.o(.data) for __stdout
+    printfb.o(i.__0vsnprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0vsnprintf$bare) refers to printfb.o(i._snputc) for _snputc
+    printfb.o(i.__0vsprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0vsprintf$bare) refers to printfb.o(i._sputc) for _sputc
+    printf0.o(i.__0fprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0fprintf$0) refers to retarget.o(i.fputc) for fputc
+    printf0.o(i.__0printf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0printf$0) refers to retarget.o(i.fputc) for fputc
+    printf0.o(i.__0printf$0) refers to retarget.o(.data) for __stdout
+    printf0.o(i.__0snprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0snprintf$0) refers to printf0.o(i._snputc) for _snputc
+    printf0.o(i.__0sprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0sprintf$0) refers to printf0.o(i._sputc) for _sputc
+    printf0.o(i.__0vfprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0vfprintf$0) refers to retarget.o(i.fputc) for fputc
+    printf0.o(i.__0vprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0vprintf$0) refers to retarget.o(i.fputc) for fputc
+    printf0.o(i.__0vprintf$0) refers to retarget.o(.data) for __stdout
+    printf0.o(i.__0vsnprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0vsnprintf$0) refers to printf0.o(i._snputc) for _snputc
+    printf0.o(i.__0vsprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0vsprintf$0) refers to printf0.o(i._sputc) for _sputc
+    printf1.o(i.__0fprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0fprintf$1) refers to retarget.o(i.fputc) for fputc
+    printf1.o(i.__0printf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0printf$1) refers to retarget.o(i.fputc) for fputc
+    printf1.o(i.__0printf$1) refers to retarget.o(.data) for __stdout
+    printf1.o(i.__0snprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0snprintf$1) refers to printf1.o(i._snputc) for _snputc
+    printf1.o(i.__0sprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0sprintf$1) refers to printf1.o(i._sputc) for _sputc
+    printf1.o(i.__0vfprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0vfprintf$1) refers to retarget.o(i.fputc) for fputc
+    printf1.o(i.__0vprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0vprintf$1) refers to retarget.o(i.fputc) for fputc
+    printf1.o(i.__0vprintf$1) refers to retarget.o(.data) for __stdout
+    printf1.o(i.__0vsnprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0vsnprintf$1) refers to printf1.o(i._snputc) for _snputc
+    printf1.o(i.__0vsprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0vsprintf$1) refers to printf1.o(i._sputc) for _sputc
+    printf1.o(i._printf_core) refers to uidiv.o(.text) for __aeabi_uidivmod
+    printf2.o(i.__0fprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0fprintf$2) refers to retarget.o(i.fputc) for fputc
+    printf2.o(i.__0printf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0printf$2) refers to retarget.o(i.fputc) for fputc
+    printf2.o(i.__0printf$2) refers to retarget.o(.data) for __stdout
+    printf2.o(i.__0snprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0snprintf$2) refers to printf2.o(i._snputc) for _snputc
+    printf2.o(i.__0sprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0sprintf$2) refers to printf2.o(i._sputc) for _sputc
+    printf2.o(i.__0vfprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0vfprintf$2) refers to retarget.o(i.fputc) for fputc
+    printf2.o(i.__0vprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0vprintf$2) refers to retarget.o(i.fputc) for fputc
+    printf2.o(i.__0vprintf$2) refers to retarget.o(.data) for __stdout
+    printf2.o(i.__0vsnprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0vsnprintf$2) refers to printf2.o(i._snputc) for _snputc
+    printf2.o(i.__0vsprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0vsprintf$2) refers to printf2.o(i._sputc) for _sputc
+    printf3.o(i.__0fprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0fprintf$3) refers to retarget.o(i.fputc) for fputc
+    printf3.o(i.__0printf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0printf$3) refers to retarget.o(i.fputc) for fputc
+    printf3.o(i.__0printf$3) refers to retarget.o(.data) for __stdout
+    printf3.o(i.__0snprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0snprintf$3) refers to printf3.o(i._snputc) for _snputc
+    printf3.o(i.__0sprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0sprintf$3) refers to printf3.o(i._sputc) for _sputc
+    printf3.o(i.__0vfprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0vfprintf$3) refers to retarget.o(i.fputc) for fputc
+    printf3.o(i.__0vprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0vprintf$3) refers to retarget.o(i.fputc) for fputc
+    printf3.o(i.__0vprintf$3) refers to retarget.o(.data) for __stdout
+    printf3.o(i.__0vsnprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0vsnprintf$3) refers to printf3.o(i._snputc) for _snputc
+    printf3.o(i.__0vsprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0vsprintf$3) refers to printf3.o(i._sputc) for _sputc
+    printf3.o(i._printf_core) refers to uidiv.o(.text) for __aeabi_uidivmod
+    printf4.o(i.__0fprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0fprintf$4) refers to retarget.o(i.fputc) for fputc
+    printf4.o(i.__0printf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0printf$4) refers to retarget.o(i.fputc) for fputc
+    printf4.o(i.__0printf$4) refers to retarget.o(.data) for __stdout
+    printf4.o(i.__0snprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0snprintf$4) refers to printf4.o(i._snputc) for _snputc
+    printf4.o(i.__0sprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0sprintf$4) refers to printf4.o(i._sputc) for _sputc
+    printf4.o(i.__0vfprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0vfprintf$4) refers to retarget.o(i.fputc) for fputc
+    printf4.o(i.__0vprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0vprintf$4) refers to retarget.o(i.fputc) for fputc
+    printf4.o(i.__0vprintf$4) refers to retarget.o(.data) for __stdout
+    printf4.o(i.__0vsnprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0vsnprintf$4) refers to printf4.o(i._snputc) for _snputc
+    printf4.o(i.__0vsprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0vsprintf$4) refers to printf4.o(i._sputc) for _sputc
+    printf4.o(i._printf_core) refers to uldiv.o(.text) for __aeabi_uldivmod
+    printf5.o(i.__0fprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0fprintf$5) refers to retarget.o(i.fputc) for fputc
+    printf5.o(i.__0printf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0printf$5) refers to retarget.o(i.fputc) for fputc
+    printf5.o(i.__0printf$5) refers to retarget.o(.data) for __stdout
+    printf5.o(i.__0snprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0snprintf$5) refers to printf5.o(i._snputc) for _snputc
+    printf5.o(i.__0sprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0sprintf$5) refers to printf5.o(i._sputc) for _sputc
+    printf5.o(i.__0vfprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0vfprintf$5) refers to retarget.o(i.fputc) for fputc
+    printf5.o(i.__0vprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0vprintf$5) refers to retarget.o(i.fputc) for fputc
+    printf5.o(i.__0vprintf$5) refers to retarget.o(.data) for __stdout
+    printf5.o(i.__0vsnprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0vsnprintf$5) refers to printf5.o(i._snputc) for _snputc
+    printf5.o(i.__0vsprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0vsprintf$5) refers to printf5.o(i._sputc) for _sputc
+    printf5.o(i._printf_core) refers to uldiv.o(.text) for __aeabi_uldivmod
+    printf6.o(i.__0fprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0fprintf$6) refers to retarget.o(i.fputc) for fputc
+    printf6.o(i.__0printf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0printf$6) refers to retarget.o(i.fputc) for fputc
+    printf6.o(i.__0printf$6) refers to retarget.o(.data) for __stdout
+    printf6.o(i.__0snprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0snprintf$6) refers to printf6.o(i._snputc) for _snputc
+    printf6.o(i.__0sprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0sprintf$6) refers to printf6.o(i._sputc) for _sputc
+    printf6.o(i.__0vfprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0vfprintf$6) refers to retarget.o(i.fputc) for fputc
+    printf6.o(i.__0vprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0vprintf$6) refers to retarget.o(i.fputc) for fputc
+    printf6.o(i.__0vprintf$6) refers to retarget.o(.data) for __stdout
+    printf6.o(i.__0vsnprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0vsnprintf$6) refers to printf6.o(i._snputc) for _snputc
+    printf6.o(i.__0vsprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0vsprintf$6) refers to printf6.o(i._sputc) for _sputc
+    printf6.o(i._printf_core) refers to printf6.o(i._printf_pre_padding) for _printf_pre_padding
+    printf6.o(i._printf_core) refers to printf6.o(i._printf_post_padding) for _printf_post_padding
+    printf6.o(i._printf_core) refers to uidiv.o(.text) for __aeabi_uidivmod
+    printf7.o(i.__0fprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0fprintf$7) refers to retarget.o(i.fputc) for fputc
+    printf7.o(i.__0printf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0printf$7) refers to retarget.o(i.fputc) for fputc
+    printf7.o(i.__0printf$7) refers to retarget.o(.data) for __stdout
+    printf7.o(i.__0snprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0snprintf$7) refers to printf7.o(i._snputc) for _snputc
+    printf7.o(i.__0sprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0sprintf$7) refers to printf7.o(i._sputc) for _sputc
+    printf7.o(i.__0vfprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0vfprintf$7) refers to retarget.o(i.fputc) for fputc
+    printf7.o(i.__0vprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0vprintf$7) refers to retarget.o(i.fputc) for fputc
+    printf7.o(i.__0vprintf$7) refers to retarget.o(.data) for __stdout
+    printf7.o(i.__0vsnprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0vsnprintf$7) refers to printf7.o(i._snputc) for _snputc
+    printf7.o(i.__0vsprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0vsprintf$7) refers to printf7.o(i._sputc) for _sputc
+    printf7.o(i._printf_core) refers to printf7.o(i._printf_pre_padding) for _printf_pre_padding
+    printf7.o(i._printf_core) refers to printf7.o(i._printf_post_padding) for _printf_post_padding
+    printf7.o(i._printf_core) refers to uldiv.o(.text) for __aeabi_uldivmod
+    printf8.o(i.__0fprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0fprintf$8) refers to retarget.o(i.fputc) for fputc
+    printf8.o(i.__0printf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0printf$8) refers to retarget.o(i.fputc) for fputc
+    printf8.o(i.__0printf$8) refers to retarget.o(.data) for __stdout
+    printf8.o(i.__0snprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0snprintf$8) refers to printf8.o(i._snputc) for _snputc
+    printf8.o(i.__0sprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0sprintf$8) refers to printf8.o(i._sputc) for _sputc
+    printf8.o(i.__0vfprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0vfprintf$8) refers to retarget.o(i.fputc) for fputc
+    printf8.o(i.__0vprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0vprintf$8) refers to retarget.o(i.fputc) for fputc
+    printf8.o(i.__0vprintf$8) refers to retarget.o(.data) for __stdout
+    printf8.o(i.__0vsnprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0vsnprintf$8) refers to printf8.o(i._snputc) for _snputc
+    printf8.o(i.__0vsprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0vsprintf$8) refers to printf8.o(i._sputc) for _sputc
+    printf8.o(i._printf_core) refers to printf8.o(i._printf_pre_padding) for _printf_pre_padding
+    printf8.o(i._printf_core) refers to printf8.o(i._printf_post_padding) for _printf_post_padding
+    printf8.o(i._printf_core) refers to uldiv.o(.text) for __aeabi_uldivmod
+    printfa.o(i.__0fprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0fprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0fprintf) refers to retarget.o(i.fputc) for fputc
+    printfa.o(i.__0printf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0printf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0printf) refers to retarget.o(i.fputc) for fputc
+    printfa.o(i.__0printf) refers to retarget.o(.data) for __stdout
+    printfa.o(i.__0snprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0snprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0snprintf) refers to printfa.o(i._snputc) for _snputc
+    printfa.o(i.__0sprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0sprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0sprintf) refers to printfa.o(i._sputc) for _sputc
+    printfa.o(i.__0vfprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0vfprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0vfprintf) refers to retarget.o(i.fputc) for fputc
+    printfa.o(i.__0vprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0vprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0vprintf) refers to retarget.o(i.fputc) for fputc
+    printfa.o(i.__0vprintf) refers to retarget.o(.data) for __stdout
+    printfa.o(i.__0vsnprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0vsnprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0vsnprintf) refers to printfa.o(i._snputc) for _snputc
+    printfa.o(i.__0vsprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0vsprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0vsprintf) refers to printfa.o(i._sputc) for _sputc
+    printfa.o(i._fp_digits) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i._fp_digits) refers to dmul.o(.text) for __aeabi_dmul
+    printfa.o(i._fp_digits) refers to ddiv.o(.text) for __aeabi_ddiv
+    printfa.o(i._fp_digits) refers to cdrcmple.o(.text) for __aeabi_cdrcmple
+    printfa.o(i._fp_digits) refers to dadd.o(.text) for __aeabi_dadd
+    printfa.o(i._fp_digits) refers to dfixul.o(.text) for __aeabi_d2ulz
+    printfa.o(i._fp_digits) refers to uldiv.o(.text) for __aeabi_uldivmod
+    printfa.o(i._printf_core) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i._printf_core) refers to printfa.o(i._printf_pre_padding) for _printf_pre_padding
+    printfa.o(i._printf_core) refers to uldiv.o(.text) for __aeabi_uldivmod
+    printfa.o(i._printf_core) refers to printfa.o(i._printf_post_padding) for _printf_post_padding
+    printfa.o(i._printf_core) refers to printfa.o(i._fp_digits) for _fp_digits
+    printfa.o(i._printf_core) refers to uidiv.o(.text) for __aeabi_uidivmod
+    printfa.o(i._printf_post_padding) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i._printf_pre_padding) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i._snputc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i._sputc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    entry2.o(.ARM.Collect$$$$00000001) refers to entry2.o(.ARM.Collect$$$$00002712) for __lit__00000000
+    entry2.o(.ARM.Collect$$$$00002712) refers to startup_m0a21.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to startup_m0a21.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    entry5.o(.ARM.Collect$$$$00000004) refers to init.o(.text) for __scatterload
+    entry9a.o(.ARM.Collect$$$$0000000B) refers to main.o(i.main) for main
+    entry9b.o(.ARM.Collect$$$$0000000C) refers to main.o(i.main) for main
+    uldiv.o(.text) refers to llushr.o(.text) for __aeabi_llsr
+    uldiv.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    dadd.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    dadd.o(.text) refers to llsshr.o(.text) for __aeabi_lasr
+    dadd.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    dmul.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    ddiv.o(.text) refers to depilogue.o(.text) for _double_round
+    dfixul.o(.text) refers to llushr.o(.text) for __aeabi_llsr
+    dfixul.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
+    depilogue.o(.text) refers to depilogue.o(i.__ARM_clz) for __ARM_clz
+    depilogue.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    depilogue.o(.text) refers to llushr.o(.text) for __aeabi_llsr
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing system_m0a21.o(.rev16_text), (4 bytes).
+    Removing system_m0a21.o(.revsh_text), (4 bytes).
+    Removing startup_m0a21.o(HEAP), (0 bytes).
+    Removing main.o(.rev16_text), (4 bytes).
+    Removing main.o(.revsh_text), (4 bytes).
+    Removing g_uart.o(.rev16_text), (4 bytes).
+    Removing g_uart.o(.revsh_text), (4 bytes).
+    Removing g_timer.o(.rev16_text), (4 bytes).
+    Removing g_timer.o(.revsh_text), (4 bytes).
+    Removing i2c_eeprom.o(.rev16_text), (4 bytes).
+    Removing i2c_eeprom.o(.revsh_text), (4 bytes).
+    Removing emu_eeprom.o(.rev16_text), (4 bytes).
+    Removing emu_eeprom.o(.revsh_text), (4 bytes).
+    Removing emu_eeprom.o(i.getAddressSection), (4 bytes).
+    Removing emu_eeprom.o(i.getMask), (26 bytes).
+    Removing emu_eeprom.o(i.markBit), (26 bytes).
+    Removing emu_eeprom.o(i.writeEmuEepromBlock), (64 bytes).
+    Removing tstblock.o(.rev16_text), (4 bytes).
+    Removing tstblock.o(.revsh_text), (4 bytes).
+    Removing tstblock.o(i.varifyBlockFlash), (2 bytes).
+    Removing dl_flashctrl.o(.rev16_text), (4 bytes).
+    Removing dl_flashctrl.o(.revsh_text), (4 bytes).
+    Removing dl_flashctrl.o(.data), (1 bytes).
+    Removing retarget.o(.rev16_text), (4 bytes).
+    Removing retarget.o(.revsh_text), (4 bytes).
+    Removing retarget.o(i._ttywrch), (8 bytes).
+    Removing retarget.o(i.ferror), (6 bytes).
+    Removing retarget.o(i.fgetc), (20 bytes).
+    Removing retarget.o(i.kbhit), (16 bytes).
+    Removing retarget.o(.data), (4 bytes).
+    Removing clk.o(.rev16_text), (4 bytes).
+    Removing clk.o(.revsh_text), (4 bytes).
+    Removing clk.o(i.CLK_DisableCKO), (16 bytes).
+    Removing clk.o(i.CLK_DisableModuleClock), (48 bytes).
+    Removing clk.o(i.CLK_DisableSysTick), (12 bytes).
+    Removing clk.o(i.CLK_DisableXtalRC), (16 bytes).
+    Removing clk.o(i.CLK_EnableCKO), (40 bytes).
+    Removing clk.o(i.CLK_EnableSysTick), (56 bytes).
+    Removing clk.o(i.CLK_GetCPUFreq), (16 bytes).
+    Removing clk.o(i.CLK_GetHCLKFreq), (16 bytes).
+    Removing clk.o(i.CLK_GetHXTFreq), (20 bytes).
+    Removing clk.o(i.CLK_GetLXTFreq), (24 bytes).
+    Removing clk.o(i.CLK_Idle), (32 bytes).
+    Removing clk.o(i.CLK_PowerDown), (84 bytes).
+    Removing clk.o(i.CLK_SetCoreClock), (48 bytes).
+    Removing clk.o(i.CLK_SetSysTickClockSrc), (20 bytes).
+    Removing sys.o(.rev16_text), (4 bytes).
+    Removing sys.o(.revsh_text), (4 bytes).
+    Removing sys.o(i.SYS_ClearResetSrc), (8 bytes).
+    Removing sys.o(i.SYS_DisableBOD), (14 bytes).
+    Removing sys.o(i.SYS_EnableBOD), (38 bytes).
+    Removing sys.o(i.SYS_GetBODStatus), (12 bytes).
+    Removing sys.o(i.SYS_GetResetSrc), (8 bytes).
+    Removing sys.o(i.SYS_IsRegLocked), (16 bytes).
+    Removing sys.o(i.SYS_ReadPDID), (8 bytes).
+    Removing sys.o(i.SYS_ResetCPU), (14 bytes).
+    Removing sys.o(i.SYS_ResetChip), (14 bytes).
+    Removing sys.o(i.SYS_SetVRef), (16 bytes).
+    Removing uart.o(.rev16_text), (4 bytes).
+    Removing uart.o(.revsh_text), (4 bytes).
+    Removing uart.o(i.UART_ClearIntFlag), (80 bytes).
+    Removing uart.o(i.UART_Close), (6 bytes).
+    Removing uart.o(i.UART_DisableFlowCtrl), (12 bytes).
+    Removing uart.o(i.UART_DisableInt), (8 bytes).
+    Removing uart.o(i.UART_EnableFlowCtrl), (30 bytes).
+    Removing uart.o(i.UART_EnableInt), (8 bytes).
+    Removing uart.o(i.UART_Open), (188 bytes).
+    Removing uart.o(i.UART_Read), (46 bytes).
+    Removing uart.o(i.UART_SelectIrDAMode), (184 bytes).
+    Removing uart.o(i.UART_SelectLINMode), (24 bytes).
+    Removing uart.o(i.UART_SelectRS485Mode), (32 bytes).
+    Removing uart.o(i.UART_SelectSingleWireMode), (12 bytes).
+    Removing uart.o(i.UART_SetLine_Config), (180 bytes).
+    Removing uart.o(i.UART_SetTimeoutCnt), (22 bytes).
+    Removing uart.o(i.UART_Write), (46 bytes).
+    Removing uart.o(.constdata), (72 bytes).
+    Removing timer.o(.rev16_text), (4 bytes).
+    Removing timer.o(.revsh_text), (4 bytes).
+    Removing timer.o(i.TIMER_Close), (8 bytes).
+    Removing timer.o(i.TIMER_Delay), (148 bytes).
+    Removing timer.o(i.TIMER_DisableCapture), (10 bytes).
+    Removing timer.o(i.TIMER_DisableEventCounter), (12 bytes).
+    Removing timer.o(i.TIMER_DisableFreqCounter), (12 bytes).
+    Removing timer.o(i.TIMER_EnableCapture), (24 bytes).
+    Removing timer.o(i.TIMER_EnableEventCounter), (22 bytes).
+    Removing timer.o(i.TIMER_EnableFreqCounter), (52 bytes).
+    Removing timer.o(i.TIMER_Open), (64 bytes).
+    Removing timer.o(i.TIMER_SetTriggerSource), (14 bytes).
+    Removing timer.o(i.TIMER_SetTriggerTarget), (16 bytes).
+    Removing gpio.o(.rev16_text), (4 bytes).
+    Removing gpio.o(.revsh_text), (4 bytes).
+    Removing gpio.o(i.GPIO_DisableInt), (28 bytes).
+    Removing gpio.o(i.GPIO_EnableInt), (26 bytes).
+    Removing gpio.o(i.GPIO_SetPullCtl), (34 bytes).
+    Removing fmc.o(.rev16_text), (4 bytes).
+    Removing fmc.o(.revsh_text), (4 bytes).
+    Removing fmc.o(i.FMC_GetBootSource), (20 bytes).
+    Removing fmc.o(i.FMC_GetChkSum), (64 bytes).
+    Removing fmc.o(i.FMC_ReadDataFlashBaseAddr), (12 bytes).
+    Removing fmc.o(i.FMC_SetBootSource), (24 bytes).
+    Removing usci_i2c.o(.rev16_text), (4 bytes).
+    Removing usci_i2c.o(.revsh_text), (4 bytes).
+    Removing usci_i2c.o(i.UI2C_ClearIntFlag), (70 bytes).
+    Removing usci_i2c.o(i.UI2C_ClearTimeoutFlag), (6 bytes).
+    Removing usci_i2c.o(i.UI2C_Close), (10 bytes).
+    Removing usci_i2c.o(i.UI2C_DisableInt), (86 bytes).
+    Removing usci_i2c.o(i.UI2C_DisableTimeout), (24 bytes).
+    Removing usci_i2c.o(i.UI2C_DisableWakeup), (10 bytes).
+    Removing usci_i2c.o(i.UI2C_EnableInt), (86 bytes).
+    Removing usci_i2c.o(i.UI2C_EnableTimeout), (32 bytes).
+    Removing usci_i2c.o(i.UI2C_EnableWakeup), (16 bytes).
+    Removing usci_i2c.o(i.UI2C_GetData), (4 bytes).
+    Removing usci_i2c.o(i.UI2C_GetIntFlag), (142 bytes).
+    Removing usci_i2c.o(i.UI2C_ReadByte), (162 bytes).
+    Removing usci_i2c.o(i.UI2C_ReadByteOneReg), (206 bytes).
+    Removing usci_i2c.o(i.UI2C_ReadByteTwoRegs), (226 bytes).
+    Removing usci_i2c.o(i.UI2C_ReadMultiBytes), (170 bytes).
+    Removing usci_i2c.o(i.UI2C_ReadMultiBytesOneReg), (212 bytes).
+    Removing usci_i2c.o(i.UI2C_ReadMultiBytesTwoRegs), (238 bytes).
+    Removing usci_i2c.o(i.UI2C_SetBusClockFreq), (84 bytes).
+    Removing usci_i2c.o(i.UI2C_SetData), (4 bytes).
+    Removing usci_i2c.o(i.UI2C_Trigger), (48 bytes).
+    Removing usci_i2c.o(i.UI2C_WriteByte), (146 bytes).
+    Removing usci_i2c.o(i.UI2C_WriteByteOneReg), (160 bytes).
+    Removing usci_i2c.o(i.UI2C_WriteByteTwoRegs), (172 bytes).
+    Removing usci_i2c.o(i.UI2C_WriteMultiBytes), (138 bytes).
+    Removing usci_i2c.o(i.UI2C_WriteMultiBytesOneReg), (162 bytes).
+    Removing usci_i2c.o(i.UI2C_WriteMultiBytesTwoRegs), (188 bytes).
+    Removing modbusslave.o(.rev16_text), (4 bytes).
+    Removing modbusslave.o(.revsh_text), (4 bytes).
+    Removing crc16.o(i.getCRC16), (6 bytes).
+    Removing crc16.o(i.getCRC16n), (4 bytes).
+    Removing crc16.o(i.setCRC16), (24 bytes).
+    Removing crc16.o(i.ucBLOCKCRC16), (52 bytes).
+    Removing linkvariables.o(.rev16_text), (4 bytes).
+    Removing linkvariables.o(.revsh_text), (4 bytes).
+    Removing modbusfunction.o(.rev16_text), (4 bytes).
+    Removing modbusfunction.o(.revsh_text), (4 bytes).
+    Removing tbmenu.o(.rev16_text), (4 bytes).
+    Removing tbmenu.o(.revsh_text), (4 bytes).
+    Removing dadd.o(.text), (360 bytes).
+    Removing dmul.o(.text), (208 bytes).
+    Removing ddiv.o(.text), (240 bytes).
+    Removing dfixul.o(.text), (64 bytes).
+    Removing cdrcmple.o(.text), (40 bytes).
+    Removing depilogue.o(.text), (190 bytes).
+    Removing depilogue.o(i.__ARM_clz), (46 bytes).
+
+147 unused section(s) (total 6509 bytes) removed from the image.
+
+==============================================================================
+
+Image Symbol Table
+
+    Local Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    RESET                                    0x00000000   Section      192  startup_m0a21.o(RESET)
+    ../clib/microlib/division.c              0x00000000   Number         0  idiv.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
+    ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
+    ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
+    ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
+    ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
+    ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
+    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
+    ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixul.o ABSOLUTE
+    ../fplib/microlib/fpmul.c                0x00000000   Number         0  dmul.o ABSOLUTE
+    ..\..\..\..\Library\Device\Nuvoton\M0A21\Source\ARM\startup_M0A21.s 0x00000000   Number         0  startup_m0a21.o ABSOLUTE
+    ..\..\..\..\Library\Device\Nuvoton\M0A21\Source\system_M0A21.c 0x00000000   Number         0  system_m0a21.o ABSOLUTE
+    ..\..\..\..\Library\StdDriver\src\clk.c  0x00000000   Number         0  clk.o ABSOLUTE
+    ..\..\..\..\Library\StdDriver\src\fmc.c  0x00000000   Number         0  fmc.o ABSOLUTE
+    ..\..\..\..\Library\StdDriver\src\gpio.c 0x00000000   Number         0  gpio.o ABSOLUTE
+    ..\..\..\..\Library\StdDriver\src\retarget.c 0x00000000   Number         0  retarget.o ABSOLUTE
+    ..\..\..\..\Library\StdDriver\src\sys.c  0x00000000   Number         0  sys.o ABSOLUTE
+    ..\..\..\..\Library\StdDriver\src\timer.c 0x00000000   Number         0  timer.o ABSOLUTE
+    ..\..\..\..\Library\StdDriver\src\uart.c 0x00000000   Number         0  uart.o ABSOLUTE
+    ..\..\..\..\Library\StdDriver\src\usci_i2c.c 0x00000000   Number         0  usci_i2c.o ABSOLUTE
+    ..\\..\\..\\..\\Library\\Device\\Nuvoton\\M0A21\\Source\\system_M0A21.c 0x00000000   Number         0  system_m0a21.o ABSOLUTE
+    ..\\..\\..\\..\\Library\\StdDriver\\src\\clk.c 0x00000000   Number         0  clk.o ABSOLUTE
+    ..\\..\\..\\..\\Library\\StdDriver\\src\\fmc.c 0x00000000   Number         0  fmc.o ABSOLUTE
+    ..\\..\\..\\..\\Library\\StdDriver\\src\\gpio.c 0x00000000   Number         0  gpio.o ABSOLUTE
+    ..\\..\\..\\..\\Library\\StdDriver\\src\\retarget.c 0x00000000   Number         0  retarget.o ABSOLUTE
+    ..\\..\\..\\..\\Library\\StdDriver\\src\\sys.c 0x00000000   Number         0  sys.o ABSOLUTE
+    ..\\..\\..\\..\\Library\\StdDriver\\src\\timer.c 0x00000000   Number         0  timer.o ABSOLUTE
+    ..\\..\\..\\..\\Library\\StdDriver\\src\\uart.c 0x00000000   Number         0  uart.o ABSOLUTE
+    ..\\..\\..\\..\\Library\\StdDriver\\src\\usci_i2c.c 0x00000000   Number         0  usci_i2c.o ABSOLUTE
+    ..\\dl_flashctrl.c                       0x00000000   Number         0  dl_flashctrl.o ABSOLUTE
+    ..\\emu_eeprom.c                         0x00000000   Number         0  emu_eeprom.o ABSOLUTE
+    ..\\g_timer.c                            0x00000000   Number         0  g_timer.o ABSOLUTE
+    ..\\g_uart.c                             0x00000000   Number         0  g_uart.o ABSOLUTE
+    ..\\i2c_eeprom.c                         0x00000000   Number         0  i2c_eeprom.o ABSOLUTE
+    ..\\main.c                               0x00000000   Number         0  main.o ABSOLUTE
+    ..\\mb_slave\\ModbusFunction.c           0x00000000   Number         0  modbusfunction.o ABSOLUTE
+    ..\\mb_slave\\ModbusSlave.c              0x00000000   Number         0  modbusslave.o ABSOLUTE
+    ..\\mb_slave\\linkVariables.c            0x00000000   Number         0  linkvariables.o ABSOLUTE
+    ..\\mb_slave\\tbmenu.c                   0x00000000   Number         0  tbmenu.o ABSOLUTE
+    ..\\tstBlock.c                           0x00000000   Number         0  tstblock.o ABSOLUTE
+    ..\dl_flashctrl.c                        0x00000000   Number         0  dl_flashctrl.o ABSOLUTE
+    ..\emu_eeprom.c                          0x00000000   Number         0  emu_eeprom.o ABSOLUTE
+    ..\g_timer.c                             0x00000000   Number         0  g_timer.o ABSOLUTE
+    ..\g_uart.c                              0x00000000   Number         0  g_uart.o ABSOLUTE
+    ..\i2c_eeprom.c                          0x00000000   Number         0  i2c_eeprom.o ABSOLUTE
+    ..\main.c                                0x00000000   Number         0  main.o ABSOLUTE
+    ..\mb_slave\CRC16.c                      0x00000000   Number         0  crc16.o ABSOLUTE
+    ..\mb_slave\ModbusFunction.c             0x00000000   Number         0  modbusfunction.o ABSOLUTE
+    ..\mb_slave\ModbusSlave.c                0x00000000   Number         0  modbusslave.o ABSOLUTE
+    ..\mb_slave\linkVariables.c              0x00000000   Number         0  linkvariables.o ABSOLUTE
+    ..\mb_slave\tbmenu.c                     0x00000000   Number         0  tbmenu.o ABSOLUTE
+    ..\tstBlock.c                            0x00000000   Number         0  tstblock.o ABSOLUTE
+    cdrcmple.s                               0x00000000   Number         0  cdrcmple.o ABSOLUTE
+    handlers.s                               0x00000000   Number         0  handlers.o ABSOLUTE
+    init.s                                   0x00000000   Number         0  init.o ABSOLUTE
+    .ARM.Collect$$$$00000000                 0x000000c0   Section        0  entry.o(.ARM.Collect$$$$00000000)
+    .ARM.Collect$$$$00000001                 0x000000c0   Section        4  entry2.o(.ARM.Collect$$$$00000001)
+    .ARM.Collect$$$$00000004                 0x000000c4   Section        4  entry5.o(.ARM.Collect$$$$00000004)
+    .ARM.Collect$$$$00000008                 0x000000c8   Section        0  entry7b.o(.ARM.Collect$$$$00000008)
+    .ARM.Collect$$$$0000000A                 0x000000c8   Section        0  entry8b.o(.ARM.Collect$$$$0000000A)
+    .ARM.Collect$$$$0000000B                 0x000000c8   Section        8  entry9a.o(.ARM.Collect$$$$0000000B)
+    .ARM.Collect$$$$0000000E                 0x000000d0   Section        4  entry12b.o(.ARM.Collect$$$$0000000E)
+    .ARM.Collect$$$$0000000F                 0x000000d4   Section        0  entry10a.o(.ARM.Collect$$$$0000000F)
+    .ARM.Collect$$$$00000011                 0x000000d4   Section        0  entry11a.o(.ARM.Collect$$$$00000011)
+    .ARM.Collect$$$$00002712                 0x000000d4   Section        4  entry2.o(.ARM.Collect$$$$00002712)
+    __lit__00000000                          0x000000d4   Data           4  entry2.o(.ARM.Collect$$$$00002712)
+    .emb_text                                0x000000d8   Section       28  retarget.o(.emb_text)
+    .text                                    0x000000f4   Section       28  startup_m0a21.o(.text)
+    Default_Handler                          0x00000107   Thumb Code     2  startup_m0a21.o(.text)
+    .text                                    0x00000110   Section        0  uidiv.o(.text)
+    .text                                    0x0000013c   Section        0  idiv.o(.text)
+    .text                                    0x00000164   Section        0  memcpya.o(.text)
+    .text                                    0x00000188   Section        0  memseta.o(.text)
+    .text                                    0x000001ac   Section        0  uldiv.o(.text)
+    .text                                    0x0000020c   Section       36  init.o(.text)
+    .text                                    0x00000230   Section        0  llshl.o(.text)
+    .text                                    0x00000250   Section        0  llushr.o(.text)
+    i.CLK_EnableModuleClock                  0x00000274   Section        0  clk.o(i.CLK_EnableModuleClock)
+    i.CLK_EnableXtalRC                       0x000002a4   Section        0  clk.o(i.CLK_EnableXtalRC)
+    i.CLK_GetPCLK0Freq                       0x000002b4   Section        0  clk.o(i.CLK_GetPCLK0Freq)
+    i.CLK_GetPCLK1Freq                       0x000002d4   Section        0  clk.o(i.CLK_GetPCLK1Freq)
+    i.CLK_SetHCLK                            0x000002f4   Section        0  clk.o(i.CLK_SetHCLK)
+    i.CLK_SetModuleClock                     0x00000344   Section        0  clk.o(i.CLK_SetModuleClock)
+    i.CLK_WaitClockReady                     0x000003b4   Section        0  clk.o(i.CLK_WaitClockReady)
+    i.DL_FlashCTL_eraseMemory                0x000003e0   Section        0  dl_flashctrl.o(i.DL_FlashCTL_eraseMemory)
+    i.DL_FlashCTL_programMemoryFromRAM64     0x00000414   Section        0  dl_flashctrl.o(i.DL_FlashCTL_programMemoryFromRAM64)
+    i.DL_FlashCTL_unprotectSector            0x0000043c   Section        0  dl_flashctrl.o(i.DL_FlashCTL_unprotectSector)
+    i.DL_UART_transmitData                   0x0000045c   Section        0  g_uart.o(i.DL_UART_transmitData)
+    i.FMC_Close                              0x00000464   Section        0  fmc.o(i.FMC_Close)
+    i.FMC_Erase                              0x00000474   Section        0  fmc.o(i.FMC_Erase)
+    i.FMC_Open                               0x000004a4   Section        0  fmc.o(i.FMC_Open)
+    i.FMC_Read                               0x000004b4   Section        0  fmc.o(i.FMC_Read)
+    i.FMC_ReadConfig                         0x000004d0   Section        0  fmc.o(i.FMC_ReadConfig)
+    i.FMC_Write                              0x0000050c   Section        0  fmc.o(i.FMC_Write)
+    i.FMC_WriteConfig                        0x00000528   Section        0  fmc.o(i.FMC_WriteConfig)
+    i.GPIO_SetMode                           0x00000564   Section        0  gpio.o(i.GPIO_SetMode)
+    i.Hard_Fault_Handler                     0x0000058c   Section        0  retarget.o(i.Hard_Fault_Handler)
+    __tagsym$$used                           0x0000058d   Number         0  retarget.o(i.Hard_Fault_Handler)
+    i.IsDebugFifoEmpty                       0x000005b4   Section        0  retarget.o(i.IsDebugFifoEmpty)
+    i.ModbusCommError                        0x000005c4   Section        0  modbusfunction.o(i.ModbusCommError)
+    i.ReservedFunction                       0x00000654   Section        0  modbusfunction.o(i.ReservedFunction)
+    i.SYS_Init                               0x00000660   Section        0  main.o(i.SYS_Init)
+    i.SYS_ResetModule                        0x000006fc   Section        0  sys.o(i.SYS_ResetModule)
+    i.SYS_UnlockReg                          0x00000718   Section        0  main.o(i.SYS_UnlockReg)
+    SYS_UnlockReg                            0x00000719   Thumb Code    24  main.o(i.SYS_UnlockReg)
+    i.SendChar                               0x00000734   Section        0  retarget.o(i.SendChar)
+    SendChar                                 0x00000735   Thumb Code    26  retarget.o(i.SendChar)
+    i.SystemCoreClockUpdate                  0x00000754   Section        0  system_m0a21.o(i.SystemCoreClockUpdate)
+    i.SystemInit                             0x00000790   Section        0  system_m0a21.o(i.SystemInit)
+    i.TIMER_GetModuleClock                   0x00000794   Section        0  timer.o(i.TIMER_GetModuleClock)
+    i.UART0_Init                             0x00000804   Section        0  main.o(i.UART0_Init)
+    i.UARTEEPROM                             0x00000820   Section        0  main.o(i.UARTEEPROM)
+    i.UI2C0_Init                             0x000008dc   Section        0  i2c_eeprom.o(i.UI2C0_Init)
+    i.UI2C_GetBusClockFreq                   0x00000948   Section        0  usci_i2c.o(i.UI2C_GetBusClockFreq)
+    i.UI2C_Open                              0x00000970   Section        0  usci_i2c.o(i.UI2C_Open)
+    i.UI2C_SetSlaveAddr                      0x000009f4   Section        0  usci_i2c.o(i.UI2C_SetSlaveAddr)
+    i.UI2C_SetSlaveAddrMask                  0x00000a0a   Section        0  usci_i2c.o(i.UI2C_SetSlaveAddrMask)
+    i.USCI0_IRQHandler                       0x00000a18   Section        0  i2c_eeprom.o(i.USCI0_IRQHandler)
+    i.__0printf$5                            0x00000b08   Section        0  printf5.o(i.__0printf$5)
+    i.__ARM_common_ctz                       0x00000b28   Section        0  emu_eeprom.o(i.__ARM_common_ctz)
+    i.__ARM_common_switch8                   0x00000b62   Section        0  emu_eeprom.o(i.__ARM_common_switch8)
+    i.__scatterload_copy                     0x00000b7c   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x00000b8a   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x00000b8c   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i._printf_core                           0x00000b9c   Section        0  printf5.o(i._printf_core)
+    _printf_core                             0x00000b9d   Thumb Code   680  printf5.o(i._printf_core)
+    i.builtin_ctz64                          0x00000e70   Section        0  emu_eeprom.o(i.builtin_ctz64)
+    i.callbackFromFlash                      0x00000e90   Section        0  emu_eeprom.o(i.callbackFromFlash)
+    i.chkValidAddress                        0x00000f84   Section        0  tbmenu.o(i.chkValidAddress)
+    i.clearBit                               0x00000f96   Section        0  emu_eeprom.o(i.clearBit)
+    i.cntModbusTimeout                       0x00000fb4   Section        0  modbusslave.o(i.cntModbusTimeout)
+    i.eraseAllDataFlash                      0x00000ffc   Section        0  emu_eeprom.o(i.eraseAllDataFlash)
+    i.exeModbusSlave                         0x00001038   Section        0  modbusslave.o(i.exeModbusSlave)
+    i.execEmuEeprom                          0x00001180   Section        0  emu_eeprom.o(i.execEmuEeprom)
+    i.execI2cSlave                           0x000011d0   Section        0  i2c_eeprom.o(i.execI2cSlave)
+    i.fputc                                  0x0000124c   Section        0  retarget.o(i.fputc)
+    i.getChecksum                            0x00001258   Section        0  emu_eeprom.o(i.getChecksum)
+    i.getEepromErrorStatus                   0x00001278   Section        0  emu_eeprom.o(i.getEepromErrorStatus)
+    i.getModbusData                          0x00001288   Section        0  tbmenu.o(i.getModbusData)
+    i.getTimerCounts                         0x000012d8   Section        0  g_timer.o(i.getTimerCounts)
+    i.initBlockRam                           0x000012dc   Section        0  tstblock.o(i.initBlockRam)
+    i.initEmuEeprom                          0x00001344   Section        0  emu_eeprom.o(i.initEmuEeprom)
+    i.initMbusConfig                         0x00001394   Section        0  modbusslave.o(i.initMbusConfig)
+    i.initRegN                               0x000013f8   Section        0  linkvariables.o(i.initRegN)
+    i.intToStr                               0x0000140a   Section        0  main.o(i.intToStr)
+    i.isEmuEepromFree                        0x00001430   Section        0  emu_eeprom.o(i.isEmuEepromFree)
+    i.isRxEmpty                              0x00001440   Section        0  g_uart.o(i.isRxEmpty)
+    i.isTxFull                               0x0000144a   Section        0  g_uart.o(i.isTxFull)
+    i.isrMbusRxData                          0x00001452   Section        0  modbusslave.o(i.isrMbusRxData)
+    i.loopWriteBlock                         0x000014ac   Section        0  tstblock.o(i.loopWriteBlock)
+    i.main                                   0x00001518   Section        0  main.o(i.main)
+    i.openTimer                              0x0000159c   Section        0  g_timer.o(i.openTimer)
+    i.openUart                               0x000015e8   Section        0  g_uart.o(i.openUart)
+    i.progEmuEeprom                          0x000016a4   Section        0  emu_eeprom.o(i.progEmuEeprom)
+    i.pushModbusByte                         0x0000186c   Section        0  modbusfunction.o(i.pushModbusByte)
+    i.rdByte                                 0x00001898   Section        0  g_uart.o(i.rdByte)
+    i.readEmuEeprom                          0x000018a0   Section        0  emu_eeprom.o(i.readEmuEeprom)
+    i.readHoldingRegister                    0x000018c4   Section        0  modbusfunction.o(i.readHoldingRegister)
+    i.readRegN                               0x000019cc   Section        0  linkvariables.o(i.readRegN)
+    i.resetBlockRam                          0x000019e0   Section        0  tstblock.o(i.resetBlockRam)
+    i.reverse                                0x00001a40   Section        0  main.o(i.reverse)
+    i.rstModbusError                         0x00001a5a   Section        0  modbusslave.o(i.rstModbusError)
+    i.rstModbusTimeout                       0x00001a80   Section        0  modbusslave.o(i.rstModbusTimeout)
+    i.scanTimeTask                           0x00001a98   Section        0  main.o(i.scanTimeTask)
+    i.setModbusData                          0x00001ad4   Section        0  tbmenu.o(i.setModbusData)
+    i.setProgramEmuEeprom                    0x00001b28   Section        0  emu_eeprom.o(i.setProgramEmuEeprom)
+    i.setVerifyEmuEeprom                     0x00001b44   Section        0  emu_eeprom.o(i.setVerifyEmuEeprom)
+    i.set_data_flash_base                    0x00001b60   Section        0  emu_eeprom.o(i.set_data_flash_base)
+    set_data_flash_base                      0x00001b61   Thumb Code   110  emu_eeprom.o(i.set_data_flash_base)
+    i.stackDump                              0x00001c10   Section        0  retarget.o(i.stackDump)
+    stackDump                                0x00001c11   Thumb Code    70  retarget.o(i.stackDump)
+    i.task25msec                             0x00001cb8   Section        0  main.o(i.task25msec)
+    i.task2D5msec                            0x00001cbc   Section        0  main.o(i.task2D5msec)
+    i.tstEmuEeprom                           0x00001ccc   Section        0  tstblock.o(i.tstEmuEeprom)
+    i.tstFlashWrite                          0x00001d08   Section        0  emu_eeprom.o(i.tstFlashWrite)
+    i.ucMBCRC16                              0x00001e04   Section        0  crc16.o(i.ucMBCRC16)
+    i.varifyFlashByRAM                       0x00001e28   Section        0  emu_eeprom.o(i.varifyFlashByRAM)
+    i.wrBytes                                0x00001f1c   Section        0  g_uart.o(i.wrBytes)
+    i.writeEmuEeprom                         0x00001f34   Section        0  emu_eeprom.o(i.writeEmuEeprom)
+    i.writeHoldingNRegister                  0x00001f50   Section        0  modbusfunction.o(i.writeHoldingNRegister)
+    i.writeHoldingRegister                   0x00002084   Section        0  modbusfunction.o(i.writeHoldingRegister)
+    i.writeReg                               0x000021a4   Section        0  linkvariables.o(i.writeReg)
+    i.writeRegN                              0x000021c4   Section        0  linkvariables.o(i.writeRegN)
+    .constdata                               0x000021d8   Section       32  system_m0a21.o(.constdata)
+    .constdata                               0x000021f8   Section       24  g_uart.o(.constdata)
+    .constdata                               0x00002210   Section        8  emu_eeprom.o(.constdata)
+    .constdata                               0x00002218   Section       56  clk.o(.constdata)
+    .constdata                               0x00002250   Section       32  timer.o(.constdata)
+    .constdata                               0x00002270   Section       40  modbusslave.o(.constdata)
+    .constdata                               0x00002298   Section      512  crc16.o(.constdata)
+    aucCRCHi                                 0x00002298   Data         256  crc16.o(.constdata)
+    aucCRCLo                                 0x00002398   Data         256  crc16.o(.constdata)
+    .constdata                               0x00002498   Section       32  modbusfunction.o(.constdata)
+    .data                                    0x20000000   Section        8  system_m0a21.o(.data)
+    .data                                    0x20000008   Section       48  main.o(.data)
+    .data                                    0x20000038   Section        1  i2c_eeprom.o(.data)
+    .data                                    0x2000003c   Section       16  emu_eeprom.o(.data)
+    i                                        0x20000048   Data           4  emu_eeprom.o(.data)
+    .data                                    0x2000004c   Section       40  tstblock.o(.data)
+    u32Tick                                  0x2000006c   Data           4  tstblock.o(.data)
+    u32TimeStamp                             0x20000070   Data           4  tstblock.o(.data)
+    .data                                    0x20000074   Section        4  retarget.o(.data)
+    .data                                    0x20000078   Section      100  modbusfunction.o(.data)
+    .data                                    0x200000dc   Section      408  modbusfunction.o(.data)
+    .data                                    0x20000274   Section       24  modbusfunction.o(.data)
+    u16Word                                  0x20000274   Data           2  modbusfunction.o(.data)
+    u16Word                                  0x20000276   Data           2  modbusfunction.o(.data)
+    u16Word                                  0x20000278   Data           2  modbusfunction.o(.data)
+    u16ErrFunc                               0x2000027a   Data           2  modbusfunction.o(.data)
+    pack                                     0x2000027c   Data           4  modbusfunction.o(.data)
+    pack                                     0x20000280   Data           4  modbusfunction.o(.data)
+    pack                                     0x20000284   Data           4  modbusfunction.o(.data)
+    pack                                     0x20000288   Data           4  modbusfunction.o(.data)
+    .bss                                     0x2000028c   Section       32  main.o(.bss)
+    .bss                                     0x200002ac   Section       48  i2c_eeprom.o(.bss)
+    .bss                                     0x200002e0   Section     1120  emu_eeprom.o(.bss)
+    .bss                                     0x20000740   Section       20  tbmenu.o(.bss)
+    STACK                                    0x20000758   Section      512  startup_m0a21.o(STACK)
+
+    Global Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    BuildAttributes$$THM_ISAv3M$S$PE$A:L22$X:L11$S22$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OSPACE$ROPI$EBA8$MICROLIB$REQ8$PRES8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    __ARM_use_no_argv                        0x00000000   Number         0  main.o ABSOLUTE
+    __Vectors                                0x00000000   Data           4  startup_m0a21.o(RESET)
+    _printf_a                                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_c                                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_charcount                        0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_d                                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_e                                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_f                                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_flags                            0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_fp_dec                           0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_fp_hex                           0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_g                                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_i                                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_int_dec                          0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_l                                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_lc                               0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_ll                               0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_lld                              0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_lli                              0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_llo                              0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_llu                              0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_llx                              0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_longlong_dec                     0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_longlong_hex                     0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_longlong_oct                     0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_ls                               0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_mbtowc                           0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_n                                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_o                                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_p                                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_percent                          0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_pre_padding                      0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_return_value                     0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_s                                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_sizespec                         0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_str                              0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_truncate_signed                  0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_truncate_unsigned                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_u                                0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_wc                               0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_wctomb                           0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_widthprec                        0x00000000   Number         0  stubs.o ABSOLUTE
+    _printf_x                                0x00000000   Number         0  stubs.o ABSOLUTE
+    __arm_fini_                               - Undefined Weak Reference
+    __cpp_initialize__aeabi_                  - Undefined Weak Reference
+    __cxa_finalize                            - Undefined Weak Reference
+    __decompress                              - Undefined Weak Reference
+    _clock_init                               - Undefined Weak Reference
+    _microlib_exit                            - Undefined Weak Reference
+    __main                                   0x000000c1   Thumb Code     0  entry.o(.ARM.Collect$$$$00000000)
+    _main_stk                                0x000000c1   Thumb Code     0  entry2.o(.ARM.Collect$$$$00000001)
+    _main_scatterload                        0x000000c5   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    __main_after_scatterload                 0x000000c9   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    _main_clock                              0x000000c9   Thumb Code     0  entry7b.o(.ARM.Collect$$$$00000008)
+    _main_cpp_init                           0x000000c9   Thumb Code     0  entry8b.o(.ARM.Collect$$$$0000000A)
+    _main_init                               0x000000c9   Thumb Code     0  entry9a.o(.ARM.Collect$$$$0000000B)
+    __rt_lib_shutdown_fini                   0x000000d1   Thumb Code     0  entry12b.o(.ARM.Collect$$$$0000000E)
+    __rt_final_cpp                           0x000000d5   Thumb Code     0  entry10a.o(.ARM.Collect$$$$0000000F)
+    __rt_final_exit                          0x000000d5   Thumb Code     0  entry11a.o(.ARM.Collect$$$$00000011)
+    HardFault_Handler                        0x000000d9   Thumb Code    24  retarget.o(.emb_text)
+    Reset_Handler                            0x000000f5   Thumb Code     8  startup_m0a21.o(.text)
+    NMI_Handler                              0x000000fd   Thumb Code     2  startup_m0a21.o(.text)
+    SVC_Handler                              0x00000101   Thumb Code     2  startup_m0a21.o(.text)
+    PendSV_Handler                           0x00000103   Thumb Code     2  startup_m0a21.o(.text)
+    SysTick_Handler                          0x00000105   Thumb Code     2  startup_m0a21.o(.text)
+    ACMP01_IRQHandler                        0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    ADC_IRQHandler                           0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    BOD_IRQHandler                           0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    CAN0_IRQHandler                          0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    CKFAIL_IRQHandler                        0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    DAC0_IRQHandler                          0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    EINT024_IRQHandler                       0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    EINT135_IRQHandler                       0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    GPAB_IRQHandler                          0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    GPCD_IRQHandler                          0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    PDMA_IRQHandler                          0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    PWM0_IRQHandler                          0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    PWRWU_IRQHandler                         0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    TMR0_IRQHandler                          0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    TMR1_IRQHandler                          0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    TMR2_IRQHandler                          0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    TMR3_IRQHandler                          0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    UART0_IRQHandler                         0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    UART1_IRQHandler                         0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    USCI1_IRQHandler                         0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    WDT_IRQHandler                           0x00000107   Thumb Code     0  startup_m0a21.o(.text)
+    __aeabi_uidiv                            0x00000111   Thumb Code     0  uidiv.o(.text)
+    __aeabi_uidivmod                         0x00000111   Thumb Code    44  uidiv.o(.text)
+    __aeabi_idiv                             0x0000013d   Thumb Code     0  idiv.o(.text)
+    __aeabi_idivmod                          0x0000013d   Thumb Code    40  idiv.o(.text)
+    __aeabi_memcpy                           0x00000165   Thumb Code    36  memcpya.o(.text)
+    __aeabi_memcpy4                          0x00000165   Thumb Code     0  memcpya.o(.text)
+    __aeabi_memcpy8                          0x00000165   Thumb Code     0  memcpya.o(.text)
+    __aeabi_memset                           0x00000189   Thumb Code    14  memseta.o(.text)
+    __aeabi_memset4                          0x00000189   Thumb Code     0  memseta.o(.text)
+    __aeabi_memset8                          0x00000189   Thumb Code     0  memseta.o(.text)
+    __aeabi_memclr                           0x00000197   Thumb Code     4  memseta.o(.text)
+    __aeabi_memclr4                          0x00000197   Thumb Code     0  memseta.o(.text)
+    __aeabi_memclr8                          0x00000197   Thumb Code     0  memseta.o(.text)
+    _memset$wrapper                          0x0000019b   Thumb Code    18  memseta.o(.text)
+    __aeabi_uldivmod                         0x000001ad   Thumb Code    96  uldiv.o(.text)
+    __scatterload                            0x0000020d   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x0000020d   Thumb Code     0  init.o(.text)
+    __aeabi_llsl                             0x00000231   Thumb Code    32  llshl.o(.text)
+    _ll_shift_l                              0x00000231   Thumb Code     0  llshl.o(.text)
+    __aeabi_llsr                             0x00000251   Thumb Code    34  llushr.o(.text)
+    _ll_ushift_r                             0x00000251   Thumb Code     0  llushr.o(.text)
+    CLK_EnableModuleClock                    0x00000275   Thumb Code    40  clk.o(i.CLK_EnableModuleClock)
+    CLK_EnableXtalRC                         0x000002a5   Thumb Code    10  clk.o(i.CLK_EnableXtalRC)
+    CLK_GetPCLK0Freq                         0x000002b5   Thumb Code    22  clk.o(i.CLK_GetPCLK0Freq)
+    CLK_GetPCLK1Freq                         0x000002d5   Thumb Code    22  clk.o(i.CLK_GetPCLK1Freq)
+    CLK_SetHCLK                              0x000002f5   Thumb Code    76  clk.o(i.CLK_SetHCLK)
+    CLK_SetModuleClock                       0x00000345   Thumb Code   102  clk.o(i.CLK_SetModuleClock)
+    CLK_WaitClockReady                       0x000003b5   Thumb Code    34  clk.o(i.CLK_WaitClockReady)
+    DL_FlashCTL_eraseMemory                  0x000003e1   Thumb Code    46  dl_flashctrl.o(i.DL_FlashCTL_eraseMemory)
+    DL_FlashCTL_programMemoryFromRAM64       0x00000415   Thumb Code    36  dl_flashctrl.o(i.DL_FlashCTL_programMemoryFromRAM64)
+    DL_FlashCTL_unprotectSector              0x0000043d   Thumb Code    28  dl_flashctrl.o(i.DL_FlashCTL_unprotectSector)
+    DL_UART_transmitData                     0x0000045d   Thumb Code     8  g_uart.o(i.DL_UART_transmitData)
+    FMC_Close                                0x00000465   Thumb Code    12  fmc.o(i.FMC_Close)
+    FMC_Erase                                0x00000475   Thumb Code    42  fmc.o(i.FMC_Erase)
+    FMC_Open                                 0x000004a5   Thumb Code    12  fmc.o(i.FMC_Open)
+    FMC_Read                                 0x000004b5   Thumb Code    22  fmc.o(i.FMC_Read)
+    FMC_ReadConfig                           0x000004d1   Thumb Code    56  fmc.o(i.FMC_ReadConfig)
+    FMC_Write                                0x0000050d   Thumb Code    22  fmc.o(i.FMC_Write)
+    FMC_WriteConfig                          0x00000529   Thumb Code    60  fmc.o(i.FMC_WriteConfig)
+    GPIO_SetMode                             0x00000565   Thumb Code    40  gpio.o(i.GPIO_SetMode)
+    Hard_Fault_Handler                       0x0000058d   Thumb Code    16  retarget.o(i.Hard_Fault_Handler)
+    IsDebugFifoEmpty                         0x000005b5   Thumb Code    10  retarget.o(i.IsDebugFifoEmpty)
+    ModbusCommError                          0x000005c5   Thumb Code   134  modbusfunction.o(i.ModbusCommError)
+    ReservedFunction                         0x00000655   Thumb Code    12  modbusfunction.o(i.ReservedFunction)
+    SYS_Init                                 0x00000661   Thumb Code   122  main.o(i.SYS_Init)
+    SYS_ResetModule                          0x000006fd   Thumb Code    26  sys.o(i.SYS_ResetModule)
+    SystemCoreClockUpdate                    0x00000755   Thumb Code    44  system_m0a21.o(i.SystemCoreClockUpdate)
+    SystemInit                               0x00000791   Thumb Code     2  system_m0a21.o(i.SystemInit)
+    TIMER_GetModuleClock                     0x00000795   Thumb Code    96  timer.o(i.TIMER_GetModuleClock)
+    UART0_Init                               0x00000805   Thumb Code    20  main.o(i.UART0_Init)
+    UARTEEPROM                               0x00000821   Thumb Code   178  main.o(i.UARTEEPROM)
+    UI2C0_Init                               0x000008dd   Thumb Code    84  i2c_eeprom.o(i.UI2C0_Init)
+    UI2C_GetBusClockFreq                     0x00000949   Thumb Code    36  usci_i2c.o(i.UI2C_GetBusClockFreq)
+    UI2C_Open                                0x00000971   Thumb Code   124  usci_i2c.o(i.UI2C_Open)
+    UI2C_SetSlaveAddr                        0x000009f5   Thumb Code    22  usci_i2c.o(i.UI2C_SetSlaveAddr)
+    UI2C_SetSlaveAddrMask                    0x00000a0b   Thumb Code    12  usci_i2c.o(i.UI2C_SetSlaveAddrMask)
+    USCI0_IRQHandler                         0x00000a19   Thumb Code   222  i2c_eeprom.o(i.USCI0_IRQHandler)
+    __0printf$5                              0x00000b09   Thumb Code    24  printf5.o(i.__0printf$5)
+    __1printf$5                              0x00000b09   Thumb Code     0  printf5.o(i.__0printf$5)
+    __2printf                                0x00000b09   Thumb Code     0  printf5.o(i.__0printf$5)
+    __ARM_common_ctz                         0x00000b29   Thumb Code    58  emu_eeprom.o(i.__ARM_common_ctz)
+    __ARM_common_switch8                     0x00000b63   Thumb Code    26  emu_eeprom.o(i.__ARM_common_switch8)
+    __scatterload_copy                       0x00000b7d   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x00000b8b   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x00000b8d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    builtin_ctz64                            0x00000e71   Thumb Code    32  emu_eeprom.o(i.builtin_ctz64)
+    callbackFromFlash                        0x00000e91   Thumb Code   234  emu_eeprom.o(i.callbackFromFlash)
+    chkValidAddress                          0x00000f85   Thumb Code    18  tbmenu.o(i.chkValidAddress)
+    clearBit                                 0x00000f97   Thumb Code    28  emu_eeprom.o(i.clearBit)
+    cntModbusTimeout                         0x00000fb5   Thumb Code    58  modbusslave.o(i.cntModbusTimeout)
+    eraseAllDataFlash                        0x00000ffd   Thumb Code    50  emu_eeprom.o(i.eraseAllDataFlash)
+    exeModbusSlave                           0x00001039   Thumb Code   318  modbusslave.o(i.exeModbusSlave)
+    execEmuEeprom                            0x00001181   Thumb Code    76  emu_eeprom.o(i.execEmuEeprom)
+    execI2cSlave                             0x000011d1   Thumb Code    90  i2c_eeprom.o(i.execI2cSlave)
+    fputc                                    0x0000124d   Thumb Code    12  retarget.o(i.fputc)
+    getChecksum                              0x00001259   Thumb Code    32  emu_eeprom.o(i.getChecksum)
+    getEepromErrorStatus                     0x00001279   Thumb Code    12  emu_eeprom.o(i.getEepromErrorStatus)
+    getModbusData                            0x00001289   Thumb Code    72  tbmenu.o(i.getModbusData)
+    getTimerCounts                           0x000012d9   Thumb Code     4  g_timer.o(i.getTimerCounts)
+    initBlockRam                             0x000012dd   Thumb Code    98  tstblock.o(i.initBlockRam)
+    initEmuEeprom                            0x00001345   Thumb Code    70  emu_eeprom.o(i.initEmuEeprom)
+    initMbusConfig                           0x00001395   Thumb Code    96  modbusslave.o(i.initMbusConfig)
+    initRegN                                 0x000013f9   Thumb Code    18  linkvariables.o(i.initRegN)
+    intToStr                                 0x0000140b   Thumb Code    36  main.o(i.intToStr)
+    isEmuEepromFree                          0x00001431   Thumb Code    10  emu_eeprom.o(i.isEmuEepromFree)
+    isRxEmpty                                0x00001441   Thumb Code    10  g_uart.o(i.isRxEmpty)
+    isTxFull                                 0x0000144b   Thumb Code     8  g_uart.o(i.isTxFull)
+    isrMbusRxData                            0x00001453   Thumb Code    88  modbusslave.o(i.isrMbusRxData)
+    loopWriteBlock                           0x000014ad   Thumb Code    94  tstblock.o(i.loopWriteBlock)
+    main                                     0x00001519   Thumb Code   106  main.o(i.main)
+    openTimer                                0x0000159d   Thumb Code    74  g_timer.o(i.openTimer)
+    openUart                                 0x000015e9   Thumb Code   164  g_uart.o(i.openUart)
+    progEmuEeprom                            0x000016a5   Thumb Code   434  emu_eeprom.o(i.progEmuEeprom)
+    pushModbusByte                           0x0000186d   Thumb Code    44  modbusfunction.o(i.pushModbusByte)
+    rdByte                                   0x00001899   Thumb Code     6  g_uart.o(i.rdByte)
+    readEmuEeprom                            0x000018a1   Thumb Code    30  emu_eeprom.o(i.readEmuEeprom)
+    readHoldingRegister                      0x000018c5   Thumb Code   256  modbusfunction.o(i.readHoldingRegister)
+    readRegN                                 0x000019cd   Thumb Code    14  linkvariables.o(i.readRegN)
+    resetBlockRam                            0x000019e1   Thumb Code    90  tstblock.o(i.resetBlockRam)
+    reverse                                  0x00001a41   Thumb Code    26  main.o(i.reverse)
+    rstModbusError                           0x00001a5b   Thumb Code    36  modbusslave.o(i.rstModbusError)
+    rstModbusTimeout                         0x00001a81   Thumb Code    20  modbusslave.o(i.rstModbusTimeout)
+    scanTimeTask                             0x00001a99   Thumb Code    52  main.o(i.scanTimeTask)
+    setModbusData                            0x00001ad5   Thumb Code    74  tbmenu.o(i.setModbusData)
+    setProgramEmuEeprom                      0x00001b29   Thumb Code    22  emu_eeprom.o(i.setProgramEmuEeprom)
+    setVerifyEmuEeprom                       0x00001b45   Thumb Code    22  emu_eeprom.o(i.setVerifyEmuEeprom)
+    task25msec                               0x00001cb9   Thumb Code     2  main.o(i.task25msec)
+    task2D5msec                              0x00001cbd   Thumb Code    12  main.o(i.task2D5msec)
+    tstEmuEeprom                             0x00001ccd   Thumb Code    54  tstblock.o(i.tstEmuEeprom)
+    tstFlashWrite                            0x00001d09   Thumb Code   138  emu_eeprom.o(i.tstFlashWrite)
+    ucMBCRC16                                0x00001e05   Thumb Code    28  crc16.o(i.ucMBCRC16)
+    varifyFlashByRAM                         0x00001e29   Thumb Code   240  emu_eeprom.o(i.varifyFlashByRAM)
+    wrBytes                                  0x00001f1d   Thumb Code    22  g_uart.o(i.wrBytes)
+    writeEmuEeprom                           0x00001f35   Thumb Code    24  emu_eeprom.o(i.writeEmuEeprom)
+    writeHoldingNRegister                    0x00001f51   Thumb Code   298  modbusfunction.o(i.writeHoldingNRegister)
+    writeHoldingRegister                     0x00002085   Thumb Code   280  modbusfunction.o(i.writeHoldingRegister)
+    writeReg                                 0x000021a5   Thumb Code    28  linkvariables.o(i.writeReg)
+    writeRegN                                0x000021c5   Thumb Code    14  linkvariables.o(i.writeRegN)
+    gau32ClkSrcTbl                           0x000021d8   Data          32  system_m0a21.o(.constdata)
+    DEFAULT_FLASH_WORD                       0x00002210   Data           8  emu_eeprom.o(.constdata)
+    Region$$Table$$Base                      0x000024b8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000024d8   Number         0  anon$$obj.o(Region$$Table)
+    SystemCoreClock                          0x20000000   Data           4  system_m0a21.o(.data)
+    CyclesPerUs                              0x20000004   Data           4  system_m0a21.o(.data)
+    id_ttask                                 0x20000008   Data           2  main.o(.data)
+    writesuccess                             0x2000000c   Data           4  main.o(.data)
+    startcnt                                 0x20000010   Data           4  main.o(.data)
+    time_task                                0x20000014   Data          36  main.o(.data)
+    s_Event                                  0x20000038   Data           1  i2c_eeprom.o(.data)
+    evFMC                                    0x2000003c   Data           1  emu_eeprom.o(.data)
+    u32FlashAddr                             0x20000040   Data           4  emu_eeprom.o(.data)
+    u32FlashData                             0x20000044   Data           4  emu_eeprom.o(.data)
+    tstfsm                                   0x2000004c   Data           1  tstblock.o(.data)
+    evTstBlock                               0x2000004d   Data           1  tstblock.o(.data)
+    beginAddress                             0x20000050   Data           4  tstblock.o(.data)
+    ptrAddress                               0x20000054   Data           4  tstblock.o(.data)
+    endAddress                               0x20000058   Data           4  tstblock.o(.data)
+    testBytes                                0x2000005c   Data           4  tstblock.o(.data)
+    u32TestTimes                             0x20000060   Data           4  tstblock.o(.data)
+    u32TestTimeout                           0x20000064   Data           4  tstblock.o(.data)
+    u32TestStep                              0x20000068   Data           4  tstblock.o(.data)
+    __stdout                                 0x20000074   Data           4  retarget.o(.data)
+    ModbusFunc                               0x20000078   Data         100  modbusfunction.o(.data)
+    mbcomm                                   0x200000dc   Data         408  modbusfunction.o(.data)
+    UARTEmuEE                                0x2000028c   Data          32  main.o(.bss)
+    stI2cS                                   0x200002ac   Data          48  i2c_eeprom.o(.bss)
+    stEmuEE                                  0x200002e0   Data        1120  emu_eeprom.o(.bss)
+    regMbusData                              0x20000740   Data          20  tbmenu.o(.bss)
+    __initial_sp                             0x20000958   Data           0  startup_m0a21.o(STACK)
+
+
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x000000f5
+
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00002764, Max: 0xffffffff, ABSOLUTE)
+
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000024d8, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x00000000   0x00000000   0x000000c0   Data   RO          178    RESET               startup_m0a21.o
+    0x000000c0   0x000000c0   0x00000000   Code   RO         1881  * .ARM.Collect$$$$00000000  mc_p.l(entry.o)
+    0x000000c0   0x000000c0   0x00000004   Code   RO         2153    .ARM.Collect$$$$00000001  mc_p.l(entry2.o)
+    0x000000c4   0x000000c4   0x00000004   Code   RO         2156    .ARM.Collect$$$$00000004  mc_p.l(entry5.o)
+    0x000000c8   0x000000c8   0x00000000   Code   RO         2158    .ARM.Collect$$$$00000008  mc_p.l(entry7b.o)
+    0x000000c8   0x000000c8   0x00000000   Code   RO         2160    .ARM.Collect$$$$0000000A  mc_p.l(entry8b.o)
+    0x000000c8   0x000000c8   0x00000008   Code   RO         2161    .ARM.Collect$$$$0000000B  mc_p.l(entry9a.o)
+    0x000000d0   0x000000d0   0x00000004   Code   RO         2168    .ARM.Collect$$$$0000000E  mc_p.l(entry12b.o)
+    0x000000d4   0x000000d4   0x00000000   Code   RO         2163    .ARM.Collect$$$$0000000F  mc_p.l(entry10a.o)
+    0x000000d4   0x000000d4   0x00000000   Code   RO         2165    .ARM.Collect$$$$00000011  mc_p.l(entry11a.o)
+    0x000000d4   0x000000d4   0x00000004   Code   RO         2154    .ARM.Collect$$$$00002712  mc_p.l(entry2.o)
+    0x000000d8   0x000000d8   0x0000001c   Code   RO          793    .emb_text           retarget.o
+    0x000000f4   0x000000f4   0x0000001c   Code   RO          179  * .text               startup_m0a21.o
+    0x00000110   0x00000110   0x0000002c   Code   RO         1882    .text               mc_p.l(uidiv.o)
+    0x0000013c   0x0000013c   0x00000028   Code   RO         1884    .text               mc_p.l(idiv.o)
+    0x00000164   0x00000164   0x00000024   Code   RO         1886    .text               mc_p.l(memcpya.o)
+    0x00000188   0x00000188   0x00000024   Code   RO         1888    .text               mc_p.l(memseta.o)
+    0x000001ac   0x000001ac   0x00000060   Code   RO         2169    .text               mc_p.l(uldiv.o)
+    0x0000020c   0x0000020c   0x00000024   Code   RO         2182    .text               mc_p.l(init.o)
+    0x00000230   0x00000230   0x00000020   Code   RO         2184    .text               mc_p.l(llshl.o)
+    0x00000250   0x00000250   0x00000022   Code   RO         2186    .text               mc_p.l(llushr.o)
+    0x00000272   0x00000272   0x00000002   PAD
+    0x00000274   0x00000274   0x00000030   Code   RO          876    i.CLK_EnableModuleClock  clk.o
+    0x000002a4   0x000002a4   0x00000010   Code   RO          878    i.CLK_EnableXtalRC  clk.o
+    0x000002b4   0x000002b4   0x00000020   Code   RO          883    i.CLK_GetPCLK0Freq  clk.o
+    0x000002d4   0x000002d4   0x00000020   Code   RO          884    i.CLK_GetPCLK1Freq  clk.o
+    0x000002f4   0x000002f4   0x00000050   Code   RO          888    i.CLK_SetHCLK       clk.o
+    0x00000344   0x00000344   0x00000070   Code   RO          889    i.CLK_SetModuleClock  clk.o
+    0x000003b4   0x000003b4   0x0000002c   Code   RO          891    i.CLK_WaitClockReady  clk.o
+    0x000003e0   0x000003e0   0x00000034   Code   RO          754    i.DL_FlashCTL_eraseMemory  dl_flashctrl.o
+    0x00000414   0x00000414   0x00000028   Code   RO          755    i.DL_FlashCTL_programMemoryFromRAM64  dl_flashctrl.o
+    0x0000043c   0x0000043c   0x00000020   Code   RO          756    i.DL_FlashCTL_unprotectSector  dl_flashctrl.o
+    0x0000045c   0x0000045c   0x00000008   Code   RO          403    i.DL_UART_transmitData  g_uart.o
+    0x00000464   0x00000464   0x00000010   Code   RO         1332    i.FMC_Close         fmc.o
+    0x00000474   0x00000474   0x00000030   Code   RO         1333    i.FMC_Erase         fmc.o
+    0x000004a4   0x000004a4   0x00000010   Code   RO         1336    i.FMC_Open          fmc.o
+    0x000004b4   0x000004b4   0x0000001c   Code   RO         1337    i.FMC_Read          fmc.o
+    0x000004d0   0x000004d0   0x0000003c   Code   RO         1338    i.FMC_ReadConfig    fmc.o
+    0x0000050c   0x0000050c   0x0000001c   Code   RO         1341    i.FMC_Write         fmc.o
+    0x00000528   0x00000528   0x0000003c   Code   RO         1342    i.FMC_WriteConfig   fmc.o
+    0x00000564   0x00000564   0x00000028   Code   RO         1296    i.GPIO_SetMode      gpio.o
+    0x0000058c   0x0000058c   0x00000028   Code   RO          794    i.Hard_Fault_Handler  retarget.o
+    0x000005b4   0x000005b4   0x00000010   Code   RO          795    i.IsDebugFifoEmpty  retarget.o
+    0x000005c4   0x000005c4   0x00000090   Code   RO         1774    i.ModbusCommError   modbusfunction.o
+    0x00000654   0x00000654   0x0000000c   Code   RO         1775    i.ReservedFunction  modbusfunction.o
+    0x00000660   0x00000660   0x0000009c   Code   RO          185    i.SYS_Init          main.o
+    0x000006fc   0x000006fc   0x0000001a   Code   RO         1027    i.SYS_ResetModule   sys.o
+    0x00000716   0x00000716   0x00000002   PAD
+    0x00000718   0x00000718   0x0000001c   Code   RO          186    i.SYS_UnlockReg     main.o
+    0x00000734   0x00000734   0x00000020   Code   RO          796    i.SendChar          retarget.o
+    0x00000754   0x00000754   0x0000003c   Code   RO            3    i.SystemCoreClockUpdate  system_m0a21.o
+    0x00000790   0x00000790   0x00000002   Code   RO            4    i.SystemInit        system_m0a21.o
+    0x00000792   0x00000792   0x00000002   PAD
+    0x00000794   0x00000794   0x00000070   Code   RO         1215    i.TIMER_GetModuleClock  timer.o
+    0x00000804   0x00000804   0x0000001c   Code   RO          187    i.UART0_Init        main.o
+    0x00000820   0x00000820   0x000000bc   Code   RO          188    i.UARTEEPROM        main.o
+    0x000008dc   0x000008dc   0x0000006c   Code   RO          497    i.UI2C0_Init        i2c_eeprom.o
+    0x00000948   0x00000948   0x00000028   Code   RO         1424    i.UI2C_GetBusClockFreq  usci_i2c.o
+    0x00000970   0x00000970   0x00000084   Code   RO         1427    i.UI2C_Open         usci_i2c.o
+    0x000009f4   0x000009f4   0x00000016   Code   RO         1436    i.UI2C_SetSlaveAddr  usci_i2c.o
+    0x00000a0a   0x00000a0a   0x0000000c   Code   RO         1437    i.UI2C_SetSlaveAddrMask  usci_i2c.o
+    0x00000a16   0x00000a16   0x00000002   PAD
+    0x00000a18   0x00000a18   0x000000f0   Code   RO          498    i.USCI0_IRQHandler  i2c_eeprom.o
+    0x00000b08   0x00000b08   0x00000020   Code   RO         2025    i.__0printf$5       mc_p.l(printf5.o)
+    0x00000b28   0x00000b28   0x0000003a   Code   RO          683    i.__ARM_common_ctz  emu_eeprom.o
+    0x00000b62   0x00000b62   0x0000001a   Code   RO          685    i.__ARM_common_switch8  emu_eeprom.o
+    0x00000b7c   0x00000b7c   0x0000000e   Code   RO         2196    i.__scatterload_copy  mc_p.l(handlers.o)
+    0x00000b8a   0x00000b8a   0x00000002   Code   RO         2197    i.__scatterload_null  mc_p.l(handlers.o)
+    0x00000b8c   0x00000b8c   0x0000000e   Code   RO         2198    i.__scatterload_zeroinit  mc_p.l(handlers.o)
+    0x00000b9a   0x00000b9a   0x00000002   PAD
+    0x00000b9c   0x00000b9c   0x000002d4   Code   RO         2032    i._printf_core      mc_p.l(printf5.o)
+    0x00000e70   0x00000e70   0x00000020   Code   RO          548    i.builtin_ctz64     emu_eeprom.o
+    0x00000e90   0x00000e90   0x000000f4   Code   RO          549    i.callbackFromFlash  emu_eeprom.o
+    0x00000f84   0x00000f84   0x00000012   Code   RO         1837    i.chkValidAddress   tbmenu.o
+    0x00000f96   0x00000f96   0x0000001c   Code   RO          550    i.clearBit          emu_eeprom.o
+    0x00000fb2   0x00000fb2   0x00000002   PAD
+    0x00000fb4   0x00000fb4   0x00000048   Code   RO         1609    i.cntModbusTimeout  modbusslave.o
+    0x00000ffc   0x00000ffc   0x0000003c   Code   RO          551    i.eraseAllDataFlash  emu_eeprom.o
+    0x00001038   0x00001038   0x00000148   Code   RO         1610    i.exeModbusSlave    modbusslave.o
+    0x00001180   0x00001180   0x00000050   Code   RO          552    i.execEmuEeprom     emu_eeprom.o
+    0x000011d0   0x000011d0   0x0000007c   Code   RO          499    i.execI2cSlave      i2c_eeprom.o
+    0x0000124c   0x0000124c   0x0000000c   Code   RO          800    i.fputc             retarget.o
+    0x00001258   0x00001258   0x00000020   Code   RO          554    i.getChecksum       emu_eeprom.o
+    0x00001278   0x00001278   0x00000010   Code   RO          555    i.getEepromErrorStatus  emu_eeprom.o
+    0x00001288   0x00001288   0x00000050   Code   RO         1838    i.getModbusData     tbmenu.o
+    0x000012d8   0x000012d8   0x00000004   Code   RO          461    i.getTimerCounts    g_timer.o
+    0x000012dc   0x000012dc   0x00000068   Code   RO          703    i.initBlockRam      tstblock.o
+    0x00001344   0x00001344   0x00000050   Code   RO          557    i.initEmuEeprom     emu_eeprom.o
+    0x00001394   0x00001394   0x00000064   Code   RO         1611    i.initMbusConfig    modbusslave.o
+    0x000013f8   0x000013f8   0x00000012   Code   RO         1728    i.initRegN          linkvariables.o
+    0x0000140a   0x0000140a   0x00000024   Code   RO          189    i.intToStr          main.o
+    0x0000142e   0x0000142e   0x00000002   PAD
+    0x00001430   0x00001430   0x00000010   Code   RO          558    i.isEmuEepromFree   emu_eeprom.o
+    0x00001440   0x00001440   0x0000000a   Code   RO          404    i.isRxEmpty         g_uart.o
+    0x0000144a   0x0000144a   0x00000008   Code   RO          405    i.isTxFull          g_uart.o
+    0x00001452   0x00001452   0x00000058   Code   RO         1612    i.isrMbusRxData     modbusslave.o
+    0x000014aa   0x000014aa   0x00000002   PAD
+    0x000014ac   0x000014ac   0x0000006c   Code   RO          704    i.loopWriteBlock    tstblock.o
+    0x00001518   0x00001518   0x00000084   Code   RO          190    i.main              main.o
+    0x0000159c   0x0000159c   0x0000004a   Code   RO          462    i.openTimer         g_timer.o
+    0x000015e6   0x000015e6   0x00000002   PAD
+    0x000015e8   0x000015e8   0x000000bc   Code   RO          406    i.openUart          g_uart.o
+    0x000016a4   0x000016a4   0x000001c8   Code   RO          560    i.progEmuEeprom     emu_eeprom.o
+    0x0000186c   0x0000186c   0x0000002c   Code   RO         1776    i.pushModbusByte    modbusfunction.o
+    0x00001898   0x00001898   0x00000006   Code   RO          407    i.rdByte            g_uart.o
+    0x0000189e   0x0000189e   0x00000002   PAD
+    0x000018a0   0x000018a0   0x00000024   Code   RO          561    i.readEmuEeprom     emu_eeprom.o
+    0x000018c4   0x000018c4   0x00000108   Code   RO         1777    i.readHoldingRegister  modbusfunction.o
+    0x000019cc   0x000019cc   0x00000014   Code   RO         1729    i.readRegN          linkvariables.o
+    0x000019e0   0x000019e0   0x00000060   Code   RO          705    i.resetBlockRam     tstblock.o
+    0x00001a40   0x00001a40   0x0000001a   Code   RO          191    i.reverse           main.o
+    0x00001a5a   0x00001a5a   0x00000024   Code   RO         1613    i.rstModbusError    modbusslave.o
+    0x00001a7e   0x00001a7e   0x00000002   PAD
+    0x00001a80   0x00001a80   0x00000018   Code   RO         1614    i.rstModbusTimeout  modbusslave.o
+    0x00001a98   0x00001a98   0x0000003c   Code   RO          192    i.scanTimeTask      main.o
+    0x00001ad4   0x00001ad4   0x00000054   Code   RO         1839    i.setModbusData     tbmenu.o
+    0x00001b28   0x00001b28   0x0000001c   Code   RO          562    i.setProgramEmuEeprom  emu_eeprom.o
+    0x00001b44   0x00001b44   0x0000001c   Code   RO          563    i.setVerifyEmuEeprom  emu_eeprom.o
+    0x00001b60   0x00001b60   0x000000b0   Code   RO          564    i.set_data_flash_base  emu_eeprom.o
+    0x00001c10   0x00001c10   0x000000a8   Code   RO          802    i.stackDump         retarget.o
+    0x00001cb8   0x00001cb8   0x00000002   Code   RO          193    i.task25msec        main.o
+    0x00001cba   0x00001cba   0x00000002   PAD
+    0x00001cbc   0x00001cbc   0x00000010   Code   RO          194    i.task2D5msec       main.o
+    0x00001ccc   0x00001ccc   0x0000003c   Code   RO          706    i.tstEmuEeprom      tstblock.o
+    0x00001d08   0x00001d08   0x000000fc   Code   RO          565    i.tstFlashWrite     emu_eeprom.o
+    0x00001e04   0x00001e04   0x00000024   Code   RO         1692    i.ucMBCRC16         crc16.o
+    0x00001e28   0x00001e28   0x000000f4   Code   RO          566    i.varifyFlashByRAM  emu_eeprom.o
+    0x00001f1c   0x00001f1c   0x00000016   Code   RO          408    i.wrBytes           g_uart.o
+    0x00001f32   0x00001f32   0x00000002   PAD
+    0x00001f34   0x00001f34   0x0000001c   Code   RO          567    i.writeEmuEeprom    emu_eeprom.o
+    0x00001f50   0x00001f50   0x00000134   Code   RO         1778    i.writeHoldingNRegister  modbusfunction.o
+    0x00002084   0x00002084   0x00000120   Code   RO         1779    i.writeHoldingRegister  modbusfunction.o
+    0x000021a4   0x000021a4   0x00000020   Code   RO         1730    i.writeReg          linkvariables.o
+    0x000021c4   0x000021c4   0x00000014   Code   RO         1731    i.writeRegN         linkvariables.o
+    0x000021d8   0x000021d8   0x00000020   Data   RO            5    .constdata          system_m0a21.o
+    0x000021f8   0x000021f8   0x00000018   Data   RO          409    .constdata          g_uart.o
+    0x00002210   0x00002210   0x00000008   Data   RO          570    .constdata          emu_eeprom.o
+    0x00002218   0x00002218   0x00000038   Data   RO          892    .constdata          clk.o
+    0x00002250   0x00002250   0x00000020   Data   RO         1219    .constdata          timer.o
+    0x00002270   0x00002270   0x00000028   Data   RO         1615    .constdata          modbusslave.o
+    0x00002298   0x00002298   0x00000200   Data   RO         1693    .constdata          crc16.o
+    0x00002498   0x00002498   0x00000020   Data   RO         1780    .constdata          modbusfunction.o
+    0x000024b8   0x000024b8   0x00000020   Data   RO         2194    Region$$Table       anon$$obj.o
+
+
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x000024d8, Size: 0x0000028c, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000000   0x000024d8   0x00000008   Data   RW            6    .data               system_m0a21.o
+    0x20000008   0x000024e0   0x00000030   Data   RW          196    .data               main.o
+    0x20000038   0x00002510   0x00000001   Data   RW          501    .data               i2c_eeprom.o
+    0x20000039   0x00002511   0x00000003   PAD
+    0x2000003c   0x00002514   0x00000010   Data   RW          571    .data               emu_eeprom.o
+    0x2000004c   0x00002524   0x00000028   Data   RW          708    .data               tstblock.o
+    0x20000074   0x0000254c   0x00000004   Data   RW          803    .data               retarget.o
+    0x20000078   0x00002550   0x00000064   Data   RW         1781    .data               modbusfunction.o
+    0x200000dc   0x000025b4   0x00000198   Data   RW         1782    .data               modbusfunction.o
+    0x20000274   0x0000274c   0x00000018   Data   RW         1783    .data               modbusfunction.o
+
+
+    Execution Region ER_ZI (Exec base: 0x2000028c, Load base: 0x00002764, Size: 0x000006cc, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x2000028c        -       0x00000020   Zero   RW          195    .bss                main.o
+    0x200002ac        -       0x00000030   Zero   RW          500    .bss                i2c_eeprom.o
+    0x200002dc   0x00002764   0x00000004   PAD
+    0x200002e0        -       0x00000460   Zero   RW          569    .bss                emu_eeprom.o
+    0x20000740        -       0x00000014   Zero   RW         1840    .bss                tbmenu.o
+    0x20000754   0x00002764   0x00000004   PAD
+    0x20000758        -       0x00000200   Zero   RW          176    STACK               startup_m0a21.o
+
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+       364         58         56          0          0       5061   clk.o
+        36          8        512          0          0       1304   crc16.o
+       124         14          0          0          0       2573   dl_flashctrl.o
+      1920        282          8         16       1120      60656   emu_eeprom.o
+       256         30          0          0          0       4767   fmc.o
+        78          0          0          0          0       5281   g_timer.o
+       242         24         24          0          0       3896   g_uart.o
+        40          0          0          0          0       1183   gpio.o
+       472         76          0          1         48      10932   i2c_eeprom.o
+        90         16          0          0          0       4581   linkvariables.o
+       672         94          0         48         32      51978   main.o
+      1060         36         32        532          0       8059   modbusfunction.o
+       648         32         40          0          0       9997   modbusslave.o
+       296        138          0          4          0       5494   retarget.o
+        28          8        192          0        512        720   startup_m0a21.o
+        26          0          0          0          0        538   sys.o
+        62         16         32          8          0      61266   system_m0a21.o
+       182         42          0          0         20       3204   tbmenu.o
+       112         16         32          0          0       1403   timer.o
+       368         32          0         40          0       3528   tstblock.o
+       206         12          0          0          0       3303   usci_i2c.o
+
+    ----------------------------------------------------------------------
+      7304        934        960        652       1740     249724   Object Totals
+         0          0         32          0          0          0   (incl. Generated)
+        22          0          0          3          8          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+         0          0          0          0          0          0   entry.o
+         0          0          0          0          0          0   entry10a.o
+         0          0          0          0          0          0   entry11a.o
+         4          0          0          0          0          0   entry12b.o
+         8          4          0          0          0          0   entry2.o
+         4          0          0          0          0          0   entry5.o
+         0          0          0          0          0          0   entry7b.o
+         0          0          0          0          0          0   entry8b.o
+         8          4          0          0          0          0   entry9a.o
+        30          0          0          0          0          0   handlers.o
+        40          0          0          0          0         72   idiv.o
+        36          8          0          0          0         68   init.o
+        32          0          0          0          0         68   llshl.o
+        34          0          0          0          0         68   llushr.o
+        36          0          0          0          0         60   memcpya.o
+        36          0          0          0          0        100   memseta.o
+       756         52          0          0          0        168   printf5.o
+        44          0          0          0          0         72   uidiv.o
+        96          0          0          0          0         84   uldiv.o
+
+    ----------------------------------------------------------------------
+      1168         68          0          0          0        760   Library Totals
+         4          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+      1164         68          0          0          0        760   mc_p.l
+
+    ----------------------------------------------------------------------
+      1168         68          0          0          0        760   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+      8472       1002        960        652       1740     246316   Grand Totals
+      8472       1002        960        652       1740     246316   ELF Image Totals
+      8472       1002        960        652          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                 9432 (   9.21kB)
+    Total RW  Size (RW Data + ZI Data)              2392 (   2.34kB)
+    Total ROM Size (Code + RO Data + RW Data)      10084 (   9.85kB)
+
+==============================================================================
+

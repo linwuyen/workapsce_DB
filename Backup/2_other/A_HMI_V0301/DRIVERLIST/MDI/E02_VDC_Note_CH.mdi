@@ -1,0 +1,1194 @@
+﻿TMDriver	E02VDC		V3.00
+AL0
+Major 1
+01-01: Hall sensor 序列
+0 = 序列 B, 1 = 序列 A
+01-02: 馬達極數
+2, 4, 8, 10極等
+01-03:
+保留
+01-04:
+保留
+01-05:
+保留
+01-06: 功率輸出額度
+依搭配馬達調整額定輸出功率 (單位: 0.1%)
+01-07:  
+保留
+01-08:
+保留
+01-09: 位置Feedback極性
+0 = 正常，1 = 反向
+01-10: 搖桿最大輸入電壓
+單位：0.01V。此值必須大於中立點電壓。
+01-11: 搖桿中立點輸入電壓
+單位：0.01V。此值必須介於最大與最小電壓之間。
+01-12: 搖桿最小輸入電壓
+單位：0.01V。此值必須小於中立點電壓。
+01-13: 搖桿中立點Deadband
+單位：0.01V
+01-14: 轉向機構最大位置
+搖桿輸入電壓為最大值時所對應的位置。
+01-15: 轉向機構中立位置
+搖桿輸入電壓為中立點時所對應的位置。
+01-16: 轉向機構最小位置
+搖桿輸入電壓為最小值時所對應的位置。
+Major 2
+02-01:
+保留
+02-02:
+保留
+02-03:
+保留
+02-04:
+保留
+02-05:
+保留
+02-06:
+保留
+02-07:
+保留
+02-08:
+保留
+02-09:
+保留
+02-10:
+保留
+02-11:
+保留
+02-12:
+保留
+02-13:
+保留
+02-14: SERVO-ON模式
+0 = 直接進入Servo On; 1 = 需要下指令才能進入ServoOn, 此時外部剎車由Free控制 ( Off = Lock, On = Unlock ); 2 = 需要下指令才能進入ServoOn, 此時外部剎車Unlock。 ( 指令為I/O功能14或者Multi-Control FC6,7 )
+02-15:
+保留
+02-16:
+保留
+Major 3
+03-01:
+保留
+03-02:
+保留
+03-03:
+保留
+03-04:
+保留
+03-05:
+保留
+03-06:
+保留
+03-07:
+保留
+03-08:
+保留
+03-09:
+保留
+03-10:
+保留
+03-11:
+保留
+03-12:
+保留
+03-13:
+保留
+03-14:
+保留
+03-15:
+保留
+03-16:
+保留
+Major 4
+04-01:
+保留
+04-02:
+保留
+04-03:
+保留
+04-04:
+保留
+04-05:
+保留
+04-06:
+保留
+04-07:
+保留
+04-08:
+保留
+04-09:
+保留
+04-10:
+保留
+04-11:
+保留
+04-12:
+保留
+04-13:
+保留
+04-14:
+保留
+04-15:
+保留
+04-16:
+保留
+Major 5
+05-01: 馬達過溫感測器類型
+0 = 常開 (N.O.), 1 = 常閉 (N.C.)
+05-02:
+保留
+05-03: Hall 序列 Alarm
+0 = 停用保護, 1 = 開啟保護 (只在08-01 = 0時才有作用)
+05-04: 過速 Alarm 轉速
+0 = 停用保護, 非0 = 轉速超過此設定跳保護 ( 單位: r/min )
+05-05:
+保留
+05-06:
+保留
+05-07: 轉矩限制堵轉Alarm
+0 = 持續輸出, 1000 = 1.0s後過載Alarm
+05-08: 超過轉矩限制允許時間
+單位: 0.1秒
+05-09: 低於轉矩限制回復時間
+單位: 0.1秒
+05-10:
+保留
+05-11:
+保留
+05-12:
+保留
+05-13:
+保留
+05-14:
+保留
+05-15: 過載(電流)保護機制
+0 = Foldback(拉回), 1= Alarm
+05-16: 過功率保護機制
+0 = Foldback(拉回), 1= Alarm
+Major 6
+06-01: 輸入X1功能
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-02: 輸入X2功能
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-03: 輸入X3功能
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-04: 輸入X4功能
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-05: 輸入X5(XH)功能 (高速)
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-06: Always ON Input 1
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-07: Always ON Input 2
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-08: Always ON Input 3
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-09: 輸出Y1功能
+0 = NC, 1 = SPD- UT, 2 = ALM-OUT, 3 = BUSY-OUT, 4 = VA-OUT, 5 = EN-OUT, 6 = ALM-PULSE, 7 = BUSY-ALM-PULSE, 11 = RUN-OUT, 12 = DIR-OUT, 13 = MBRAKE, 14 = MBRAKE-RELEASE
+06-10: 輸出Y2功能
+0 = NC, 1 = SPD- UT, 2 = ALM-OUT, 3 = BUSY-OUT, 4 = VA-OUT, 5 = EN-OUT, 6 = ALM-PULSE, 7 = BUSY-ALM-PULSE, 11 = RUN-OUT, 12 = DIR-OUT, 13 = MBRAKE, 14 = MBRAKE-RELEASE
+06-11: 輸出YH功能 (高速)
+0 = NC, 1 = SPD- UT, 2 = ALM-OUT, 3 = BUSY-OUT, 4 = VA-OUT, 5 = EN-OUT, 6 = ALM-PULSE, 7 = BUSY-ALM-PULSE, 11 = RUN-OUT, 12 = DIR-OUT, 13 = MBRAKE, 14 = MBRAKE-RELEASE
+06-12: OUT1輸出功能
+13: MBRAKE, 14: MBRAKE-RELEASE
+06-13:
+保留
+06-14:  
+保留
+06-15:  
+保留
+06-16: I/O作動準位
+設定輸入與輸出功能(06-01~11)作動(ON)的準位,設定值轉為2進制,每個bit對應一個IO；例：255 = 0b 000 0000 1111 1111, bit0對應06-01,bit1對應06-02,依此類推。0:ON準位為不導通, 1:ON準位為導通
+Major 7
+07-01: 數位轉矩限制第0段
+單位: 0.1%
+07-02: 數位轉矩限制第1段
+單位: 0.1%
+07-03: 數位轉矩限制第2段
+單位: 0.1%
+07-04: 數位轉矩限制第3段
+單位: 0.1%
+07-05: 數位轉矩限制第4段
+單位: 0.1%
+07-06: 數位轉矩限制第5段
+單位: 0.1%
+07-07: 數位轉矩限制第6段
+單位: 0.1%
+07-08: 數位轉矩限制第7段
+單位: 0.1%
+07-09:
+保留
+07-10:
+保留
+07-11:
+保留
+07-12:
+保留
+07-13:
+保留
+07-14:
+保留
+07-15:
+保留
+07-16:
+保留
+Major 8
+08-01:
+保留
+08-02:
+保留
+08-03:
+保留
+08-04: 扭力PID控制常數P
+數值: 1 ~ 65535
+08-05: PID單次最大回補量
+單位：0.02% Duty
+08-06:
+保留
+08-07:
+保留
+08-08:
+保留
+08-09:
+保留
+08-10:
+保留
+08-11:
+保留
+08-12:
+保留
+08-13:
+保留
+08-14:
+保留
+08-15:
+保留
+08-16:
+保留
+Major 9
+09-01: 遠端(NET)I/O X0功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-02: 遠端(NET)I/O X1功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-03: 遠端(NET)I/O X2功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-04: 遠端(NET)I/O X3功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-05: 遠端(NET)I/O X4功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-06: 遠端(NET)I/O X5功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-07: 遠端(NET)I/O X6功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-08: 遠端(NET)I/O X7功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-09:  
+保留
+09-10: 通訊異常保護行為
+0 = Alarm, 1 = 虛擬I/O狀態清除，2 = Alarm + 虛擬I/O狀態清除
+09-11: WatchData選擇
+選擇DynamicData與WatchData頁面。0 = Page0, 1 = Page1
+09-12: RS485通訊逾時
+0 = 不作動, 1000 = 失去連線1000ms後Alarm
+09-13: RS485通訊異常次數
+通訊異常次數大於等於此設定時Alarm (單位：次)
+09-14: RS232通訊逾時
+0 = 不作動, 1000 = 失去連線1000ms後Alarm
+09-15: RS232通訊異常次數
+通訊異常次數大於等於此設定時Alarm (單位：次)
+09-16: RS485物理層設定
+BITF形式：Bit1 + Bit 0 = Parity : 0 = None, 1 = Odd, 2 = Even； Bit 2 = Stop bits : 0 = 1bit, 1 = 2bits；Bit 3 = Data bits : 0 = 8bits, 1 = 7bits
+Major 10
+10-01: Alarm紀錄1
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-02: Alarm紀錄2
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-03: Alarm紀錄3
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-04: Alarm紀錄4
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-05: Alarm紀錄5
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-06: Alarm紀錄6
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-07: Alarm紀錄7
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-08: Alarm紀錄8
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-09: Alarm紀錄9
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-10: Alarm紀錄10
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-11:  
+保留
+10-12:  
+保留
+10-13:  
+保留
+10-14:  
+保留
+10-15:  
+保留
+10-16:
+保留
+Major 11
+11-01:  
+保留
+11-02:  
+保留
+11-03:  
+保留
+11-04:  
+保留
+11-05:  
+保留
+11-06:  
+保留
+11-07:  
+保留
+11-08:  
+保留
+11-09:  
+保留
+11-10:  
+保留
+11-11:  
+保留
+11-12:  
+保留
+11-13:  
+保留
+11-14:  
+保留
+11-15:  
+保留
+11-16:  
+保留
+Major 12
+12-01: 通訊錯誤1
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-02: 通訊錯誤2
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-03: 通訊錯誤3
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-04: 通訊錯誤4
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-05: 通訊錯誤5
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-06: 通訊錯誤6
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-07: 通訊錯誤7
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-08: 通訊錯誤8
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-09: 通訊錯誤9
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-10: 通訊錯誤10
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-11:  
+保留
+12-12:  
+保留
+12-13:  
+保留
+12-14:  
+保留
+12-15:  
+保留
+12-16:  
+保留
+AL1
+Major 1
+01-01: Hall sensor 序列
+0 = 序列 B, 1 = 序列 A
+01-02: 馬達極數
+2, 4, 8, 10極等
+01-03: 無載全轉速
+單位: r/min
+01-04: 順時針方向定義
+0 = Top(軸端), 1 = Bottom(底部)
+01-05: 馬達類型
+0 = 無刷馬達，1 = 有刷馬達。注：當設定為有刷馬達時，參數01-09: 控制模式必須設為1 ( Duty )。
+01-06: 功率輸出額度
+依搭配馬達調整額定輸出功率 (單位: 0.1%)
+01-07:  
+保留
+01-08: Phase Factor
+每個相位對應幾個單位位置。
+01-09: 位置Feedback極性
+0 = 正常，1 = 反向
+01-10: 搖桿最大輸入電壓
+單位：0.01V。此值必須大於中立點電壓。
+01-11: 搖桿中立點輸入電壓
+單位：0.01V。此值必須介於最大與最小電壓之間。
+01-12: 搖桿最小輸入電壓
+單位：0.01V。此值必須小於中立點電壓。
+01-13: 搖桿中立點Deadband
+單位：0.01V
+01-14: 轉向機構最大位置
+搖桿輸入電壓為最大值時所對應的位置。
+01-15: 轉向機構中立位置
+搖桿輸入電壓為中立點時所對應的位置。
+01-16: 轉向機構最小位置
+搖桿輸入電壓為最小值時所對應的位置。
+Major 2
+02-01: SC/CC 模式
+0 = SC Mode, 1 = CC Mode
+02-02: 啟動預力輸出
+單位: 0.1% Duty
+02-03: 運轉資料來源設定
+SGL(VR/A1/A2): 0=Spd/Spd, 1=Dgit., 2=Spd/Spd/Tq, 3=-/-/Tq, 4=-/Spd, 5=ACC,DEC/Spd/Tq, 6=ACC,DEC/Spd, 7 = Tq/Spd/ACC,DEC。PLS(VR/A1/A2/XH): 0=-/-/-/Spd, 1=-/ACC/DEC/Spd, 2=Tq/ACC/DEC/Spd, 3=-/-/Tq/Spd
+02-04: 外部輸入調整信號範圍
+0 = 0~5V, 1 = 0~10V 
+02-05: 外部輸入信號增益值
+1V變化對應的轉速r/min (單位: r/min per V)
+02-06: 外部輸入信號OFFSET
+類比輸入OFFSET的電壓設定 (單位: 0.01V)
+02-07: OFFSET對應轉速
+類比輸入OFFSET電壓對應轉速 (單位: r/min)
+02-08: 類比輸入信號最小值行為
+0 = 馬達停止, 1 = 維持最低速
+02-09: 加減速極性
+0: VR由小而大 => 加減速由慢而快。 1: VR由小而大 => 加減速由快而慢
+02-10: 轉速調整方法
+0 = Single，1 = XH PFM輸入, 2 = XH PWM 輸入
+02-11: SPK轉矩變化率
+簡易位置保持( Slight position-keeping )功能中轉矩變化率設定；單位：ms ( 1A/ms ) 
+02-12: SPK保持力1
+簡易位置保持( Slight position-keeping )功能中原點的保持轉矩；單位：0.1% ( 參考對象為額定電流 ) 
+02-13: SPK保持力2
+簡易位置保持( Slight position-keeping )功能中偏離原點時的最大保持轉矩；單位：0.1% ( 參考對象為額定電流 )
+02-14: SERVO-ON模式
+0 = 直接進入Servo On; 1 = 需要下指令才能進入ServoOn, 此時外部剎車由Free控制 ( Off = Lock, On = Unlock ); 2 = 需要下指令才能進入ServoOn, 此時外部剎車Unlock。 ( 指令為I/O功能14或者Multi-Control FC6,7 )
+02-15: 轉速到達範圍(VA)
+當馬達轉速與目標轉速差在此範圍時，VA-OUT輸出作動 (單位: r/min)
+02-16: EN-OUT轉速
+當馬達轉速超過此設定值時，EN- OUT輸出作動 (單位: r/min)
+Major 3
+03-01: 調速上限
+類比輸入或脈波輸入設定轉速的上限 (單位: r/min)
+03-02: 調速下限
+類比輸入或脈波輸入設定轉速的下限 (單位: r/min)
+03-03: 類比調整加減速上限
+類比輸入設定加減速時間的上限 (單位: 0.1秒)
+03-04: 類比調整加減速下限
+類比輸入設定加減速時間的下限 (單位: 0.1秒)
+03-05: 類比調整轉矩限制上限
+類比輸入設定轉矩限制的上限 (單位: 0.1%) 
+03-06: 類比調整轉矩限制下限
+類比輸入設定轉矩限制的下限 (單位: 0.1%) 
+03-07: 類比調整Duty上限
+類比輸入設定Duty的上限 (單位: 0.1%)
+03-08: 類比調整Duty下限
+類比輸入設定Duty的下限 (單位: 0.1%)
+03-09: 數位轉速第0段
+單位: 位置變化 / 秒
+03-10: 數位轉速第1段
+單位: 位置變化 / 秒
+03-11: 數位轉速第2段
+單位: 位置變化 / 秒
+03-12: 數位轉速第3段
+單位: 位置變化 / 秒
+03-13: 數位轉速第4段
+單位: 位置變化 / 秒
+03-14: 數位轉速第5段
+單位: 位置變化 / 秒
+03-15: 數位轉速第6段
+單位: 位置變化 / 秒
+03-16: 數位轉速第7段
+單位: 位置變化 / 秒
+Major 4
+04-01: 數位加速度第0段
+單位: 速度變化 / 秒
+04-02: 數位加速度第1段
+單位: 速度變化 / 秒
+04-03: 數位加速度第2段
+單位: 速度變化 / 秒
+04-04: 數位加速度第3段
+單位: 速度變化 / 秒
+04-05: 數位加速度第4段
+單位: 速度變化 / 秒
+04-06: 數位加速度第5段
+單位: 速度變化 / 秒
+04-07: 數位加速度第6段
+單位: 速度變化 / 秒
+04-08: 數位加速度第7段
+單位: 速度變化 / 秒
+04-09: 數位減速度第0段
+單位: 速度變化 / 秒
+04-10: 數位減速度第1段
+單位: 速度變化 / 秒
+04-11: 數位減速度第2段
+單位: 速度變化 / 秒
+04-12: 數位減速度第3段
+單位: 速度變化 / 秒
+04-13: 數位減速度第4段
+單位: 速度變化 / 秒
+04-14: 數位減速度第5段
+單位: 速度變化 / 秒
+04-15: 數位減速度第6段
+單位: 速度變化 / 秒
+04-16: 數位減速度第7段
+單位: 速度變化 / 秒
+Major 5
+05-01: 馬達過溫感測器類型
+0 = 常開 (N.O.), 1 = 常閉 (N.C.)
+05-02: 初期運轉禁止Alarm
+初期運轉禁止保護設定. 0 = 停用保護, 1 = 開啟保護
+05-03: Hall 序列 Alarm
+0 = 停用保護, 1 = 開啟保護 (只在08-01 = 0時才有作用)
+05-04: 過速 Alarm 轉速
+0 = 停用保護, 非0 = 轉速超過此設定跳保護 ( 單位: r/min )
+05-05: 異常自動解除時間
+0 = Start/Stop必須為Off才可以Reset, 1 = 異常發生後0.1秒進行Auto Reset (可自動解除的異常由05-06設定)
+05-06: 設定可自動解除的異常
+有設定的保護將在符合"05-05: 異常自動解除時間"條件時自動解除異常。假如設定值為48 ( 0b 0000 0000 0011 0000 )，第4與5bit不為0，表示燈號為4與5的異常可以被自動解除
+05-07: 轉矩限制堵轉Alarm
+0 = 持續輸出, 1000 = 1.0s後過載Alarm
+05-08: 超過轉矩限制允許時間
+單位: 0.1秒
+05-09: 低於轉矩限制回復時間
+單位: 0.1秒
+05-10: 過電壓保護點
+單位: 0.01V
+05-11: 過電壓回復點
+單位: 0.01V
+05-12: 低電壓保護點
+單位: 0.01V
+05-13: 低電壓回復點
+單位: 0.01V
+05-14: LVP保護點
+單位: 0.01V
+05-15: 過載(電流)保護機制
+0 = Foldback(拉回), 1= Alarm
+05-16: 過功率保護機制
+0 = Foldback(拉回), 1= Alarm
+Major 6
+06-01: 輸入X1功能
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-02: 輸入X2功能
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-03: 輸入X3功能
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-04: 輸入X4功能
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-05: 輸入X5(XH)功能 (高速)
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-06: Always ON Input 1
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-07: Always ON Input 2
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-08: Always ON Input 3
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-09: 輸出Y1功能
+0 = NC, 1 = SPD- UT, 2 = ALM-OUT, 3 = BUSY-OUT, 4 = VA-OUT, 5 = EN-OUT, 6 = ALM-PULSE, 7 = BUSY-ALM-PULSE, 11 = RUN-OUT, 12 = DIR-OUT, 13 = MBRAKE, 14 = MBRAKE-RELEASE
+06-10: 輸出Y2功能
+0 = NC, 1 = SPD- UT, 2 = ALM-OUT, 3 = BUSY-OUT, 4 = VA-OUT, 5 = EN-OUT, 6 = ALM-PULSE, 7 = BUSY-ALM-PULSE, 11 = RUN-OUT, 12 = DIR-OUT, 13 = MBRAKE, 14 = MBRAKE-RELEASE
+06-11: 輸出YH功能 (高速)
+0 = NC, 1 = SPD- UT, 2 = ALM-OUT, 3 = BUSY-OUT, 4 = VA-OUT, 5 = EN-OUT, 6 = ALM-PULSE, 7 = BUSY-ALM-PULSE, 11 = RUN-OUT, 12 = DIR-OUT, 13 = MBRAKE, 14 = MBRAKE-RELEASE
+06-12: OUT1輸出功能
+13: MBRAKE, 14: MBRAKE-RELEASE
+06-13: OUT 2輸出功能
+13: MBRAKE, 14: MBRAKE-RELEASE
+06-14:  
+保留
+06-15:  
+保留
+06-16: I/O作動準位
+設定輸入與輸出功能(06-01~11)作動(ON)的準位,設定值轉為2進制,每個bit對應一個IO；例：255 = 0b 000 0000 1111 1111, bit0對應06-01,bit1對應06-02,依此類推。0:ON準位為不導通, 1:ON準位為導通
+Major 7
+07-01: 數位轉矩限制第0段
+單位: 0.1%
+07-02: 數位轉矩限制第1段
+單位: 0.1%
+07-03: 數位轉矩限制第2段
+單位: 0.1%
+07-04: 數位轉矩限制第3段
+單位: 0.1%
+07-05: 數位轉矩限制第4段
+單位: 0.1%
+07-06: 數位轉矩限制第5段
+單位: 0.1%
+07-07: 數位轉矩限制第6段
+單位: 0.1%
+07-08: 數位轉矩限制第7段
+單位: 0.1%
+07-09: 數位Duty第0段
+單位: 0.1%
+07-10: 數位Duty第1段
+單位: 0.1%
+07-11: 數位Duty第2段
+單位: 0.1%
+07-12: 數位Duty第3段
+單位: 0.1%
+07-13: 數位Duty第4段
+單位: 0.1%
+07-14: 數位Duty第5段
+單位: 0.1%
+07-15: 數位Duty第6段
+單位: 0.1%
+07-16: 數位Duty第7段
+單位: 0.1%
+Major 8
+08-01: 控制模式
+0 = Speed, 1 = Duty, 2 = Position
+08-02: 速度PID控制常數P
+數值: 1 ~ 65535
+08-03: 速度PID控制常數D
+數值: 1 ~ 65535
+08-04: 扭力PID控制常數P
+數值: 1 ~ 65535
+08-05: PID單次最大回補量
+單位：0.02% Duty
+08-06: 減速特徵
+0 = 馬達輸出方向不允許與運轉方向相反，1 = 馬達輸出方向允許與運轉方向相反
+08-07: 正反轉模式
+0 = 不作動, 1 = 停止
+08-08: 剎車功能
+0 = 不開啟, 1 = 啟動
+08-09: XH PWM 訊號 OFFSET
+加入PWM訊號上升/下降時間微調，用以修正原件造成的誤差 ( 單位：0.0167us, 此參數為 int16_t, 1 = 上升1單位, 65535 = 下降1單位 )
+08-10: 轉向位置PID控制常數P
+數值: 1 ~ 65535
+08-11: 停止時保持力
+0 = Free, 1 = 制動剎車(馬達短路), 2 = 簡易位置保持(Slight position-keeping, SPK)
+08-12: 急停額外作動時間
+當急停Duty增加至100%後啟動timer，而當timer到達此設定值或者馬達停止時結束急停作動。 (單位：0.1秒)
+08-13: 緊急加速度
+STOP-MODE作動時，緊急反向之加速度 (單位：0.1秒)
+08-14: 緊急減速度
+STOP-MODE作動時，緊急反向與停止之減速度 (單位：0.1秒)
+08-15: 位置命令型式
+0 = Encoder形式, Position = ( index, pulse )；1 = 組合形式, Position = ( position value x Encoder resolution )
+08-16: 轉向位置PID控制常數I
+數值: 1 ~ 65535
+Major 9
+09-01: 遠端(NET)I/O X0功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-02: 遠端(NET)I/O X1功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-03: 遠端(NET)I/O X2功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-04: 遠端(NET)I/O X3功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-05: 遠端(NET)I/O X4功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-06: 遠端(NET)I/O X5功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-07: 遠端(NET)I/O X6功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-08: 遠端(NET)I/O X7功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-09:  
+保留
+09-10: 通訊異常保護行為
+0 = Alarm, 1 = 虛擬I/O狀態清除，2 = Alarm + 虛擬I/O狀態清除
+09-11: WatchData選擇
+選擇DynamicData與WatchData頁面。0 = Page0, 1 = Page1
+09-12: RS485通訊逾時
+0 = 不作動, 1000 = 失去連線1000ms後Alarm
+09-13: RS485通訊異常次數
+通訊異常次數大於等於此設定時Alarm (單位：次)
+09-14: RS232通訊逾時
+0 = 不作動, 1000 = 失去連線1000ms後Alarm
+09-15: RS232通訊異常次數
+通訊異常次數大於等於此設定時Alarm (單位：次)
+09-16: RS485物理層設定
+BITF形式：Bit1 + Bit 0 = Parity : 0 = None, 1 = Odd, 2 = Even； Bit 2 = Stop bits : 0 = 1bit, 1 = 2bits；Bit 3 = Data bits : 0 = 8bits, 1 = 7bits
+Major 10
+10-01: Alarm紀錄1
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-02: Alarm紀錄2
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-03: Alarm紀錄3
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-04: Alarm紀錄4
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-05: Alarm紀錄5
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-06: Alarm紀錄6
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-07: Alarm紀錄7
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-08: Alarm紀錄8
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-09: Alarm紀錄9
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-10: Alarm紀錄10
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-11:  
+保留
+10-12:  
+保留
+10-13:  
+保留
+10-14:  
+保留
+10-15:  
+保留
+10-16: EEP錯誤指引
+當Error Code為22時(參數EEP)，此數值顯示參數EEP與FWEEP中哪一個設定不符合 (例如數值49為低電壓回復點)
+Major 11
+11-01:  
+保留
+11-02:  
+保留
+11-03:  
+保留
+11-04:  
+保留
+11-05:  
+保留
+11-06:  
+保留
+11-07:  
+保留
+11-08:  
+保留
+11-09:  
+保留
+11-10:  
+保留
+11-11:  
+保留
+11-12:  
+保留
+11-13:  
+保留
+11-14:  
+保留
+11-15:  
+保留
+11-16:  
+保留
+Major 12
+12-01: 通訊錯誤1
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-02: 通訊錯誤2
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-03: 通訊錯誤3
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-04: 通訊錯誤4
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-05: 通訊錯誤5
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-06: 通訊錯誤6
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-07: 通訊錯誤7
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-08: 通訊錯誤8
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-09: 通訊錯誤9
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-10: 通訊錯誤10
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-11:  
+保留
+12-12:  
+保留
+12-13:  
+保留
+12-14:  
+保留
+12-15:  
+保留
+12-16:  
+保留
+AL2
+Major 1
+01-01: Hall sensor 序列
+0 = 序列 B, 1 = 序列 A
+01-02: 馬達極數
+2, 4, 8, 10極等
+01-03: 無載全轉速
+單位: r/min
+01-04: 順時針方向定義
+0 = Top(軸端), 1 = Bottom(底部)
+01-05: 馬達類型
+0 = 無刷馬達，1 = 有刷馬達。注：當設定為有刷馬達時，參數01-09: 控制模式必須設為1 ( Duty )。
+01-06: 功率輸出額度
+依搭配馬達調整額定輸出功率 (單位: 0.1%)
+01-07:  
+保留
+01-08: Phase Factor
+每個相位對應幾個單位位置。
+01-09: 位置Feedback極性
+0 = 正常，1 = 反向
+01-10: 搖桿最大輸入電壓
+單位：0.01V。此值必須大於中立點電壓。
+01-11: 搖桿中立點輸入電壓
+單位：0.01V。此值必須介於最大與最小電壓之間。
+01-12: 搖桿最小輸入電壓
+單位：0.01V。此值必須小於中立點電壓。
+01-13: 搖桿中立點Deadband
+單位：0.01V
+01-14: 轉向機構最大位置
+搖桿輸入電壓為最大值時所對應的位置。
+01-15: 轉向機構中立位置
+搖桿輸入電壓為中立點時所對應的位置。
+01-16: 轉向機構最小位置
+搖桿輸入電壓為最小值時所對應的位置。
+Major 2
+02-01: SC/CC 模式
+0 = SC Mode, 1 = CC Mode
+02-02: 啟動預力輸出
+單位: 0.1% Duty
+02-03: 運轉資料來源設定
+SGL(VR/A1/A2): 0=Spd/Spd, 1=Dgit., 2=Spd/Spd/Tq, 3=-/-/Tq, 4=-/Spd, 5=ACC,DEC/Spd/Tq, 6=ACC,DEC/Spd, 7 = Tq/Spd/ACC,DEC。PLS(VR/A1/A2/XH): 0=-/-/-/Spd, 1=-/ACC/DEC/Spd, 2=Tq/ACC/DEC/Spd, 3=-/-/Tq/Spd
+02-04: 外部輸入調整信號範圍
+0 = 0~5V, 1 = 0~10V 
+02-05: 外部輸入信號增益值
+1V變化對應的轉速r/min (單位: r/min per V)
+02-06: 外部輸入信號OFFSET
+類比輸入OFFSET的電壓設定 (單位: 0.01V)
+02-07: OFFSET對應轉速
+類比輸入OFFSET電壓對應轉速 (單位: r/min)
+02-08: 類比輸入信號最小值行為
+0 = 馬達停止, 1 = 維持最低速
+02-09: 加減速極性
+0: VR由小而大 => 加減速由慢而快。 1: VR由小而大 => 加減速由快而慢
+02-10: 轉速調整方法
+0 = Single，1 = XH PFM輸入, 2 = XH PWM 輸入
+02-11: SPK轉矩變化率
+簡易位置保持( Slight position-keeping )功能中轉矩變化率設定；單位：ms ( 1A/ms ) 
+02-12: SPK保持力1
+簡易位置保持( Slight position-keeping )功能中原點的保持轉矩；單位：0.1% ( 參考對象為額定電流 ) 
+02-13: SPK保持力2
+簡易位置保持( Slight position-keeping )功能中偏離原點時的最大保持轉矩；單位：0.1% ( 參考對象為額定電流 )
+02-14: SERVO-ON模式
+0 = 直接進入Servo On; 1 = 需要下指令才能進入ServoOn, 此時外部剎車由Free控制 ( Off = Lock, On = Unlock ); 2 = 需要下指令才能進入ServoOn, 此時外部剎車Unlock。 ( 指令為I/O功能14或者Multi-Control FC6,7 )
+02-15: 轉速到達範圍(VA)
+當馬達轉速與目標轉速差在此範圍時，VA-OUT輸出作動 (單位: r/min)
+02-16: EN-OUT轉速
+當馬達轉速超過此設定值時，EN- OUT輸出作動 (單位: r/min)
+Major 3
+03-01: 調速上限
+類比輸入或脈波輸入設定轉速的上限 (單位: r/min)
+03-02: 調速下限
+類比輸入或脈波輸入設定轉速的下限 (單位: r/min)
+03-03: 類比調整加減速上限
+類比輸入設定加減速時間的上限 (單位: 0.1秒)
+03-04: 類比調整加減速下限
+類比輸入設定加減速時間的下限 (單位: 0.1秒)
+03-05: 類比調整轉矩限制上限
+類比輸入設定轉矩限制的上限 (單位: 0.1%) 
+03-06: 類比調整轉矩限制下限
+類比輸入設定轉矩限制的下限 (單位: 0.1%) 
+03-07: 類比調整Duty上限
+類比輸入設定Duty的上限 (單位: 0.1%)
+03-08: 類比調整Duty下限
+類比輸入設定Duty的下限 (單位: 0.1%)
+03-09: 數位轉速第0段
+單位: 位置變化 / 秒
+03-10: 數位轉速第1段
+單位: 位置變化 / 秒
+03-11: 數位轉速第2段
+單位: 位置變化 / 秒
+03-12: 數位轉速第3段
+單位: 位置變化 / 秒
+03-13: 數位轉速第4段
+單位: 位置變化 / 秒
+03-14: 數位轉速第5段
+單位: 位置變化 / 秒
+03-15: 數位轉速第6段
+單位: 位置變化 / 秒
+03-16: 數位轉速第7段
+單位: 位置變化 / 秒
+Major 4
+04-01: 數位加速度第0段
+單位: 速度變化 / 秒
+04-02: 數位加速度第1段
+單位: 速度變化 / 秒
+04-03: 數位加速度第2段
+單位: 速度變化 / 秒
+04-04: 數位加速度第3段
+單位: 速度變化 / 秒
+04-05: 數位加速度第4段
+單位: 速度變化 / 秒
+04-06: 數位加速度第5段
+單位: 速度變化 / 秒
+04-07: 數位加速度第6段
+單位: 速度變化 / 秒
+04-08: 數位加速度第7段
+單位: 速度變化 / 秒
+04-09: 數位減速度第0段
+單位: 速度變化 / 秒
+04-10: 數位減速度第1段
+單位: 速度變化 / 秒
+04-11: 數位減速度第2段
+單位: 速度變化 / 秒
+04-12: 數位減速度第3段
+單位: 速度變化 / 秒
+04-13: 數位減速度第4段
+單位: 速度變化 / 秒
+04-14: 數位減速度第5段
+單位: 速度變化 / 秒
+04-15: 數位減速度第6段
+單位: 速度變化 / 秒
+04-16: 數位減速度第7段
+單位: 速度變化 / 秒
+Major 5
+05-01: 馬達過溫感測器類型
+0 = 常開 (N.O.), 1 = 常閉 (N.C.)
+05-02: 初期運轉禁止Alarm
+初期運轉禁止保護設定. 0 = 停用保護, 1 = 開啟保護
+05-03: Hall 序列 Alarm
+0 = 停用保護, 1 = 開啟保護 (只在08-01 = 0時才有作用)
+05-04: 過速 Alarm 轉速
+0 = 停用保護, 非0 = 轉速超過此設定跳保護 ( 單位: r/min )
+05-05: 異常自動解除時間
+0 = Start/Stop必須為Off才可以Reset, 1 = 異常發生後0.1秒進行Auto Reset (可自動解除的異常由05-06設定)
+05-06: 設定可自動解除的異常
+有設定的保護將在符合"05-05: 異常自動解除時間"條件時自動解除異常。假如設定值為48 ( 0b 0000 0000 0011 0000 )，第4與5bit不為0，表示燈號為4與5的異常可以被自動解除
+05-07: 轉矩限制堵轉Alarm
+0 = 持續輸出, 1000 = 1.0s後過載Alarm
+05-08: 超過轉矩限制允許時間
+單位: 0.1秒
+05-09: 低於轉矩限制回復時間
+單位: 0.1秒
+05-10: 過電壓保護點
+單位: 0.01V
+05-11: 過電壓回復點
+單位: 0.01V
+05-12: 低電壓保護點
+單位: 0.01V
+05-13: 低電壓回復點
+單位: 0.01V
+05-14: LVP保護點
+單位: 0.01V
+05-15: 過載(電流)保護機制
+0 = Foldback(拉回), 1= Alarm
+05-16: 過功率保護機制
+0 = Foldback(拉回), 1= Alarm
+Major 6
+06-01: 輸入X1功能
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-02: 輸入X2功能
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-03: 輸入X3功能
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-04: 輸入X4功能
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-05: 輸入X5(XH)功能 (高速)
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-06: Always ON Input 1
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-07: Always ON Input 2
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-08: Always ON Input 3
+0=NC, 5=FREE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 20=RGN-OT, 21=EXT-ERROR
+06-09: 輸出Y1功能
+0 = NC, 1 = SPD- UT, 2 = ALM-OUT, 3 = BUSY-OUT, 4 = VA-OUT, 5 = EN-OUT, 6 = ALM-PULSE, 7 = BUSY-ALM-PULSE, 11 = RUN-OUT, 12 = DIR-OUT, 13 = MBRAKE, 14 = MBRAKE-RELEASE
+06-10: 輸出Y2功能
+0 = NC, 1 = SPD- UT, 2 = ALM-OUT, 3 = BUSY-OUT, 4 = VA-OUT, 5 = EN-OUT, 6 = ALM-PULSE, 7 = BUSY-ALM-PULSE, 11 = RUN-OUT, 12 = DIR-OUT, 13 = MBRAKE, 14 = MBRAKE-RELEASE
+06-11: 輸出YH功能 (高速)
+0 = NC, 1 = SPD- UT, 2 = ALM-OUT, 3 = BUSY-OUT, 4 = VA-OUT, 5 = EN-OUT, 6 = ALM-PULSE, 7 = BUSY-ALM-PULSE, 11 = RUN-OUT, 12 = DIR-OUT, 13 = MBRAKE, 14 = MBRAKE-RELEASE
+06-12: OUT1輸出功能
+13: MBRAKE, 14: MBRAKE-RELEASE
+06-13: OUT 2輸出功能
+13: MBRAKE, 14: MBRAKE-RELEASE
+06-14:  
+保留
+06-15:  
+保留
+06-16: I/O作動準位
+設定輸入與輸出功能(06-01~11)作動(ON)的準位,設定值轉為2進制,每個bit對應一個IO；例：255 = 0b 000 0000 1111 1111, bit0對應06-01,bit1對應06-02,依此類推。0:ON準位為不導通, 1:ON準位為導通
+Major 7
+07-01: 數位轉矩限制第0段
+單位: 0.1%
+07-02: 數位轉矩限制第1段
+單位: 0.1%
+07-03: 數位轉矩限制第2段
+單位: 0.1%
+07-04: 數位轉矩限制第3段
+單位: 0.1%
+07-05: 數位轉矩限制第4段
+單位: 0.1%
+07-06: 數位轉矩限制第5段
+單位: 0.1%
+07-07: 數位轉矩限制第6段
+單位: 0.1%
+07-08: 數位轉矩限制第7段
+單位: 0.1%
+07-09: 數位Duty第0段
+單位: 0.1%
+07-10: 數位Duty第1段
+單位: 0.1%
+07-11: 數位Duty第2段
+單位: 0.1%
+07-12: 數位Duty第3段
+單位: 0.1%
+07-13: 數位Duty第4段
+單位: 0.1%
+07-14: 數位Duty第5段
+單位: 0.1%
+07-15: 數位Duty第6段
+單位: 0.1%
+07-16: 數位Duty第7段
+單位: 0.1%
+Major 8
+08-01: 控制模式
+0 = Speed, 1 = Duty, 2 = Position
+08-02: 速度PID控制常數P
+數值: 1 ~ 65535
+08-03: 速度PID控制常數D
+數值: 1 ~ 65535
+08-04: 扭力PID控制常數P
+數值: 1 ~ 65535
+08-05: PID單次最大回補量
+單位：0.02% Duty
+08-06: 減速特徵
+0 = 馬達輸出方向不允許與運轉方向相反，1 = 馬達輸出方向允許與運轉方向相反
+08-07: 正反轉模式
+0 = 不作動, 1 = 停止
+08-08: 剎車功能
+0 = 不開啟, 1 = 啟動
+08-09: XH PWM 訊號 OFFSET
+加入PWM訊號上升/下降時間微調，用以修正原件造成的誤差 ( 單位：0.0167us, 此參數為 int16_t, 1 = 上升1單位, 65535 = 下降1單位 )
+08-10: 轉向位置PID控制常數P
+數值: 1 ~ 65535
+08-11: 停止時保持力
+0 = Free, 1 = 制動剎車(馬達短路), 2 = 簡易位置保持(Slight position-keeping, SPK)
+08-12: 急停額外作動時間
+當急停Duty增加至100%後啟動timer，而當timer到達此設定值或者馬達停止時結束急停作動。 (單位：0.1秒)
+08-13: 緊急加速度
+STOP-MODE作動時，緊急反向之加速度 (單位：0.1秒)
+08-14: 緊急減速度
+STOP-MODE作動時，緊急反向與停止之減速度 (單位：0.1秒)
+08-15: 位置命令型式
+0 = Encoder形式, Position = ( index, pulse )；1 = 組合形式, Position = ( position value x Encoder resolution )
+08-16: 轉向位置PID控制常數I
+數值: 1 ~ 65535
+Major 9
+09-01: 遠端(NET)I/O X0功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-02: 遠端(NET)I/O X1功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-03: 遠端(NET)I/O X2功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-04: 遠端(NET)I/O X3功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-05: 遠端(NET)I/O X4功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-06: 遠端(NET)I/O X5功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-07: 遠端(NET)I/O X6功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-08: 遠端(NET)I/O X7功能
+0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR
+09-09:  
+保留
+09-10: 通訊異常保護行為
+0 = Alarm, 1 = 虛擬I/O狀態清除，2 = Alarm + 虛擬I/O狀態清除
+09-11: WatchData選擇
+選擇DynamicData與WatchData頁面。0 = Page0, 1 = Page1
+09-12: RS485通訊逾時
+0 = 不作動, 1000 = 失去連線1000ms後Alarm
+09-13: RS485通訊異常次數
+通訊異常次數大於等於此設定時Alarm (單位：次)
+09-14: RS232通訊逾時
+0 = 不作動, 1000 = 失去連線1000ms後Alarm
+09-15: RS232通訊異常次數
+通訊異常次數大於等於此設定時Alarm (單位：次)
+09-16: RS485物理層設定
+BITF形式：Bit1 + Bit 0 = Parity : 0 = None, 1 = Odd, 2 = Even； Bit 2 = Stop bits : 0 = 1bit, 1 = 2bits；Bit 3 = Data bits : 0 = 8bits, 1 = 7bits
+Major 10
+10-01: Alarm紀錄1
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-02: Alarm紀錄2
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-03: Alarm紀錄3
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-04: Alarm紀錄4
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-05: Alarm紀錄5
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-06: Alarm紀錄6
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-07: Alarm紀錄7
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-08: Alarm紀錄8
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-09: Alarm紀錄9
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-10: Alarm紀錄10
+1=過電流, 2=過載, 3=Hall, 4=過電壓, 5=低電壓, 6=Mos OT, 7=啟動不良, 8=EEP, 9=RGN OT, 10=Motor OT, 12=過速, 13=Encoder Error, 14=PWR ON RUN, 15=EXT Error, 20=Hall序列, 21=指令, 22=參數(EEP), 其他=保留
+10-11:  
+保留
+10-12:  
+保留
+10-13:  
+保留
+10-14:  
+保留
+10-15:  
+保留
+10-16: EEP錯誤指引
+當Error Code為22時(參數EEP)，此數值顯示參數EEP與FWEEP中哪一個設定不符合 (例如數值49為低電壓回復點)
+Major 11
+11-01:  
+保留
+11-02:  
+保留
+11-03:  
+保留
+11-04:  
+保留
+11-05:  
+保留
+11-06:  
+保留
+11-07:  
+保留
+11-08:  
+保留
+11-09:  
+保留
+11-10:  
+保留
+11-11:  
+保留
+11-12:  
+保留
+11-13:  
+保留
+11-14:  
+保留
+11-15:  
+保留
+11-16:  
+保留
+Major 12
+12-01: 通訊錯誤1
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-02: 通訊錯誤2
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-03: 通訊錯誤3
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-04: 通訊錯誤4
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-05: 通訊錯誤5
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-06: 通訊錯誤6
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-07: 通訊錯誤7
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-08: 通訊錯誤8
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-09: 通訊錯誤9
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-10: 通訊錯誤10
+132(84h) = Frame錯誤，133(85h) = 通訊逾時，136(88h) = 指令無效(未支援)，140(8Ch) = 設定超出範圍，141(8Dh) = 指令無法執行(可能為馬達運轉中)。
+12-11:  
+保留
+12-12:  
+保留
+12-13:  
+保留
+12-14:  
+保留
+12-15:  
+保留
+12-16:  
+保留
+TMDriverEND
+FileEnd

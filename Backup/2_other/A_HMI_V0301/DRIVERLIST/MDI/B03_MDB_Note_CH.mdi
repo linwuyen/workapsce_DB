@@ -1,0 +1,1194 @@
+﻿TMDriver	B03MDB
+AL0
+Major	1
+01-01: Hall sensor 序列
+0 = 序列 B (正緣邏輯), 1 = 序列 A (負緣邏輯)
+01-02: 馬達極數
+2, 4, 8, 10極等
+01-03: 無載全轉速
+單位: RPM
+01-04: 順時針方向定義
+0 = Top view, 1 = Bottom view.
+01-05: 啟動/轉向模式
+0 = SC Mode, 1 = CC Mode 
+01-06: 相位提前
+0 = 關閉，1 = 開啟
+01-07: 相位提前角度
+128 = 不領先，大於128 = 領先 (x - 128)/128，小於128 = 延遲(128 - x)/128
+01-08: 正反轉模式
+0 = 不動作，1 = 停止
+01-09: 剎車功能
+0 = 停用，1 = 啟動
+01-10: 啟動力道百分比
+單位：0.1% Duty
+01-11: 起動力道遞減速度
+減少每單位輸出力道所需時間，單位：1ms
+01-12: VR最小值行為
+0 = 停止，1 = 維持最低速 
+01-13: 外部輸入電壓設定
+0 = 10V，1 = 5V 
+01-14: 內外部VR選擇
+0 = 內部，1 = 外部，2 = IO選擇
+01-15:
+保留
+01-16:
+保留
+Major	2
+02-01: 轉速控制方式
+0 = VR調速, 1 = 八段調速, 2 = 脈波頻率控速, 3 = 脈波責任週期控速, 4 = 開迴路VR, 5 = 開迴路八段, 6 = Bike Mode 
+02-02: VR調速上限
+單位： RPM
+02-03: VR調速下限
+單位： RPM
+02-04: 第一段轉速 ( Climb )
+單位： RPM
+02-05: 第二段轉速
+單位： RPM
+02-06: 第三段轉速
+單位： RPM
+02-07: 第四段轉速
+單位： RPM
+02-08: 第五段轉速
+單位： RPM
+02-09: 第六段轉速
+單位： RPM
+02-10: 第七段轉速
+單位： RPM
+02-11: 第八段轉速
+單位： RPM
+02-12: 固定加速度 (0.1sec)
+單位： 0 ~ 3000 rpm 0.1秒
+02-13: 固定減速度 (0.1sec)
+單位： 3000 ~ 0 rpm 0.1秒
+02-14: 速度PID控制中的常數P
+數值：1 ~ 65535
+02-15: 速度PID控制中的常數I
+數值：1 ~ 65535
+02-16: 速度PID控制中的常數D
+數值：1 ~ 65535
+Major	3
+03-01: 正常預力 (0.1%)
+單位： 0.1%
+03-02: 啟動預力 (0.1%)
+單位： 0.1%
+03-03: 啟動預力持續時間
+單位： 0.01sec
+03-04: 預力加速度
+單位： 0 ~ 100% per 0.1sec
+03-05: 預力減速度
+單位： 100 ~ 0% per 0.1sec
+03-06: 第一段Duty (0.1%)
+單位： 0.1%
+03-07: 第二段Duty (0.1%)
+單位： 0.1%
+03-08: 第三段Duty (0.1%)
+單位： 0.1%
+03-09: 第四段Duty (0.1%)
+單位： 0.1%
+03-10: 第五段Duty (0.1%)
+單位： 0.1%
+03-11: 第六段Duty (0.1%)
+單位： 0.1%
+03-12: 第七段Duty (0.1%)
+單位： 0.1%
+03-13: 第八段Duty (0.1%)
+單位： 0.1%
+03-14: Duty加速度
+單位： 0 ~ 100% per 0.1sec
+03-15: Duty減速度
+單位： 100 ~ 0% per 0.1sec
+03-16:
+保留
+Major	4
+04-01: 踏板Sensor Type
+0 = 單訊號，1 = 雙訊號
+04-02: 踏板訊號極數
+360度訊號數量
+04-03: 一般啟動踏板訊號數
+一般啟動所需踏板訊號數
+04-04: 爬坡啟動踏板訊號數
+爬坡啟動所需踏板訊號數
+04-05: 一般反踏停止訊號數
+一般反踏停止所需踏板訊號數
+04-06: 爬坡反踏停止訊號數
+爬坡反踏停止所需踏板訊號數
+04-07: 停轉轉換-踏板數
+踏板狀態辦別
+04-08: 停轉轉換-高速踏板數
+踏板狀態切換
+04-09: 踏板停轉時間 - 一般
+單位： ms
+04-10: 踏板停轉時間 - 高速
+單位： ms
+04-11: 踏板停轉時間 - 爬坡
+單位： ms
+04-12: 踏板高速點
+單位： erpm
+04-13: 競賽模式起始踏板速度
+單位： erpm
+04-14: 競賽模式踏板增益值
+數值：1 ~ 65535
+04-15:
+保留
+04-16:
+保留
+Major	5
+05-01: Throttle 正常預力
+單位： 0.1%
+05-02: Throttle 啟動預力
+單位： 0.1%
+05-03: Throttle 啟動預力持續時間
+單位： 0.01sec
+05-04: Throttle 預力加速度
+單位： 0 ~ 100% per 0.1sec
+05-05: Throttle 預力減速度
+單位： 100 ~ 0% per 0.1sec
+05-06: Throttle DeadBand電壓%
+單位： 0.1% (0 ~ 5V)
+05-07: Throttle Max電壓%
+單位： 0.1% (0 ~ 5V)
+05-08: Throttle DeadBand輸出
+ 0.1% (0 ~ 100% Duty)
+05-09: Throttle ECO Max輸出
+ 0.1% (0 ~ 100% Duty)
+05-10: Throttle Max輸出
+ 0.1% (0 ~ 100% Duty)
+05-11: Throttle Ramp輸出
+ 0.1% (0 ~ 100% Duty)
+05-12: Throttle 加速度
+0 ~ 100% per 0.1sec
+05-13: Throttle 減速度
+100 ~ 0% per 0.1sec
+05-14: 
+保留
+05-15:
+保留
+05-16:
+保留
+Major	6 
+06-01: 輸入按鈕 X1 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-02: 輸入按鈕 X2 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-03: 輸入按鈕 X3 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-04: 輸入按鈕 X4 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-05: 輸入按鈕 X5 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-06: 輸入按鈕 X6 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-07: 輸入按鈕 X7 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-08: 
+保留
+06-09: 
+保留
+06-10: 
+保留
+06-11: 
+保留
+06-12: 
+保留
+06-13: 
+保留
+06-14:
+保留
+06-15:
+保留
+06-16: IO極性設定
+
+Major	7 
+07-01: 過載保護點 (%)
+單位： %
+07-02: 過載保護允許時間
+單位： 0.1sec
+07-03: 過載保護回復時間
+單位： 0.1sec
+07-04: 輸出電流限制 (%)
+單位： %
+07-05: OverBoost輸出 (%)
+單位： %
+07-06: OverBoost允許時間
+單位： 0.1sec
+07-07: OverBoost回復時間
+單位： 0.1sec
+07-08: 操作電壓 
+0 = 12Vdc, 1 = 24Vdc, 2 = 36Vdc, 3 = 48Vdc
+07-09: 過速Sensor
+0 = Motor, 1 = Wheel
+07-10: 過速速度 (0.1 km/hr) 
+單位： 0.1 km/hr
+07-11: 過速警告 (0.1 km/hr)
+單位： 0.1 km/hr
+07-12: Wheel Diameter (mm)
+單位： mm
+07-13: 增速比
+保留
+07-14: 減速減
+保留
+07-15: TimeOut時間 (ms)
+單位： ms
+07-16: COM Error 允許次數
+保留
+Major	8 
+08-01: Bike操作模式
+0 = All Off, 1 = Paddle, 2 = Paddle + Tq, 3 = throttle, 4 = paddle + throttle
+08-02: 操作模式切換方式
+1 = switch button, 2 = throttle > paddle, 3 = Ass V
+08-03: Bike Mode1功能
+0 = No Func, 1 = Paddle on/off, 2 = throttle on/off, 3 = All on/off, 4 = opt sw, 5 = run mode sw
+08-04: Bike Displayer模式
+0 = no, 1 = normal, 2 = run mode sw, 3 = opt mode sw
+08-05: Displayer lv5 運行模式
+0 = NC, 1 = climb, 2 = Race, 3 = Boost
+08-06: 踏板運行模式1
+0 = ECO, 1= Boost, 2 = Climb, 4 = Race
+08-07: 踏板運行模式2
+0 = ECO, 1= Boost, 2 = Climb, 4 = Race
+08-08: Throttle運行模式1
+0 = ECO, 1= Boost
+08-09: Throttle運行模式2
+0 = ECO, 1= Boost
+08-10: Displayer Lv0 電壓
+單位： 0.01 v ( 500 = 5v )
+08-11: Displayer Lv1 電壓
+單位： 0.01 v ( 500 = 5v )
+08-12: Displayer Lv2 電壓
+單位： 0.01 v ( 500 = 5v )
+08-13: Displayer Lv3 電壓
+單位： 0.01 v ( 500 = 5v )
+08-14: Displayer Lv4 電壓
+單位： 0.01 v ( 500 = 5v )
+08-15: Displayer Lv5 電壓
+單位： 0.01 v ( 500 = 5v )
+08-16: Displayer off 電壓
+單位： 0.01 v ( 500 = 5v )
+Major	9 
+09-01: 遠端IO X0 功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 15 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+09-02: 遠端IO X1 功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 15 = Mos OT, 19 = P-S1, 20 = P-S2, 
+09-03: Tq sensor mapping (0.1v to 0.001 NM)
+單位： (delta 0.1v to 0.001 NM)
+09-04: Tq Neutral (0.01v)
+單位： (delta 0.1v to 0.001 NM)
+09-05: Tq Neutral min (0.01v)
+單位： (delta 0.1v to 0.001 NM)
+09-06: Tq Sensor off Set
+單位： 0.001 NM
+09-07: Tq Start min point
+單位： 0.001 NM
+09-08: Tq Stop point
+單位： 0.001 NM
+09-09: Tq high point
+單位： 0.001 NM
+09-10: Tq low point
+單位： 0.001 NM
+09-11: Tq zero paddle point
+單位： 0.001 NM 
+09-12: Tq normal paddle point
+單位： 0.001 NM 
+09-13: Tq assist normal preduty
+單位： 0.1%
+09-14: Tq assist high preduty
+單位： 0.1%
+09-15: Tq high Gain
+0 ~ 65535
+09-16: Tq high Acc (0~100% per 0.1sec)
+單位： 0 ~ 100% per 0.1sec
+Major	10
+10-01: 保護紀錄1
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-02: 保護紀錄2
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-03: 保護紀錄3
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-04: 保護紀錄4
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-05: 保護紀錄5
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-06: 保護紀錄6
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-07: 保護紀錄7
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-08: 保護紀錄8
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-09: 保護紀錄9
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-10: 保護紀錄10
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-11:
+保留
+10-12:
+保留
+10-13: 
+保留
+10-14:
+保留
+10-15:
+保留
+10-16:
+保留
+Major	11
+11-01: 
+保留
+11-02: 
+保留
+11-03: 
+保留
+11-04: 
+保留
+11-05: 
+保留
+11-06: 
+保留
+11-07: 
+保留
+11-08: 
+保留
+11-09: 
+保留
+11-10: 
+保留
+11-11: 
+保留
+11-12: 
+保留
+11-13: 
+保留
+11-14:
+保留
+11-15:
+保留
+11-16:
+保留
+Major	12
+12-01: 
+保留
+12-02: 
+保留
+12-03: 
+保留
+12-04: 
+保留
+12-05: 
+保留
+12-06: 
+保留
+12-07: 
+保留
+12-08: 
+保留
+12-09: 
+保留
+12-10: 
+保留
+12-11: 
+保留
+12-12: 
+保留
+12-13: 
+保留
+12-14:
+保留
+12-15:
+保留
+12-16:
+保留
+AL1
+Major	1
+01-01: Hall sensor 序列
+0 = 序列 B (正緣邏輯), 1 = 序列 A (負緣邏輯)
+01-02: 馬達極數
+2, 4, 8, 10極等
+01-03: 無載全轉速
+單位: RPM
+01-04: 順時針方向定義
+0 = Top view, 1 = Bottom view.
+01-05: 啟動/轉向模式
+0 = SC Mode, 1 = CC Mode 
+01-06: 相位提前
+0 = 關閉，1 = 開啟
+01-07: 相位提前角度
+128 = 不領先，大於128 = 領先 (x - 128)/128，小於128 = 延遲(128 - x)/128
+01-08: 正反轉模式
+0 = 不動作，1 = 停止
+01-09: 剎車功能
+0 = 停用，1 = 啟動
+01-10: 啟動力道百分比
+單位：0.1% Duty
+01-11: 起動力道遞減速度
+減少每單位輸出力道所需時間，單位：1ms
+01-12: VR最小值行為
+0 = 停止，1 = 維持最低速 
+01-13: 外部輸入電壓設定
+0 = 10V，1 = 5V 
+01-14: 內外部VR選擇
+0 = 內部，1 = 外部，2 = IO選擇
+01-15:
+保留
+01-16:
+保留
+Major	2
+02-01: 轉速控制方式
+0 = VR調速, 1 = 八段調速, 2 = 脈波頻率控速, 3 = 脈波責任週期控速, 4 = 開迴路VR, 5 = 開迴路八段, 6 = Bike Mode 
+02-02: VR調速上限
+單位： RPM
+02-03: VR調速下限
+單位： RPM
+02-04: 第一段轉速 ( Climb )
+單位： RPM
+02-05: 第二段轉速
+單位： RPM
+02-06: 第三段轉速
+單位： RPM
+02-07: 第四段轉速
+單位： RPM
+02-08: 第五段轉速
+單位： RPM
+02-09: 第六段轉速
+單位： RPM
+02-10: 第七段轉速
+單位： RPM
+02-11: 第八段轉速
+單位： RPM
+02-12: 固定加速度 (0.1sec)
+單位： 0 ~ 3000 rpm 0.1秒
+02-13: 固定減速度 (0.1sec)
+單位： 3000 ~ 0 rpm 0.1秒
+02-14: 速度PID控制中的常數P
+數值：1 ~ 65535
+02-15: 速度PID控制中的常數I
+數值：1 ~ 65535
+02-16: 速度PID控制中的常數D
+數值：1 ~ 65535
+Major	3
+03-01: 正常預力 (0.1%)
+單位： 0.1%
+03-02: 啟動預力 (0.1%)
+單位： 0.1%
+03-03: 啟動預力持續時間
+單位： 0.01sec
+03-04: 預力加速度
+單位： 0 ~ 100% per 0.1sec
+03-05: 預力減速度
+單位： 100 ~ 0% per 0.1sec
+03-06: 第一段Duty (0.1%)
+單位： 0.1%
+03-07: 第二段Duty (0.1%)
+單位： 0.1%
+03-08: 第三段Duty (0.1%)
+單位： 0.1%
+03-09: 第四段Duty (0.1%)
+單位： 0.1%
+03-10: 第五段Duty (0.1%)
+單位： 0.1%
+03-11: 第六段Duty (0.1%)
+單位： 0.1%
+03-12: 第七段Duty (0.1%)
+單位： 0.1%
+03-13: 第八段Duty (0.1%)
+單位： 0.1%
+03-14: Duty加速度
+單位： 0 ~ 100% per 0.1sec
+03-15: Duty減速度
+單位： 100 ~ 0% per 0.1sec
+03-16:
+保留
+Major	4
+04-01: 踏板Sensor Type
+0 = 單訊號，1 = 雙訊號
+04-02: 踏板訊號極數
+360度訊號數量
+04-03: 一般啟動踏板訊號數
+一般啟動所需踏板訊號數
+04-04: 爬坡啟動踏板訊號數
+爬坡啟動所需踏板訊號數
+04-05: 一般反踏停止訊號數
+一般反踏停止所需踏板訊號數
+04-06: 爬坡反踏停止訊號數
+爬坡反踏停止所需踏板訊號數
+04-07: 停轉轉換-踏板數
+踏板狀態辦別
+04-08: 停轉轉換-高速踏板數
+踏板狀態切換
+04-09: 踏板停轉時間 - 一般
+單位： ms
+04-10: 踏板停轉時間 - 高速
+單位： ms
+04-11: 踏板停轉時間 - 爬坡
+單位： ms
+04-12: 踏板高速點
+單位： erpm
+04-13: 競賽模式起始踏板速度
+單位： erpm
+04-14: 競賽模式踏板增益值
+數值：1 ~ 65535
+04-15:
+保留
+04-16:
+保留
+Major	5
+05-01: Throttle 正常預力
+單位： 0.1%
+05-02: Throttle 啟動預力
+單位： 0.1%
+05-03: Throttle 啟動預力持續時間
+單位： 0.01sec
+05-04: Throttle 預力加速度
+單位： 0 ~ 100% per 0.1sec
+05-05: Throttle 預力減速度
+單位： 100 ~ 0% per 0.1sec
+05-06: Throttle DeadBand電壓%
+單位： 0.1% (0 ~ 5V)
+05-07: Throttle Max電壓%
+單位： 0.1% (0 ~ 5V)
+05-08: Throttle DeadBand輸出
+ 0.1% (0 ~ 100% Duty)
+05-09: Throttle ECO Max輸出
+ 0.1% (0 ~ 100% Duty)
+05-10: Throttle Max輸出
+ 0.1% (0 ~ 100% Duty)
+05-11: Throttle Ramp輸出
+ 0.1% (0 ~ 100% Duty)
+05-12: Throttle 加速度
+0 ~ 100% per 0.1sec
+05-13: Throttle 減速度
+100 ~ 0% per 0.1sec
+05-14: 
+保留
+05-15:
+保留
+05-16:
+保留
+Major	6 
+06-01: 輸入按鈕 X1 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-02: 輸入按鈕 X2 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-03: 輸入按鈕 X3 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-04: 輸入按鈕 X4 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-05: 輸入按鈕 X5 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-06: 輸入按鈕 X6 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-07: 輸入按鈕 X7 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-08: 
+保留
+06-09: 
+保留
+06-10: 
+保留
+06-11: 
+保留
+06-12: 
+保留
+06-13: 
+保留
+06-14:
+保留
+06-15:
+保留
+06-16: IO極性設定
+
+Major	7 
+07-01: 過載保護點 (%)
+單位： %
+07-02: 過載保護允許時間
+單位： 0.1sec
+07-03: 過載保護回復時間
+單位： 0.1sec
+07-04: 輸出電流限制 (%)
+單位： %
+07-05: OverBoost輸出 (%)
+單位： %
+07-06: OverBoost允許時間
+單位： 0.1sec
+07-07: OverBoost回復時間
+單位： 0.1sec
+07-08: 操作電壓 
+0 = 12Vdc, 1 = 24Vdc, 2 = 36Vdc, 3 = 48Vdc
+07-09: 過速Sensor
+0 = Motor, 1 = Wheel
+07-10: 過速速度 (0.1 km/hr) 
+單位： 0.1 km/hr
+07-11: 過速警告 (0.1 km/hr)
+單位： 0.1 km/hr
+07-12: Wheel Diameter (mm)
+單位： mm
+07-13: 增速比
+保留
+07-14: 減速減
+保留
+07-15: TimeOut時間 (ms)
+單位： ms
+07-16: COM Error 允許次數
+保留
+Major	8 
+08-01: Bike操作模式
+0 = All Off, 1 = Paddle, 2 = Paddle + Tq, 3 = throttle, 4 = paddle + throttle
+08-02: 操作模式切換方式
+1 = switch button, 2 = throttle > paddle, 3 = Ass V
+08-03: Bike Mode1功能
+0 = No Func, 1 = Paddle on/off, 2 = throttle on/off, 3 = All on/off, 4 = opt sw, 5 = run mode sw
+08-04: Bike Displayer模式
+0 = no, 1 = normal, 2 = run mode sw, 3 = opt mode sw
+08-05: Displayer lv5 運行模式
+0 = NC, 1 = climb, 2 = Race, 3 = Boost
+08-06: 踏板運行模式1
+0 = ECO, 1= Boost, 2 = Climb, 4 = Race
+08-07: 踏板運行模式2
+0 = ECO, 1= Boost, 2 = Climb, 4 = Race
+08-08: Throttle運行模式1
+0 = ECO, 1= Boost
+08-09: Throttle運行模式2
+0 = ECO, 1= Boost
+08-10: Displayer Lv0 電壓
+單位： 0.01 v ( 500 = 5v )
+08-11: Displayer Lv1 電壓
+單位： 0.01 v ( 500 = 5v )
+08-12: Displayer Lv2 電壓
+單位： 0.01 v ( 500 = 5v )
+08-13: Displayer Lv3 電壓
+單位： 0.01 v ( 500 = 5v )
+08-14: Displayer Lv4 電壓
+單位： 0.01 v ( 500 = 5v )
+08-15: Displayer Lv5 電壓
+單位： 0.01 v ( 500 = 5v )
+08-16: Displayer off 電壓
+單位： 0.01 v ( 500 = 5v )
+Major	9 
+09-01: 遠端IO X0 功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 15 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+09-02: 遠端IO X1 功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 15 = Mos OT, 19 = P-S1, 20 = P-S2, 
+09-03: Tq sensor mapping (0.1v to 0.001 NM)
+單位： (delta 0.1v to 0.001 NM)
+09-04: Tq Neutral (0.01v)
+單位： (delta 0.1v to 0.001 NM)
+09-05: Tq Neutral min (0.01v)
+單位： (delta 0.1v to 0.001 NM)
+09-06: Tq Sensor off Set
+單位： 0.001 NM
+09-07: Tq Start min point
+單位： 0.001 NM
+09-08: Tq Stop point
+單位： 0.001 NM
+09-09: Tq high point
+單位： 0.001 NM
+09-10: Tq low point
+單位： 0.001 NM
+09-11: Tq zero paddle point
+單位： 0.001 NM 
+09-12: Tq normal paddle point
+單位： 0.001 NM 
+09-13: Tq assist normal preduty
+單位： 0.1%
+09-14: Tq assist high preduty
+單位： 0.1%
+09-15: Tq high Gain
+0 ~ 65535
+09-16: Tq high Acc (0~100% per 0.1sec)
+單位： 0 ~ 100% per 0.1sec
+Major	10
+10-01: 保護紀錄1
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-02: 保護紀錄2
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-03: 保護紀錄3
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-04: 保護紀錄4
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-05: 保護紀錄5
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-06: 保護紀錄6
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-07: 保護紀錄7
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-08: 保護紀錄8
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-09: 保護紀錄9
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-10: 保護紀錄10
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-11:
+保留
+10-12:
+保留
+10-13: 
+保留
+10-14:
+保留
+10-15:
+保留
+10-16:
+保留
+Major	11
+11-01: 
+保留
+11-02: 
+保留
+11-03: 
+保留
+11-04: 
+保留
+11-05: 
+保留
+11-06: 
+保留
+11-07: 
+保留
+11-08: 
+保留
+11-09: 
+保留
+11-10: 
+保留
+11-11: 
+保留
+11-12: 
+保留
+11-13: 
+保留
+11-14:
+保留
+11-15:
+保留
+11-16:
+保留
+Major	12
+12-01: 
+保留
+12-02: 
+保留
+12-03: 
+保留
+12-04: 
+保留
+12-05: 
+保留
+12-06: 
+保留
+12-07: 
+保留
+12-08: 
+保留
+12-09: 
+保留
+12-10: 
+保留
+12-11: 
+保留
+12-12: 
+保留
+12-13: 
+保留
+12-14:
+保留
+12-15:
+保留
+12-16:
+保留
+AL2
+Major	1
+01-01: Hall sensor 序列
+0 = 序列 B (正緣邏輯), 1 = 序列 A (負緣邏輯)
+01-02: 馬達極數
+2, 4, 8, 10極等
+01-03: 無載全轉速
+單位: RPM
+01-04: 順時針方向定義
+0 = Top view, 1 = Bottom view.
+01-05: 啟動/轉向模式
+0 = SC Mode, 1 = CC Mode 
+01-06: 相位提前
+0 = 關閉，1 = 開啟
+01-07: 相位提前角度
+128 = 不領先，大於128 = 領先 (x - 128)/128，小於128 = 延遲(128 - x)/128
+01-08: 正反轉模式
+0 = 不動作，1 = 停止
+01-09: 剎車功能
+0 = 停用，1 = 啟動
+01-10: 啟動力道百分比
+單位：0.1% Duty
+01-11: 起動力道遞減速度
+減少每單位輸出力道所需時間，單位：1ms
+01-12: VR最小值行為
+0 = 停止，1 = 維持最低速 
+01-13: 外部輸入電壓設定
+0 = 10V，1 = 5V 
+01-14: 內外部VR選擇
+0 = 內部，1 = 外部，2 = IO選擇
+01-15:
+保留
+01-16:
+保留
+Major	2
+02-01: 轉速控制方式
+0 = VR調速, 1 = 八段調速, 2 = 脈波頻率控速, 3 = 脈波責任週期控速, 4 = 開迴路VR, 5 = 開迴路八段, 6 = Bike Mode 
+02-02: VR調速上限
+單位： RPM
+02-03: VR調速下限
+單位： RPM
+02-04: 第一段轉速 ( Climb )
+單位： RPM
+02-05: 第二段轉速
+單位： RPM
+02-06: 第三段轉速
+單位： RPM
+02-07: 第四段轉速
+單位： RPM
+02-08: 第五段轉速
+單位： RPM
+02-09: 第六段轉速
+單位： RPM
+02-10: 第七段轉速
+單位： RPM
+02-11: 第八段轉速
+單位： RPM
+02-12: 固定加速度 (0.1sec)
+單位： 0 ~ 3000 rpm 0.1秒
+02-13: 固定減速度 (0.1sec)
+單位： 3000 ~ 0 rpm 0.1秒
+02-14: 速度PID控制中的常數P
+數值：1 ~ 65535
+02-15: 速度PID控制中的常數I
+數值：1 ~ 65535
+02-16: 速度PID控制中的常數D
+數值：1 ~ 65535
+Major	3
+03-01: 正常預力 (0.1%)
+單位： 0.1%
+03-02: 啟動預力 (0.1%)
+單位： 0.1%
+03-03: 啟動預力持續時間
+單位： 0.01sec
+03-04: 預力加速度
+單位： 0 ~ 100% per 0.1sec
+03-05: 預力減速度
+單位： 100 ~ 0% per 0.1sec
+03-06: 第一段Duty (0.1%)
+單位： 0.1%
+03-07: 第二段Duty (0.1%)
+單位： 0.1%
+03-08: 第三段Duty (0.1%)
+單位： 0.1%
+03-09: 第四段Duty (0.1%)
+單位： 0.1%
+03-10: 第五段Duty (0.1%)
+單位： 0.1%
+03-11: 第六段Duty (0.1%)
+單位： 0.1%
+03-12: 第七段Duty (0.1%)
+單位： 0.1%
+03-13: 第八段Duty (0.1%)
+單位： 0.1%
+03-14: Duty加速度
+單位： 0 ~ 100% per 0.1sec
+03-15: Duty減速度
+單位： 100 ~ 0% per 0.1sec
+03-16:
+保留
+Major	4
+04-01: 踏板Sensor Type
+0 = 單訊號，1 = 雙訊號
+04-02: 踏板訊號極數
+360度訊號數量
+04-03: 一般啟動踏板訊號數
+一般啟動所需踏板訊號數
+04-04: 爬坡啟動踏板訊號數
+爬坡啟動所需踏板訊號數
+04-05: 一般反踏停止訊號數
+一般反踏停止所需踏板訊號數
+04-06: 爬坡反踏停止訊號數
+爬坡反踏停止所需踏板訊號數
+04-07: 停轉轉換-踏板數
+踏板狀態辦別
+04-08: 停轉轉換-高速踏板數
+踏板狀態切換
+04-09: 踏板停轉時間 - 一般
+單位： ms
+04-10: 踏板停轉時間 - 高速
+單位： ms
+04-11: 踏板停轉時間 - 爬坡
+單位： ms
+04-12: 踏板高速點
+單位： erpm
+04-13: 競賽模式起始踏板速度
+單位： erpm
+04-14: 競賽模式踏板增益值
+數值：1 ~ 65535
+04-15:
+保留
+04-16:
+保留
+Major	5
+05-01: Throttle 正常預力
+單位： 0.1%
+05-02: Throttle 啟動預力
+單位： 0.1%
+05-03: Throttle 啟動預力持續時間
+單位： 0.01sec
+05-04: Throttle 預力加速度
+單位： 0 ~ 100% per 0.1sec
+05-05: Throttle 預力減速度
+單位： 100 ~ 0% per 0.1sec
+05-06: Throttle DeadBand電壓%
+單位： 0.1% (0 ~ 5V)
+05-07: Throttle Max電壓%
+單位： 0.1% (0 ~ 5V)
+05-08: Throttle DeadBand輸出
+ 0.1% (0 ~ 100% Duty)
+05-09: Throttle ECO Max輸出
+ 0.1% (0 ~ 100% Duty)
+05-10: Throttle Max輸出
+ 0.1% (0 ~ 100% Duty)
+05-11: Throttle Ramp輸出
+ 0.1% (0 ~ 100% Duty)
+05-12: Throttle 加速度
+0 ~ 100% per 0.1sec
+05-13: Throttle 減速度
+100 ~ 0% per 0.1sec
+05-14: 
+保留
+05-15:
+保留
+05-16:
+保留
+Major	6 
+06-01: 輸入按鈕 X1 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-02: 輸入按鈕 X2 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-03: 輸入按鈕 X3 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-04: 輸入按鈕 X4 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-05: 輸入按鈕 X5 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-06: 輸入按鈕 X6 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-07: 輸入按鈕 X7 之功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 16 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+06-08: 
+保留
+06-09: 
+保留
+06-10: 
+保留
+06-11: 
+保留
+06-12: 
+保留
+06-13: 
+保留
+06-14:
+保留
+06-15:
+保留
+06-16: IO極性設定
+
+Major	7 
+07-01: 過載保護點 (%)
+單位： %
+07-02: 過載保護允許時間
+單位： 0.1sec
+07-03: 過載保護回復時間
+單位： 0.1sec
+07-04: 輸出電流限制 (%)
+單位： %
+07-05: OverBoost輸出 (%)
+單位： %
+07-06: OverBoost允許時間
+單位： 0.1sec
+07-07: OverBoost回復時間
+單位： 0.1sec
+07-08: 操作電壓 
+0 = 12Vdc, 1 = 24Vdc, 2 = 36Vdc, 3 = 48Vdc
+07-09: 過速Sensor
+0 = Motor, 1 = Wheel
+07-10: 過速速度 (0.1 km/hr) 
+單位： 0.1 km/hr
+07-11: 過速警告 (0.1 km/hr)
+單位： 0.1 km/hr
+07-12: Wheel Diameter (mm)
+單位： mm
+07-13: 增速比
+保留
+07-14: 減速減
+保留
+07-15: TimeOut時間 (ms)
+單位： ms
+07-16: COM Error 允許次數
+保留
+Major	8 
+08-01: Bike操作模式
+0 = All Off, 1 = Paddle, 2 = Paddle + Tq, 3 = throttle, 4 = paddle + throttle
+08-02: 操作模式切換方式
+1 = switch button, 2 = throttle > paddle, 3 = Ass V
+08-03: Bike Mode1功能
+0 = No Func, 1 = Paddle on/off, 2 = throttle on/off, 3 = All on/off, 4 = opt sw, 5 = run mode sw
+08-04: Bike Displayer模式
+0 = no, 1 = normal, 2 = run mode sw, 3 = opt mode sw
+08-05: Displayer lv5 運行模式
+0 = NC, 1 = climb, 2 = Race, 3 = Boost
+08-06: 踏板運行模式1
+0 = ECO, 1= Boost, 2 = Climb, 4 = Race
+08-07: 踏板運行模式2
+0 = ECO, 1= Boost, 2 = Climb, 4 = Race
+08-08: Throttle運行模式1
+0 = ECO, 1= Boost
+08-09: Throttle運行模式2
+0 = ECO, 1= Boost
+08-10: Displayer Lv0 電壓
+單位： 0.01 v ( 500 = 5v )
+08-11: Displayer Lv1 電壓
+單位： 0.01 v ( 500 = 5v )
+08-12: Displayer Lv2 電壓
+單位： 0.01 v ( 500 = 5v )
+08-13: Displayer Lv3 電壓
+單位： 0.01 v ( 500 = 5v )
+08-14: Displayer Lv4 電壓
+單位： 0.01 v ( 500 = 5v )
+08-15: Displayer Lv5 電壓
+單位： 0.01 v ( 500 = 5v )
+08-16: Displayer off 電壓
+單位： 0.01 v ( 500 = 5v )
+Major	9 
+09-01: 遠端IO X0 功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 15 = Mos OT, 19 = P-S1, 20 = P-S2, 21 = Bike M1, 22 = Bike M2, 23 = Bike Brake, 24 = Bike WSP
+09-02: 遠端IO X1 功能
+0 = NC, 1 = S/S, 2 = CW/CCW, 5 = Free, 6 = Stop Mode,7 = EBk Alm RST, 8 = Alm RST, 9 = Int/Ext VR, 10 = M0, 11 = M1, 12 = M2, 13 = E Brake, 15 = Mos OT, 19 = P-S1, 20 = P-S2, 
+09-03: Tq sensor mapping (0.1v to 0.001 NM)
+單位： (delta 0.1v to 0.001 NM)
+09-04: Tq Neutral (0.01v)
+單位： (delta 0.1v to 0.001 NM)
+09-05: Tq Neutral min (0.01v)
+單位： (delta 0.1v to 0.001 NM)
+09-06: Tq Sensor off Set
+單位： 0.001 NM
+09-07: Tq Start min point
+單位： 0.001 NM
+09-08: Tq Stop point
+單位： 0.001 NM
+09-09: Tq high point
+單位： 0.001 NM
+09-10: Tq low point
+單位： 0.001 NM
+09-11: Tq zero paddle point
+單位： 0.001 NM 
+09-12: Tq normal paddle point
+單位： 0.001 NM 
+09-13: Tq assist normal preduty
+單位： 0.1%
+09-14: Tq assist high preduty
+單位： 0.1%
+09-15: Tq high Gain
+0 ~ 65535
+09-16: Tq high Acc (0~100% per 0.1sec)
+單位： 0 ~ 100% per 0.1sec
+Major	10
+10-01: 保護紀錄1
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-02: 保護紀錄2
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-03: 保護紀錄3
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-04: 保護紀錄4
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-05: 保護紀錄5
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-06: 保護紀錄6
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-07: 保護紀錄7
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-08: 保護紀錄8
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-09: 保護紀錄9
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-10: 保護紀錄10
+1 = 過電流，2 = 過載，3 = Hall，4 = 過電壓，5 = 低電壓，6= 過溫，7 = 啟動不良，8 = EEP錯誤，9 = 回升電阻過溫，10 = 馬達過溫，11 = Reserved，12 = 過速，13~20 = Reserved，21 = 指令錯誤 
+10-11:
+保留
+10-12:
+保留
+10-13: 
+保留
+10-14:
+保留
+10-15:
+保留
+10-16:
+保留
+Major	11
+11-01: 
+保留
+11-02: 
+保留
+11-03: 
+保留
+11-04: 
+保留
+11-05: 
+保留
+11-06: 
+保留
+11-07: 
+保留
+11-08: 
+保留
+11-09: 
+保留
+11-10: 
+保留
+11-11: 
+保留
+11-12: 
+保留
+11-13: 
+保留
+11-14:
+保留
+11-15:
+保留
+11-16:
+保留
+Major	12
+12-01: 
+保留
+12-02: 
+保留
+12-03: 
+保留
+12-04: 
+保留
+12-05: 
+保留
+12-06: 
+保留
+12-07: 
+保留
+12-08: 
+保留
+12-09: 
+保留
+12-10: 
+保留
+12-11: 
+保留
+12-12: 
+保留
+12-13: 
+保留
+12-14:
+保留
+12-15:
+保留
+12-16:
+保留
+TMDriverEND
+FileEnd

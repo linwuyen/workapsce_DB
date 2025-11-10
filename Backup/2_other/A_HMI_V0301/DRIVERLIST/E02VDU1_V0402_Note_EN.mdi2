@@ -1,0 +1,161 @@
+Profile,MDI2,,,,,,,,,,,,
+Code,85,,,,,,,,,,,,
+Model,E02,,,,,,,,,,,,
+FW,VDU1,,,,,,,,,,,,
+Version,402,,,,,,,,,,,,
+Language,English,,,,,,,,,,,,
+Document,PGNUM-033_EV-UserManual.pdf,,,,,,,,,,,,
+ID,Value,Def,Max,Min,Ram,Addrees,Lv,Type,Parameter,HMI Description,Apply,Version,Document Page
+,value,def,max,min,Ram,,,,1,Motor,,,
+01-01:,1,1,1,0,1,0100h,0,Motor,Hall Sequence,"0 = B, 1 = A",C,100,0
+01-02:,8,8,10,2,8,0101h,0,Motor,Motor Poles,"2, 4, 8, 10...",C,100,0
+01-03:,4188,4188,65535,0,4188,0102h,0,Motor,Motor No Load Full Spd,Unit: r/min,C,100,0
+01-04:,0,0,1,0,0,0103h,0,Motor,CW View,"0 = from shaft, 1 = from Bottom",C,100,0
+01-05:,0,0,0,0,0,0104h,1,Motor,Motor Type,0 = BLDC，1 = Brushed。Note: 08-01 must set to 1 (duty) when set to using Brushed motor.,D,100,0
+01-06:,1000,1000,1000,0,1000,0105h,0,Motor,Rated Power,Output power %. This should set to match the motor's power. (Unit: 0.1%),D,100,0
+01-07:,0,0,1000,0,0,0106h,1,Operation,SPK Lock Delay,Unit：1ms ( Note：0 has same effect of 300 ),C,100,0
+01-08:,0,0,1,0,0,0107h,1,Advance,Phase ADV ON/oFF,"0 = OFF, 1 = ON",C,100,0
+01-09:,128,128,255,0,128,0108h,1,Advance,Phase ADV ratio,128: Normal，>128 :adv for (x - 128)/128，<128 :lag for (128 - x)/128,C,100,0
+01-10:,0,0,65535,0,0,0109h,1,Protect,OVP UVP Alarm Delay,Stop output when OVP/UVP. Alarm occurs when OVP/UVP last duration is more than this setup.. Unit = 1ms,C,100,0
+01-11:,0,0,65535,0,0,010Ah,1,Protect,Hall Alarm Delay,Stop output when Hall Fault. Alarm occurs when Hall fault last duration is more than this setup.. Unit = 1ms,C,100,0
+01-12:,10,10,65535,0,10,010Bh,1,Motor,Encoder checking time,Start hall state checking after this time after power on (ms). This should be slightly smaller than the time for encoder outputs as hall state.,D,100,0
+01-13:,35,35,65535,0,35,010Ch,1,Motor,Encoder settling time,The time for encoder to signal to settle. This time should be greater than 01-12 Encoder checking time.,D,100,0
+01-14:,2500,2500,65535,0,2500,010Dh,0,Motor,Encoder resolution,PPR of 1 channel,D,100,0
+01-15:,320,320,65535,0,320,010Eh,1,Motor,Sine drive offset CW,Sinewave drive only.,C,100,0
+01-16:,90,90,65535,0,90,010Fh,1,Motor,Sine drive offset CCW,Sinewave drive only.,C,100,0
+,value,def,max,min,Ram,,,,2,General,,,
+02-01:,0,0,1,0,0,0200h,0,IO,SC/CC Mode,"0 = SC Mode, 1 = CC Mode",C,100,0
+02-02:,0,0,300,0,0,0201h,0,Operation,Startup Output,Unit: 0.1% Duty,C,100,0
+02-03:,4,4,7,0,4,0202h,0,Common,Command Source,"SGL(VR/A1/A2): 0=Spd/Spd, 1=Dgit., 2=Spd/Spd/Tq, 3=-/-/Tq, 4=-/Spd, 5=ACC,DEC/Spd/Tq, 6=ACC,DEC/Spd, 7 = Tq/Spd/ACC,DEC。PLS(VR/A1/A2/XH): 0=-/-/-/Spd, 1=-/ACC/DEC/Spd, 2=Tq/ACC/DEC/Spd, 3=-/-/Tq/Spd",C,100,36
+02-04:,0,0,1,0,0,0203h,0,A/P Input,Analog Input Range,"0 = 0~5V, 1 = 0~10V ",C,100,0
+02-05:,708,708,10000,0,708,0204h,0,A/P Input,Analog Input Gain,Speed command in r/min for every 1V  analog input change from offset (Unit: r/min per V),C,100,0
+02-06:,10,10,200,0,10,0205h,0,A/P Input,Analog Input Offset,Analog input offset voltage (unit: 0.01V),C,100,0
+02-07:,85,85,10000,0,85,0206h,0,A/P Input,Offset speed,Offset speed command when alaog input is at the setting of 02-06.,C,100,0
+02-08:,0,0,1,0,0,0207h,0,A/P Input,Analog Input Stop Setting,"Operation for analog input < 02-07 Analog input offset. 0 = Motor stops,  1 = Motor run at Offset speed.",C,100,0
+02-09:,1,1,1,0,1,0208h,1,A/P Input,ACC/DEC VR CW Setting,"0: ACC/DEC faster,  1: ACC/DEC slower.",C,100,0
+02-10:,0,0,3,0,0,0209h,0,Common,Speed Setting Type,"0 = Single，1 = XH PFM, 2 = XH PWM, 3 = Multi-Drive Lite",C,100,0
+02-11:,100,100,1000,0,100,020Ah,1,Operation,SPK Torque Change Rate,The torque change rate of Slight position-keeping；Unit：ms ( 1A/ms ) ,C,100,0
+02-12:,100,100,1000,0,100,020Bh,1,Operation,SPK Force1,Output force at the origin during Slight position-keeping. Unit: 0.1%(based on rated current),C,100,0
+02-13:,500,500,1000,0,500,020Ch,1,Operation,SPK Force2,Max output force when moved away from the origin during Slight position-keeping. Unit: 0.1%(based on rated current),C,100,0
+02-14:,0,0,2,0,0,020Dh,0,Common,SERVO-ON Mode,"0 = SERVO ON when power on; 1 = SERVO ON by command, MBrake control by FREE( Off = Lock, On = Unlock ); 2 = SERVO ON by command, MBrake Unlock。( Command can be set by IO or communicaiton)",C,100,0
+02-15:,100,100,1000,0,100,020Eh,0,IO,VA-OUT Speed Range,VA-OUT is ON when the difference of motor speed and target speed is smaller than this range. (Unit: r/min),C,100,0
+02-16:,1000,1000,10000,200,1000,020Fh,0,IO,EN-OUT Speed,EN-OUT is ON when motor speed is higher than this value.(Unit: r/min),C,100,0
+,value,def,max,min,Ram,,,,3,Speed,,,
+03-01:,3600,3600,10000,100,3600,0300h,0,A/P Input,Setting Speed Max.,The max setting speed by analog input / pulse input (Unit: r/min),C,100,0
+03-02:,85,85,10000,1,85,0301h,0,A/P Input,Setting Speed Min.,The min setting speed by analog input / pulse input (Unit: r/min),C,100,0
+03-03:,100,100,100,1,100,0302h,0,A/P Input,Analog Setting ACC/DEC Max.,The max. setting ACC/DEC time by analog input (Unit: 0.1 sec),C,100,0
+03-04:,1,1,100,1,1,0303h,0,A/P Input,Analog Setting ACC/DEC Min.,The min. setting ACC/DEC time by analog input (Unit: 0.1 sec),C,100,0
+03-05:,2000,2000,2000,0,2000,0304h,0,A/P Input,Analog Setting Tq Limit Max.,The max. setting torque limit by analog input (Unit: 0.1%),C,100,0
+03-06:,100,100,2000,0,100,0305h,0,A/P Input,Analog Setting Tq Limit Min.,The min. setting torque limit by analog input (Unit: 0.1%),C,100,0
+03-07:,1000,1000,1000,0,1000,0306h,0,A/P Input,Setting Duty Max.,The max. setting duty by analog input / pulse input (open loop control only. Unit: 0.1%),C,100,0
+03-08:,0,0,1000,0,0,0307h,0,A/P Input,Setting Duty Min.,The min. setting duty by analog input / pulse input (open loop control only. Unit: 0.1%),C,100,0
+03-09:,3000,3000,10000,60,3000,0308h,0,Operation Data,Digital Setting Speed No.0,Digital indexing speed setting No.0 (Unit: r/min),A,100,0
+03-10:,3000,3000,10000,60,3000,0309h,0,Operation Data,Digital Setting Speed No.1,Digital indexing speed setting No.1 (Unit: r/min),A,100,0
+03-11:,3000,3000,10000,60,3000,030Ah,0,Operation Data,Digital Setting Speed No.2,Digital indexing speed setting No.2 (Unit: r/min),A,100,0
+03-12:,3000,3000,10000,60,3000,030Bh,0,Operation Data,Digital Setting Speed No.3,Digital indexing speed setting No.3 (Unit: r/min),A,100,0
+03-13:,3000,3000,10000,60,3000,030Ch,0,Operation Data,Digital Setting Speed No.4,Digital indexing speed setting No.4 (Unit: r/min),A,100,0
+03-14:,3000,3000,10000,60,3000,030Dh,0,Operation Data,Digital Setting Speed No.5,Digital indexing speed setting No.5 (Unit: r/min),A,100,0
+03-15:,3000,3000,10000,60,3000,030Eh,0,Operation Data,Digital Setting Speed No.6,Digital indexing speed setting No.6 (Unit: r/min),A,100,0
+03-16:,3000,3000,10000,60,3000,030Fh,0,Operation Data,Digital Setting Speed No.7,Digital indexing speed setting No.7 (Unit: r/min),A,100,0
+,value,def,max,min,Ram,,,,4,ACC_DEC,,,
+04-01:,10,10,100,1,10,0400h,0,Operation Data,Digital Setting ACC No.0,Digital indexing ACC setting No.0 (Unit: 0.1sec),A,100,0
+04-02:,10,10,100,1,10,0401h,0,Operation Data,Digital Setting ACC No.1,Digital indexing ACC setting No.1 (Unit: 0.1sec),A,100,0
+04-03:,10,10,100,1,10,0402h,0,Operation Data,Digital Setting ACC No.2,Digital indexing ACC setting No.2 (Unit: 0.1sec),A,100,0
+04-04:,10,10,100,1,10,0403h,0,Operation Data,Digital Setting ACC No.3,Digital indexing ACC setting No.3 (Unit: 0.1sec),A,100,0
+04-05:,10,10,100,1,10,0404h,0,Operation Data,Digital Setting ACC No.4,Digital indexing ACC setting No.4 (Unit: 0.1sec),A,100,0
+04-06:,10,10,100,1,10,0405h,0,Operation Data,Digital Setting ACC No.5,Digital indexing ACC setting No.5 (Unit: 0.1sec),A,100,0
+04-07:,10,10,100,1,10,0406h,0,Operation Data,Digital Setting ACC No.6,Digital indexing ACC setting No.6 (Unit: 0.1sec),A,100,0
+04-08:,10,10,100,1,10,0407h,0,Operation Data,Digital Setting ACC No.7,Digital indexing ACC setting No.7 (Unit: 0.1sec),A,100,0
+04-09:,10,10,100,1,10,0408h,0,Operation Data,Digital Setting DEC No.0,Digital indexing DEC setting No.0 (Unit: 0.1sec),A,100,0
+04-10:,10,10,100,1,10,0409h,0,Operation Data,Digital Setting DEC No.1,Digital indexing DEC setting No.1 (Unit: 0.1sec),A,100,0
+04-11:,10,10,100,1,10,040Ah,0,Operation Data,Digital Setting DEC No.2,Digital indexing DEC setting No.2 (Unit: 0.1sec),A,100,0
+04-12:,10,10,100,1,10,040Bh,0,Operation Data,Digital Setting DEC No.3,Digital indexing DEC setting No.3 (Unit: 0.1sec),A,100,0
+04-13:,10,10,100,1,10,040Ch,0,Operation Data,Digital Setting DEC No.4,Digital indexing DEC setting No.4 (Unit: 0.1sec),A,100,0
+04-14:,10,10,100,1,10,040Dh,0,Operation Data,Digital Setting DEC No.5,Digital indexing DEC setting No.5 (Unit: 0.1sec),A,100,0
+04-15:,10,10,100,1,10,040Eh,0,Operation Data,Digital Setting DEC No.6,Digital indexing DEC setting No.6 (Unit: 0.1sec),A,100,0
+04-16:,10,10,100,1,10,040Fh,0,Operation Data,Digital Setting DEC No.7,Digital indexing DEC setting No.7 (Unit: 0.1sec),A,100,0
+,value,def,max,min,Ram,,,,5,Protect,,,
+05-01:,1,1,2,0,1,0500h,0,Motor,Motor OT sensor Type,"0 = Normal Open (N.O.), 1 = Normal Close (N.C.), 2 = Function Disable",C,100,0
+05-02:,0,0,1,0,0,0501h,0,Protect,Power On Run Inhibit Alarm,Power on run inhibit alarm funciton. 0 = Disable. 1= Enable,C,100,0
+05-03:,0,0,1,0,0,0502h,0,Protect,Hall Seq. Alarm,"0 = Disable, 1 = Enable (Only works when 08-01 = 0)",C,100,0
+05-04:,5000,5000,10000,0,5000,0503h,0,Protect,Over Speed Alarm Setting,"0:Disable, > 0: over speed alarm occur when motor speed is higher than this setting (Unit: r/min)",C,100,0
+05-05:,0,0,1000,0,0,0504h,1,Protect,Auto Reset Period,"0 = START/STOP must be OFF to autoreset, 1 = Auto reset after 0.1 sec (Auto resetable alarm can be set by 05-06)",C,100,0
+05-06:,0,0,65535,0,0,0505h,1,Protect,Auto Resetable Alarm,Set the alarm function that can be auto reset. This is a bit field. For xxample: if set to 48( 0b 0000 0000 0011 0000 )，bit4 and 5 are 1 means alarm 4/5 can be auto reset.,C,100,0
+05-07:,3000,3000,65535,0,3000,0506h,0,Operation,Stall Tq Limit Alarm,"0 = Cont. outputs, 1000 = Alarm in 1.0s after stall",C,100,0
+05-08:,300,300,1000,0,300,0507h,0,Operatoin,Tq Limit Overboost Time,Allowed time for output current to over limit value. Unit: 0.1 sec,C,100,0
+05-09:,600,600,1000,0,600,0508h,0,Operatoin,Tq Limit Recover Time,Output current have to be smaller than limit value over this time to be able to boost again. Unit: 0.1 sec,C,100,0
+05-10:,4500,4500,4500,800,4500,0509h,1,Protect,Over Voltage,Unit: 0.01V,C,100,0
+05-11:,4000,4000,4000,800,4000,050Ah,1,Protect,Over Voltage Recover,Unit: 0.01V,C,100,0
+05-12:,700,700,4000,700,700,050Bh,1,Protect,Under Voltage,Unit: 0.01V,C,100,0
+05-13:,800,800,4000,800,800,050Ch,1,Protect,Under Voltage Recover,Unit: 0.01V,C,100,0
+05-14:,700,700,4000,700,700,050Dh,1,Protect,LVP,Unit: 0.01V,C,100,0
+05-15:,0,0,1,0,0,050Eh,0,Protect,Over Load Protect,"0 = Foldback, 1= Alarm",C,100,0
+05-16:,0,0,1,0,0,050Fh,0,Protect,Over Power Protect,"0 = Foldback, 1= Alarm",C,100,0
+,value,def,max,min,Ram,,,,6,I/O,,,
+06-01:,1,1,21,0,1,0600h,0,IO,Input X1 Function,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+06-02:,2,2,21,0,2,0601h,0,IO,Input X2 Function,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+06-03:,5,5,21,0,5,0602h,0,IO,Input X3 Function,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+06-04:,8,8,21,0,8,0603h,0,IO,Input X4 Function,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+06-05:,10,10,21,0,10,0604h,0,IO,Input X5(XH) Function,"0=NC(PULSE-INPUT), 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST,9=STOP-MOD2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+06-06:,0,0,21,0,0,0605h,0,IO,Always ON Input 1,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST,9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+06-07:,0,0,21,0,0,0606h,0,IO,Always ON Input 2,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+06-08:,0,0,21,0,0,0607h,0,IO,Always ON Input 3,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+06-09:,3,3,16,0,3,0608h,0,IO,Output Y1 Function,"0= NC, 1= SPD-OUT, 2= ALM-OUT, 3= BUSY-OUT, 4= VA-OUT, 5= EN-OUT, 6= ALM-PULSE, 7= BUSY-ALM-PULSE, 11= RUN-OUT, 12= DIR-OUT, 13= MBRAKE, 14= MBRAKE-RELEASE, 15= VA-OUT2, 16= VA-EN-OUT",C,100,0
+06-10:,2,2,16,0,2,0609h,0,IO,Output Y2 Function,"0= NC, 1= SPD-OUT, 2= ALM-OUT, 3= BUSY-OUT, 4= VA-OUT, 5= EN-OUT, 6= ALM-PULSE, 7= BUSY-ALM-PULSE, 11= RUN-OUT, 12= DIR-OUT, 13= MBRAKE, 14= MBRAKE-RELEASE, 15= VA-OUT2, 16= VA-EN-OUT",C,100,0
+06-11:,1,1,16,0,1,060Ah,0,IO,Output YH Function,"0= NC, 1= SPD-OUT, 2= ALM-OUT, 3= BUSY-OUT, 4= VA-OUT, 5= EN-OUT, 6= ALM-PULSE, 7= BUSY-ALM-PULSE, 11= RUN-OUT, 12= DIR-OUT, 13= MBRAKE, 14= MBRAKE-RELEASE, 15= VA-OUT2, 16= VA-EN-OUT",C,100,0
+06-12:,13,13,14,13,13,060Bh,0,IO,OUT1 Function,"13: MBRAKE, 14: MBRAKE-RELEASE",C,100,0
+06-13:,0,0,0,0,0,060Ch,1,IO,OUT2 Function,"13: MBRAKE, 14: MBRAKE-RELEASE",C,100,0
+06-14:,0,0,0,0,0,060Dh,-,-,-,Reserved,-,100,0
+06-15:,0,0,0,0,0,060Eh,-,-,-,Reserved,-,100,0
+06-16:,65535,65535,65535,0,65535,060Fh,0,IO,I/O ON Logic,"Set direct IO ON logic. This is a bit field. Each bit represents the ON logic of an IO. 1:ON is closed circuit. 0:ON is open circuit. For Example: 7 = 0b 0000 0000 0000 0111 means the ON logic is closed circuit for X1~X3, open circuit for X4, X5 and all the outputs.",C,100,0
+,value,def,max,min,Ram,,,,7,Other,,,
+07-01:,2000,2000,2000,0,2000,0700h,0,Operation Data,Digital Setting Tq Limit No.0,Digital indexing Torque limit setting No.0 (Unit: 0.1%),A,100,0
+07-02:,2000,2000,2000,0,2000,0701h,0,Operation Data,Digital Setting Tq Limit No.1,Digital indexing Torque limit setting No.1 (Unit: 0.1%),A,100,0
+07-03:,2000,2000,2000,0,2000,0702h,0,Operation Data,Digital Setting Tq Limit No.2,Digital indexing Torque limit setting No.2 (Unit: 0.1%),A,100,0
+07-04:,2000,2000,2000,0,2000,0703h,0,Operation Data,Digital Setting Tq Limit No.3,Digital indexing Torque limit setting No.3 (Unit: 0.1%),A,100,0
+07-05:,2000,2000,2000,0,2000,0704h,0,Operation Data,Digital Setting Tq Limit No.4,Digital indexing Torque limit setting No.4 (Unit: 0.1%),A,100,0
+07-06:,2000,2000,2000,0,2000,0705h,0,Operation Data,Digital Setting Tq Limit No.5,Digital indexing Torque limit setting No.5 (Unit: 0.1%),A,100,0
+07-07:,2000,2000,2000,0,2000,0706h,0,Operation Data,Digital Setting Tq Limit No.6,Digital indexing Torque limit setting No.6 (Unit: 0.1%),A,100,0
+07-08:,2000,2000,2000,0,2000,0707h,0,Operation Data,Digital Setting Tq Limit No.7,Digital indexing Torque limit setting No.7 (Unit: 0.1%),A,100,0
+07-09:,100,100,1000,0,100,0708h,0,Operation Data,Digital Setting Duty No.0,Digital indexing Duty setting No.0 (Unit: 0.1%),A,100,0
+07-10:,200,200,1000,0,200,0709h,0,Operation Data,Digital Setting Duty No.1,Digital indexing Duty setting No.1 (Unit: 0.1%),A,100,0
+07-11:,300,300,1000,0,300,070Ah,0,Operation Data,Digital Setting Duty No.2,Digital indexing Duty setting No.2 (Unit: 0.1%),A,100,0
+07-12:,400,400,1000,0,400,070Bh,0,Operation Data,Digital Setting Duty No.3,Digital indexing Duty setting No.3 (Unit: 0.1%),A,100,0
+07-13:,500,500,1000,0,500,070Ch,0,Operation Data,Digital Setting Duty No.4,Digital indexing Duty setting No.4 (Unit: 0.1%),A,100,0
+07-14:,600,600,1000,0,600,070Dh,0,Operation Data,Digital Setting Duty No.5,Digital indexing Duty setting No.5 (Unit: 0.1%),A,100,0
+07-15:,800,800,1000,0,800,070Eh,0,Operation Data,Digital Setting Duty No.6,Digital indexing Duty setting No.6 (Unit: 0.1%),A,100,0
+07-16:,1000,1000,1000,0,1000,070Fh,0,Operation Data,Digital Setting Duty No.7,Digital indexing Duty setting No.7 (Unit: 0.1%),A,100,0
+,value,def,max,min,Ram,,,,8,P8,,,
+08-01:,0,0,1,0,0,0800h,0,Common,Control Mode,"0 = Speed, 1 = Duty, 2 = Position",C,100,0
+08-02:,10,10,65535,0,10,0801h,0,Advance,Speed Control P | Kp Gain,value: 1 ~ 65535. (Speed P gain | Position Kp gain),C,100,0
+08-03:,100,100,65535,0,100,0802h,0,Advance,Speed Control D Gain,value: 1 ~ 65535,C,100,0
+08-04:,50,50,65535,0,50,0803h,0,Advance,Torque limit P Gain,value: 1 ~ 65535,C,100,0
+08-05:,20,20,100,0,20,0804h,0,Advance,PID Max Step Change,Unit：0.02% Duty,C,100,0
+08-06:,1,1,1,0,1,0805h,0,Advance,DEC Operation,0 = Inverse Output Disabled，1 = Inverse Output Enabled,C,100,0
+08-07:,1,1,1,0,1,0806h,0,Advance,Reverse Operation,"0 = Cannot change direction during operation, 1 = Can change direction on the run.",C,100,0
+08-08:,1,1,1,0,1,0807h,0,Advance,Brake Function,"0 = Disabled, 1 = Enabled",C,100,0
+08-09:,0,0,65535,0,0,0808h,0,A/P Input,XH PWM OFFSET,"Adjust the PWM signal rising and falling offset.(Unit：0.0167us, This is a signed integer, 1: increase 1 unit, 65535: decrease 1 unit )",C,100,0
+08-10:,1000,1000,65535,0,1000,0809h,1,Advanced,ENC Speed Control P gain,value: 1 ~ 65535,C,100,0
+08-11:,1,1,2,0,1,080Ah,0,Operation,Position Keeping,"0 = Free, 1 = Dynamic Brake(Motor Short), 2 = Slight position-keeping (SPK)",C,100,0
+08-12:,5,5,100,0,5,080Bh,1,Advance,Short Brake Additional Time,When short brake to stop. The additional time to keep the motor short after 100% duty. (Unity: 0.1 sec),C,100,0
+08-13:,0,0,300,0,0,080Ch,1,Advance,STOP-MODE DEC,The ACC time for inversed operation when STOP-MODE is ON. (Unity: 0.1 sec),C,100,0
+08-14:,0,0,300,0,0,080Dh,1,Advance,STOP-MODE ACC,The DEC time when stop using STOP-MODE. (Unity: 0.1 sec),C,100,0
+08-15:,0,0,0,0,0,080Eh,1,Motor,ENC CMD Type,0: Index(revolution) + Pulse(Step)；1: Step(H) + Step(L),C,100,0
+08-16:,1000,1000,65535,0,1000,080Fh,1,Advanced,ENC Speed Control I gain,value: 1 ~ 65535,C,100,0
+,value,def,max,min,Ram,,,,9,P9,,,
+09-01:,1,1,21,0,1,0900h,0,NET-IO,NET-I/O X0 Function,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+09-02:,2,2,21,0,2,0901h,0,NET-IO,NET-I/O X1 Function,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+09-03:,8,8,21,0,8,0902h,0,NET-IO,NET-I/O X2 Function,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+09-04:,6,6,21,0,6,0903h,0,NET-IO,NET-I/O X3 Function,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+09-05:,10,10,21,0,10,0904h,0,NET-IO,NET-I/O X4 Function,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+09-06:,11,11,21,0,11,0905h,0,NET-IO,NET-I/O X5 Function,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+09-07:,0,0,21,0,0,0906h,0,NET-IO,NET-I/O X6 Function,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+09-08:,0,0,21,0,0,0907h,0,NET-IO,NET-I/O X7 Function,"0=NC, 1=S/S(SC)/FWD(CC), 2=CCW/CW(SC)/REV(CC), 5=FREE, 6=STOP-MODE, 7=EBRAKE/ALM-RST, 8=ALM-RST, 9=STOP-MODE2,10=M0, 11=M1, 12=M2, 13=EBRAKE, 14=SERVO-ON, 17=STOP, 20=RGN-OT, 21=EXT-ERROR",C,100,0
+09-09:,0,0,5,0,0,0908h,0,Common,RTU C3.5 Min,"0 = 1.75ms, 1 = 1.50ms, 2 = 1.25ms, 3 = 1.00ms, 4 = 0.75ms, 5 = 0.50ms",C,100,0
+09-10:,0,0,2,0,0,0909h,0,Protect,Network Protect Function,"0 = Alarm, 1 = Clear Net-IO，2 = Alarm + Clear Net-IO",C,100,0
+09-11:,0,0,3,0,0,090Ah,0,Common,WatchData Select,"Select the page for DyanmicData and WatchData. 0 = Page0, 1 = Page1",C,100,0
+09-12:,0,0,10000,0,0,090Bh,0,Protect,RS485 Timeout,"0 = Disabled, 1000 = Alarm after 1000ms when no signal.",C,100,0
+09-13:,0,0,10,0,0,090Ch,0,Protect,RS485 Alarm,Alarm when the number of RS485 error is greater than this setting.,C,100,0
+09-14:,0,0,10000,0,0,090Dh,0,Protect,RS232 Timeout,"0 = Disabled, 1000 = Alarm after 1000ms when no signal.",C,100,0
+09-15:,0,0,10,0,0,090Eh,0,Protect,RS232 Alarm,Alarm when the number of RS485 error is greater than this setting.,C,100,0
+09-16:,0,0,65535,0,0,090Fh,0,Common,RS485 Physical Setting,"BitField：Bit1 + Bit 0 = Parity : 0 = None, 1 = Odd, 2 = Even； Bit 2 = Stop bits : 0 = 1bit, 1 = 2bits；Bit 3 = Data bits : 0 = 8bits, 1 = 7bits ; Bit4 = Exception Mode : 0 = Origin, 1 = Normal",D,100,0

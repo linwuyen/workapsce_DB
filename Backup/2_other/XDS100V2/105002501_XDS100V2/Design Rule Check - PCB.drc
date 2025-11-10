@@ -1,0 +1,56 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\USER\Dropbox\SSTC_共用資料夾\105002501_XDS100V2\PCB.PcbDoc
+Date     : 2019/7/17
+Time     : 上午 11:13:30
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Silk to Silk (Clearance=0mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Silkscreen Over Component Pads (Clearance=0mm) (IsPad),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.127mm) (HasFootprint('DCU(R-PDSO-G8')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.05mm) ((HasFootprint('USB_MINI'))),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.02mm) ((HasFootprint('PGF (S-PQFP-G176)')or HasFootPrint('SSOP28')or HasFootPrint('PW (R-PDSO-G16)'))),(All)
+Rule Violations :0
+
+Processing Rule : Hole To Hole Clearance (Gap=0.127mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=0.025mm) (Max=10mm) (All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=1.6mm) (Air Gap=0.254mm) (Entries=4) ((HasFootprint('TO-220 90°')or  HasFootprint('ECAP_D35')or HasFootprint('CR2512')or HasFootPrint('BSM50GD120DLC')))
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.2mm) (Max=5mm) (Preferred=0.2mm) (All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.2mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.4mm) (InPolygon),(All)
+Rule Violations :0
+
+
+Violations Detected : 0
+Time Elapsed        : 00:00:00

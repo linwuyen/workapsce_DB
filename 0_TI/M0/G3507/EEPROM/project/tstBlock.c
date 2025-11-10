@@ -1,0 +1,228 @@
+/*
+ * tstBlock.c
+ *
+ *  Created on: 2023¦~5¤ë24¤é
+ *      Author: cody_chen
+ */
+#include <stdint.h>
+#include "emu_eeprom.h"
+#include "tst.h"
+
+TEST_EVENT tstfsm = _FREE_TEST_EEPROM;
+
+int beginAddress = 0;
+int ptrAddress = 0;
+int endAddress = 0;
+int procBytes = 0;
+int testBytes = EMU_KBYTES;
+
+typedef enum {
+    _EV_GET_ADDRESS = 0,
+    _EV_UPLOAD_DATA,
+    _EV_END_OF_UPLOAD,
+    _EV_END_OF_INIT_TESTBLOCK
+}REG_INIT_TSTBLOCK;
+
+typedef REG_INIT_TSTBLOCK REG_RST_TSTBLOCK;
+
+REG_INIT_TSTBLOCK regInitTstBlock = _EV_GET_ADDRESS;
+
+void initBlockRam(void)
+{
+        switch(regInitTstBlock) {
+            case _EV_GET_ADDRESS:
+                endAddress = beginAddress + testBytes;
+                ptrAddress = beginAddress;
+                procBytes = 0;
+                regInitTstBlock = _EV_UPLOAD_DATA;
+            break;
+
+          case _EV_UPLOAD_DATA:
+                if(procBytes < testBytes) {
+                     writeEmuEeprom(ptrAddress, ptrAddress%0xFF);
+                     ptrAddress++;
+                     procBytes++;
+                     ptrAddress&=0x3FF;
+                     if(EMU_SIZE_OF_SECTOR <= ptrAddress) ptrAddress -= EMU_SIZE_OF_SECTOR;
+                }
+                else {
+                    ptrAddress = beginAddress;
+                    regInitTstBlock = _EV_END_OF_UPLOAD;
+                }
+
+            break;
+
+          case _EV_END_OF_UPLOAD:
+                tstfsm = _FREE_TEST_EEPROM;
+                regInitTstBlock = _EV_GET_ADDRESS;
+            break;
+
+            default:
+            break;
+        }
+}
+
+REG_RST_TSTBLOCK regRESTstBlock = _EV_GET_ADDRESS;
+
+void resetBlockRam(void)
+{
+        switch(regRESTstBlock) {
+            case _EV_GET_ADDRESS:
+                endAddress = beginAddress + testBytes;
+                ptrAddress = beginAddress;
+                procBytes = 0;
+                regRESTstBlock = _EV_UPLOAD_DATA;
+            break;
+
+          case _EV_UPLOAD_DATA:
+              if(procBytes < testBytes) {
+                     writeEmuEeprom(ptrAddress, 0xFF);
+                     ptrAddress++;
+                     procBytes++;
+                     if(EMU_SIZE_OF_SECTOR <= ptrAddress) ptrAddress -= EMU_SIZE_OF_SECTOR;
+                }
+                else {
+                    ptrAddress = beginAddress;
+                    regRESTstBlock = _EV_END_OF_UPLOAD;
+                }
+
+            break;
+
+          case _EV_END_OF_UPLOAD:
+                tstfsm = _FREE_TEST_EEPROM;
+                regRESTstBlock = _EV_GET_ADDRESS;
+            break;
+
+            default:
+            break;
+        }
+}
+
+void varifyBlockFlash(void)
+{
+
+}
+//------------------------------------------------------------------0320 Add---------
+//volatile uint32_t UNCORRECTED_ADDRESS_SPACE = EMU_START_OF_HEADER_CB;
+volatile uint32_t UNCORRECTED_ADDRESS_SPACE =  ((uint32_t) 0x00405400);
+volatile uint32_t* address_ptr;
+
+void Load_EEPROM_Data_G (void)
+{
+    address_ptr= ( uint32_t*) UNCORRECTED_ADDRESS_SPACE;;
+    pkg.u32AddrData_0 = *address_ptr;
+    pkg.u32AddrData_1 = *(address_ptr + 1);
+    pkg.u32AddrData_2=  *(address_ptr + 2);
+    pkg.u32AddrData_3 = *(address_ptr + 3);
+    pkg.u32AddrData_4=  *(address_ptr + 4);
+    pkg.u32AddrData_5 = *(address_ptr + 5);
+}
+//---------------------------------------------------------------------------------
+
+typedef struct{
+    volatile  uint32_t u32tstBoundaryAddress;
+    volatile  uint32_t u32tstBoundaryAddress_STOP;
+    uint32_t tstData1[2];
+    uint32_t tstData2[2];
+    uint32_t tstData3[2];
+    uint32_t tstData4[2];
+}tst_loop;
+
+tst_loop tst_src = {
+    .tstData1 = {0xFFFFFFFF, 0x87654321},
+    .tstData2 = {0x12345678, 0xFFFFFFFF},
+    .tstData3 = {0xFFFFFFFF, 0xABCDEFAA},
+    .tstData4 = {0xABCDEFAA, 0xFFFFFFFF},
+    .u32tstBoundaryAddress =  ((uint32_t) 0x00004000),
+    .u32tstBoundaryAddress_STOP = ((uint32_t) 0x00004400),
+};
+
+void _LOOP_PROGRAM_FUNC (void)
+{
+    //sector 1024 /400
+    DL_FlashCTL_unprotectSector(FLASHCTL,tst_src.u32tstBoundaryAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
+    DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(FLASHCTL, tst_src.u32tstBoundaryAddress, (uint32_t *)&tst_src.tstData2);
+    DL_FlashCTL_unprotectSector(FLASHCTL,tst_src.u32tstBoundaryAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
+    DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(FLASHCTL, tst_src.u32tstBoundaryAddress, (uint32_t *)&tst_src.tstData1);
+    tst_src.u32tstBoundaryAddress+=8;
+
+    if(tst_src.u32tstBoundaryAddress == tst_src.u32tstBoundaryAddress_STOP)
+    {
+     tstfsm = _FREE_TEST_EEPROM;
+    }
+}
+
+
+void EraseFUNC (void)
+{
+ DL_FlashCTL_unprotectSector(FLASHCTL,tst_src.u32tstBoundaryAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
+ DL_FlashCTL_eraseMemoryFromRAM(FLASHCTL, tst_src.u32tstBoundaryAddress, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
+ tstfsm = _FREE_TEST_EEPROM;
+}
+
+
+void FAE_CODE (void)
+{
+    /* Erase sector in main memory */
+     /* Unprotect sector in main memory with ECC generated by hardware */
+     DL_FlashCTL_unprotectSector(FLASHCTL, (0x4000), DL_FLASHCTL_REGION_SELECT_MAIN);
+     /* Erase sector in main memory */
+      DL_FlashCTL_eraseMemoryFromRAM(FLASHCTL, (0x4000), DL_FLASHCTL_COMMAND_SIZE_SECTOR);
+         __BKPT(0);
+
+     DL_FlashCTL_unprotectSector(FLASHCTL, (0x4000), DL_FLASHCTL_REGION_SELECT_MAIN);
+     DL_FlashCTL_programMemoryFromRAM64(FLASHCTL, (0x4000), (uint32_t *)&tst_src.tstData1);
+         __BKPT(0);
+
+     DL_FlashCTL_unprotectSector(FLASHCTL, (0x4000), DL_FLASHCTL_REGION_SELECT_MAIN);
+     DL_FlashCTL_programMemoryFromRAM64(FLASHCTL, (0x4000),(uint32_t *)&tst_src.tstData2);
+         __BKPT(0);
+
+         tstfsm = _FREE_TEST_EEPROM;
+}
+
+void tstEmuEeprom(void)
+{
+    switch(tstfsm) {
+    case _INIT_TEST_BLOCK_RAM:
+        initBlockRam();
+        break;
+
+    case _RESET_BLOCK_RAM:
+        resetBlockRam();
+        break;
+
+    case _PROGRAM_BLOCK_TO_FLASH:
+        setProgramEmuEeprom();
+                tstfsm = _FREE_TEST_EEPROM;
+        break;
+
+    case _VARIFY_BLOCK_DATA:
+        setVerifyEmuEeprom();
+            tstfsm = _FREE_TEST_EEPROM;
+        break;
+
+    case _FREE_TEST_EEPROM:
+        break;
+
+    case _Load_emu_DATA:
+        Load_EEPROM_Data_G();
+        tstfsm = _FREE_TEST_EEPROM;
+
+    case _LOOP_PROGRAMEG:
+        _LOOP_PROGRAM_FUNC();
+        break;
+    break;
+
+    case  _Earse:
+        EraseFUNC();
+        break;
+
+    case _FAE_CODE:
+        FAE_CODE();
+        break;
+
+    default:
+        break;
+    }
+}
